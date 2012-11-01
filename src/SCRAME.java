@@ -11,25 +11,25 @@ public class SCRAME{
 		while(true){
 			System.out.println("\n\n\tWelcome to Course Registration portal!" +
 					"\n\t(powered by KTCube)");
-			System.out.println("\n");		//new line
+			System.out.println();		//new line
 			System.out.println("\t1. ");
 			System.out.println("\t2. ");
 			System.out.println("\t3. ");
 			System.out.println("\t4. ");
 			System.out.println("\t5. ");
-			System.out.println("\n");		//new line
+			System.out.println();		//new line
 			System.out.println("\t6. ");
 			System.out.println("\t7. ");
 			System.out.println("\t8. ");
 			System.out.println("\t9. ");
 			System.out.println("\t10. ");
-			System.out.println("\n");		//new line
+			System.out.println();		//new line
 			System.out.print("Please select your option: ");
 			
 			Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
 			
-			System.out.println("\n");		//new line
+			System.out.println();		//new line
 			
 			switch(choice){
 			case 1: 
