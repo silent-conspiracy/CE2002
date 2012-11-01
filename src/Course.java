@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Course implements PrimaryKeyManager, Serializable {
+public class Course implements PrimaryKeyManager, Serializable, SortByName {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	private static int pk = 1; // To ensure id is unique.

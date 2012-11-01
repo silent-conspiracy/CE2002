@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Group implements PrimaryKeyManager, Serializable {
+public class Group implements PrimaryKeyManager, Serializable, SortByName {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	private static int pk = 1;

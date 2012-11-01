@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class School implements Serializable {
+public class School implements Serializable, SortByName {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	private String name;

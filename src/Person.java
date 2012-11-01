@@ -2,7 +2,7 @@ import java.util.Date;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public abstract class Person implements Serializable {
+public abstract class Person implements Serializable, SortByName {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	private String name;
