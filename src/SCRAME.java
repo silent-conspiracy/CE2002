@@ -24,10 +24,12 @@ public class SCRAME{
 			System.out.println("\t9. ");
 			System.out.println("\t10. ");
 			System.out.println("\n");		//new line
-			System.out.println("Please select your option: ");
+			System.out.print("Please select your option: ");
 			
 			Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
+			
+			System.out.println("\n");		//new line
 			
 			switch(choice){
 			case 1: 
