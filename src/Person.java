@@ -1,7 +1,9 @@
 import java.util.Date;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Attributes
 	private String name;
 	private Gender gender;
@@ -15,6 +17,11 @@ public abstract class Person {
 	public Person(String name, Gender gender) {
 		this.name = name;
 		this.gender = gender;
+		this.ic = null;
+		this.contact = null;
+		this.email = null;
+		this.address = null;
+		this.dob = null;
 	}
 	
 	// Getters and Setters
@@ -48,6 +55,7 @@ public abstract class Person {
 		return false;
 	}
 	
+	// @todo remove main method after implementing read method for Dates
 	public static void main(String[] args) {
 		SimpleDateFormat datetime = new SimpleDateFormat("dd-MM-yyyy");
 		try{

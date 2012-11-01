@@ -1,8 +1,11 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Grade {
+public class Grade implements Serializable {
 	// Grade Point Average only.
+	private static final long serialVersionUID = 1L;
+
 	// Attributes
 	private Course course;
 	private HashMap<String, Double> grades;
@@ -20,6 +23,9 @@ public class Grade {
 	// Getters and Setters
 	public Course getCourse() { return course; }
 	public HashMap<String, Double> getGrades() { return grades; }
+	
+	public void setCourse(Course course) { this.course = course; }
+	public void setGrades(HashMap<String, Double> grades) { this.grades = grades; }
 	
 	// Specific methods
 	public Set<String> getComponents() { return grades.keySet(); }

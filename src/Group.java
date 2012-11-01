@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Group implements PrimaryKeyManager {
+public class Group implements PrimaryKeyManager, Serializable {
+	private static final long serialVersionUID = 1L;
 	// Attributes
 	private static int pk = 1;
 	private int id;
@@ -14,8 +16,10 @@ public class Group implements PrimaryKeyManager {
 	public Group(CourseType type, int capacity) {
 		this.id = pk;
 		autoIncrement(this.id);
+		this.name = null;
 		this.type = type;
 		this.capacity = capacity;
+		this.professor = null;
 		this.students = new HashMap<Integer, Student>();
 	}
 	
@@ -32,6 +36,7 @@ public class Group implements PrimaryKeyManager {
 	public void setType(CourseType type) { this.type = type; }
 	public void setCapacity(int capacity) { this.capacity = capacity; }
 	public void setProfessor(Professor prof) { this.professor = prof; }
+	public void setStudents(HashMap<Integer, Student> students) { this.students = students; }
 	
 	// Specific Methods
 	public int getVacancy() { return (getCapacity() - getStudents().size()); }
@@ -40,9 +45,10 @@ public class Group implements PrimaryKeyManager {
 		else throw new KeyErrorException();
 	}
 	public void addStudent(Student obj) throws DuplicateKeyException, MaxCapacityException {
-		if (getCapacity() - getStudents().size() <= 0) throw new MaxCapacityException(String.format("%s not enrolled as Group %d is full.", obj.getName(), getID()));
+		if (getVacancy() <= 0) throw new MaxCapacityException(String.format("%s not enrolled as Group %d is full.", obj.getName(), getID()));
 		if (students.containsKey(obj.getID())) 
 			throw new DuplicateKeyException(String.format("%s has already enrolled in Group %d", obj.getName(), getID()));
+		else students.put(obj.getID(), obj);
 	}
 	public void rmStudent(Student obj) throws KeyErrorException {
 		if (students.containsKey(obj.getID())) students.remove(obj.getID());

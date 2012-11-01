@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Course implements PrimaryKeyManager {
+public class Course implements PrimaryKeyManager, Serializable {
+	private static final long serialVersionUID = 1L;
 	// Attributes
 	private static int pk = 1; // To ensure id is unique.
 	private int id;
@@ -34,24 +36,25 @@ public class Course implements PrimaryKeyManager {
 	public int getID() { return id; }
 	public String getName() { return name; }
 	public int getAU() { return AU; }
-	public String getType() { return this.type.getDescription(); }
+	public CourseType getType() { return this.type; }
 	public HashMap<String, Double> getWeights() { return this.weights; }
-	public CourseGroup getCourseGroup() { return this.groups; }
+	public CourseGroup getGroups() { return this.groups; }
 	public Professor getCoordinator() { return this.coordinator; }
 	
 	public void setID(int id) { this.id = id; }
 	public void setName(String name) { this.name = name; }
 	public void setAU(int number) { this.AU = number; }
-	public void setType(CourseType type) { this.type = type; setCourseGroup(type); }
+	public void setType(CourseType type) { this.type = type; setGroups(type); }
 	public void setWeights(HashMap<String, Double> weights) { this.weights = weights; }
-	public void setCourseGroup(CourseType type) {
+	public void setGroups(CourseGroup groups) { this.groups = groups; }
+	public void setCoordinator(Professor prof) { this.coordinator = prof; }
+	
+	// Specific methods
+	public void setGroups(CourseType type) {
 		// Overwrites current CourseGroup
 		int capacity = this.groups.getCapacity();
 		this.groups = new CourseGroup(type, capacity);
 	}
-	public void setCoordinator(Professor prof) { this.coordinator = prof; }
-	
-	// Specific methods
 	@Override
 	public void autoIncrement(int id) {
 		pk = ++id;

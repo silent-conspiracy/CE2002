@@ -1,8 +1,9 @@
 import java.util.HashMap;
 
 public class Professor extends Person implements PrimaryKeyManager{
+	private static final long serialVersionUID = 1L;
 	// Attributes
-	private static int pk;
+	private static int pk = 1;
 	private int pid;
 	private String pmail;
 	private String office;
@@ -13,17 +14,27 @@ public class Professor extends Person implements PrimaryKeyManager{
 	private HashMap<Integer, Group> classes; // Tutor or lecturer of classes.
 	
 	// Constructors
-	public Professor(String name, Gender gender) {
+	public Professor(String name, Gender gender, School school) {
 		super(name, gender);
 		this.pid = pk;
 		autoIncrement(this.pid);
+		this.pmail = null;
+		this.office = null;
+		this.officeContact = null;
+		this.school = school;
+		this.position = null;
 		this.courses = new HashMap<Integer, Course>();
 		this.classes = new HashMap<Integer, Group>();
 	}
-	public Professor(int id, String name, Gender gender) {
+	public Professor(int id, String name, Gender gender, School school) {
 		super(name, gender);
 		this.pid = id;
 		autoIncrement(this.pid);
+		this.pmail = null;
+		this.office = null;
+		this.officeContact = null;
+		this.school = school;
+		this.position = null;
 		this.courses = new HashMap<Integer, Course>();
 		this.classes = new HashMap<Integer, Group>();
 	}
@@ -46,6 +57,8 @@ public class Professor extends Person implements PrimaryKeyManager{
 	public void setOfficeContact(String contact) { this.officeContact = contact; }
 	public void setSchool(School school) { this.school = school; }
 	public void setPosition(String position) { this.position = position; }
+	public void setCourses(HashMap<Integer, Course> courses) { this.courses = courses; }
+	public void setClasses(HashMap<Integer, Group> classes) { this.classes = classes; }
 	
 	// Specific methods
 	public void addCourse(Course course) throws DuplicateKeyException {

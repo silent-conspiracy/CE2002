@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class CourseGroup {
+public class CourseGroup implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Attributes
 	private int capacity;
 	private Group lecture;
@@ -12,13 +14,13 @@ public class CourseGroup {
 	public CourseGroup(CourseType type, int capacity) {
 		this.capacity = capacity;
 		// Constructing lecture, tutorial and lab groups according to type.
-		if (type.getLectures().contains(type)) setLecture();
-		if (type.getTutorials().contains(type)) {
+		// Null values allowed.
+		if (type.getLectures().contains(type))
+			setLecture();
+		if (type.getTutorials().contains(type))
 			setTutorials();
-		}
-		if (type.getLabs().contains(type)) {
-			setLabs();		
-		}
+		if (type.getLabs().contains(type))
+			setLabs();
 	}
 	
 	// Getters and Setters
@@ -26,6 +28,20 @@ public class CourseGroup {
 	public Group getLecture() { return lecture; }
 	public HashMap<Integer, Group> getTutorials() { return tutorials; }
 	public HashMap<Integer, Group> getLabs() { return labs; }
+	
+	public void setCapacity(int capacity) throws MaxCapacityException {
+		if (capacity < getStudents().size()) throw new MaxCapacityException("Capacity must not be less that current size");
+		else this.capacity = capacity;
+	}
+	public void setLecture(Group lecture) { this.lecture = lecture; }
+	public void setTutorials(HashMap<Integer, Group> tutorials) { this.tutorials = tutorials; }
+	public void setLabs(HashMap<Integer, Group> labs) { this.labs = labs; }
+	
+	// Specific methods
+	public void setLecture() { lecture = new Group(CourseType.LECTURE, capacity); }
+	public void setTutorials() { tutorials = new HashMap<Integer, Group>(); }
+	public void setLabs() { labs = new HashMap<Integer, Group>(); }
+	
 	public Group getTutorial(int gid) throws KeyErrorException { 
 		if (tutorials.containsKey(gid)) return (Group)tutorials.get(gid);
 		else throw new KeyErrorException();
@@ -34,25 +50,27 @@ public class CourseGroup {
 		if (labs.containsKey(gid)) return (Group)labs.get(gid);
 		else throw new KeyErrorException();
 	}
-	
-	public void setCapacity(int capacity) throws MaxCapacityException {
-		if (capacity < getStudents().size()) throw new MaxCapacityException("Capacity must not be less that current size");
-		else this.capacity = capacity;
-	} 
-	public void setLecture() { lecture = new Group(CourseType.LECTURE, capacity); }
-	public void setTutorials() { tutorials = new HashMap<Integer, Group>(); }
-	public void setLabs() { labs = new HashMap<Integer, Group>(); }
-	
-	// Specific methods
-	public void createTutorial(int capacity) {
+	public void addTutorial(int capacity) {
 		if (tutorials == null) return;
 		Group tutorial = new Group(CourseType.TUTORIAL, capacity);
 		tutorials.put(tutorial.getID(), tutorial);
 	}
-	public void createLab(int capacity) {
+	public void addLab(int capacity) {
 		if (labs == null) return;
 		Group lab = new Group(CourseType.LAB, capacity);
 		labs.put(lab.getID(), lab);
+	}
+	public void rmTutorial(int id) throws KeyErrorException, MaxCapacityException {
+		if (tutorials.containsKey(id)) {
+			if (tutorials.get(id).getStudents().size() == 0) tutorials.remove(id);
+			else throw new MaxCapacityException("Please ensure tutorial group is empty before closing.");
+		} else throw new KeyErrorException(String.format("Tutorial ID %d not found",id)); 
+	}
+	public void rmLab(int id) throws KeyErrorException, MaxCapacityException {
+		if (labs.containsKey(id)) {
+			if (labs.get(id).getStudents().size() == 0) labs.remove(id);
+			else throw new MaxCapacityException("Please ensure tutorial group is empty before closing.");
+		} else throw new KeyErrorException(String.format("Tutorial ID %d not found",id)); 
 	}
 	public int getVacancy() { return (getCapacity() - getStudents().size()); }
 	public HashSet<Student> getStudents() {
@@ -90,11 +108,12 @@ public class CourseGroup {
 		}
 		return students;
 	}
-	public void addStudent(Student obj, CourseType type, HashMap<CourseType, Integer> gid) throws KeyErrorException, DuplicateKeyException, NullPointerException {
+	public void addStudent(Student obj, CourseType type, HashMap<CourseType, Integer> gid) throws KeyErrorException, DuplicateKeyException, NullPointerException, MaxCapacityException {
 		// Adds student according to the course types
 		// Depending on course types, gid must have group ids for tutorials and labs
 		// Method overloading not used as to reduce copy and pasting, and number of methods.
-		try {
+		if (getVacancy() <= 0) throw new MaxCapacityException(String.format("No more vacancy."));
+		try{
 			if (getStudents().contains(obj)) throw new DuplicateKeyException(String.format("Student %s is already enrolled.", obj.getName()));
 			if (type.getLectures().contains(type)) {
 				if (lecture == null) setLecture();
@@ -121,6 +140,7 @@ public class CourseGroup {
 		} catch (MaxCapacityException e) {
 			System.out.println("\n"+e.getMessage());
 			rmStudent(obj, type);
+			System.out.println("Please register the student again in another group.");
 		}
 	}
 	public void rmStudent(Student obj, CourseType type) throws KeyErrorException {
