@@ -1,10 +1,12 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
 public class Group implements PrimaryKeyManager, Serializable, SortByName {
 	private static final long serialVersionUID = 1L;
 	// Attributes
-	private static int pk = 1;
+	public static int pk = 1;
 	private int id;
 	private String name;
 	private int capacity;
@@ -57,6 +59,20 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName {
 	
 	@Override
 	public void autoIncrement(int id) {
+		if (id < pk) return;
 		pk = ++id;
+	}
+	@Override
+	public void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		autoIncrement(this.id);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Group)) return false;
+		Group temp = (Group) obj;
+		if (this.id == temp.getID()) return true;
+		return false;
 	}
 }

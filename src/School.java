@@ -57,8 +57,14 @@ public class School implements Serializable, SortByName {
 		if (courses.containsKey(course.getID())) courses.remove(course.getID());
 		else throw new KeyErrorException();
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof School)) return false;
+		return (this.name == ((School) obj).getName());
+	}
 	public static void main(String[] args) {
+		System.out.println(Course.pk);
+		/*
 		School school = new School("School of Computer Engineering");
 		Professor prof = new Professor("Mark", Gender.MALE, school);
 		Student stud = new Student("Wei", Gender.MALE, school);
@@ -100,7 +106,7 @@ public class School implements Serializable, SortByName {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+		*/
 		try {
 			FileInputStream fis = new FileInputStream("school.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -129,6 +135,8 @@ public class School implements Serializable, SortByName {
 			System.out.println("Prof Object: " + profs.get(1));
 			
 			ois3.close();
+			System.out.println(Course.pk);
+			System.out.println(sch.courses.get(1).pk);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

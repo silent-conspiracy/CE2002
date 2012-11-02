@@ -30,7 +30,7 @@ public class CourseGroup implements Serializable {
 	public HashMap<Integer, Group> getLabs() { return labs; }
 	
 	public void setCapacity(int capacity) throws MaxCapacityException {
-		if (capacity < getStudents().size()) throw new MaxCapacityException("Capacity must not be less that current size");
+		if (capacity < getStudents().size()) throw new MaxCapacityException("Capacity must not be less than current size");
 		else this.capacity = capacity;
 	}
 	public void setLecture(Group lecture) { this.lecture = lecture; }

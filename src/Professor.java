@@ -1,9 +1,11 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 
 public class Professor extends Person implements PrimaryKeyManager{
 	private static final long serialVersionUID = 1L;
 	// Attributes
-	private static int pk = 1;
+	public static int pk = 1;
 	private int pid;
 	private String pmail;
 	private String office;
@@ -80,7 +82,22 @@ public class Professor extends Person implements PrimaryKeyManager{
 	
 	@Override
 	public void autoIncrement(int id) {
-		pk = id++;
+		if (id < pk) return;
+		pk = ++id;
+	}
+	@Override
+	public void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		autoIncrement(this.getID());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Person)) return false;
+		Person temp = (Person) obj;
+		if (this.getID() == temp.getID()) return true;
+		if (this.getName() == temp.getName()) return true;
+		return false;
 	}
 	
 }
