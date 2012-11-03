@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class Student extends Person implements PrimaryKeyManager{
+public class Student extends Person implements PrimaryKeyManager {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	public static int pk = 1; // For PrimaryKeyManager (unique IDs)
@@ -132,7 +132,7 @@ public class Student extends Person implements PrimaryKeyManager{
 			msg += String.format("%sSemester: %s\n", tabs, sem.getName());
 			for (Course course : courses.get(sem)) {
 				msg += String.format("%s\tCourse: %d, %s\n", tabs, course.getID(), course.getName());
-				msg += this.grades.get(course).printGrade(tabs+"\t\t");
+				msg += this.grades.get(course).printMarks(tabs+"\t\t");
 			}
 		}
 		return msg+'\n';

@@ -2,7 +2,7 @@ import java.util.Date;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public abstract class Person implements Serializable, SortByName {
+public abstract class Person implements Serializable, SortByName, Comparable<Person> {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	private String name;
@@ -44,6 +44,10 @@ public abstract class Person implements Serializable, SortByName {
 	public void setDob(Date dob) { this.dob = dob; }
 	
 	@Override
+	public int compareTo(Person obj) {
+		return (this.getID() - (obj.getID()));
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Person)) return false;
 		Person person = (Person) obj;
@@ -55,7 +59,7 @@ public abstract class Person implements Serializable, SortByName {
 		return false;
 	}
 	
-	// @todo remove main method after implementing read method for Dates
+	// TODO remove main method after implementing read method for Dates
 	public static void main(String[] args) {
 		SimpleDateFormat datetime = new SimpleDateFormat("dd-MM-yyyy");
 		try{

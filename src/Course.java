@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Course implements PrimaryKeyManager, Serializable, SortByName, Comparable<Course> {
@@ -81,6 +83,42 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		// Overwrites current CourseGroup
 		int capacity = this.groups.getCapacity();
 		this.groups = new CourseGroup(type, capacity);
+	}
+	public void printResults() {
+		System.out.println(printResults(""));
+	}
+	public String printResults(String tabs) {
+		String msg = new String();
+		Grade mark = null;
+		double marks = 0.0;
+		HashMap<String, Double> components = new HashMap<String,Double>();
+		int studentCount = 0;
+		ArrayList<Student> students = new ArrayList<Student>(getGroups().getStudents());
+		Collections.sort(students);
+		msg += String.format("%sCourse Statistics:\n", tabs);
+		msg += String.format("%s\tStudents: \n", tabs);
+		for (Student student : students) {
+			msg += String.format("%s\t%d, %s: \n", tabs, student.getID(), student.getName());
+			try {
+				mark = student.getGrade(this);
+				marks += mark.getOverall();
+				for (String type : mark.getComponents()) {
+					if (components.containsKey(type)) {
+						components.put(type, components.get(type)+mark.getMark(type));
+					}
+					else components.put(type, mark.getMark(type));
+				}
+				msg += mark.printMarks(tabs+"\t\t");
+				studentCount++;
+			} catch (KeyErrorException e){
+				msg += String.format("%s\t\t%s\n", tabs, e.getMessage());
+			}
+ 		}
+		msg += String.format("%s\tMean Overall: %.2f / %d = %.2f", tabs, marks, studentCount, marks/studentCount);
+		for (String type : components.keySet()) {
+			msg += String.format("%s\tMean %s: %.2f / %d = %.2f", tabs, type, components.get(type), studentCount, components.get(type)/studentCount);
+		}
+		return msg+'\n';
 	}
 	@Override
 	public void autoIncrement(int id) {

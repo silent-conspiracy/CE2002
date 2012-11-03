@@ -46,6 +46,10 @@ public class Grade implements Serializable {
 	
 	// Specific methods
 	public Set<String> getComponents() { return marks.keySet(); }
+	public double getMark(String type) throws KeyErrorException {
+		if (getMarks().containsKey(type)) return getMarks().get(type);
+		else throw new KeyErrorException(String.format("Component: %s does not exist", type));
+	}
 	public void setGrade(String string, double grade) throws KeyErrorException {
 		if (getComponents().contains(string)) getMarks().put(string, grade);
 		else throw new KeyErrorException("Grade component does not exist.");
