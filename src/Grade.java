@@ -29,6 +29,10 @@ public class Grade implements Serializable {
 	
 	// Specific methods
 	public Set<String> getComponents() { return grades.keySet(); }
+	public void setGrade(String string, double grade) throws KeyErrorException {
+		if (getComponents().contains(string)) getGrades().put(string, grade);
+		else throw new KeyErrorException("Grade component does not exist.");
+	}
 	public String printGrade(String tabs) {
 		String msg = new String();
 		msg += String.format("%sGrades:\n", tabs);
