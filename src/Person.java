@@ -59,6 +59,18 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 		return false;
 	}
 	
+	public String printPersonParticulars(String tabs) {
+		String msg = new String();
+		msg += String.format("%sName: %s\n", tabs, name);
+		msg += String.format("%sGender: %s\n", tabs, gender.getDescription());
+		msg += String.format("%sIC: %s\n", tabs, ic);
+		msg += String.format("%sContact: %s\n", tabs, contact);
+		msg += String.format("%sPersonal email: %s\n", tabs, email);
+		msg += String.format("%sAddress: %s\n", tabs, address);
+		msg += String.format("%sDate of Birth: %s\n", tabs, dob);
+		return msg;
+	}
+	
 	// TODO remove main method after implementing read method for Dates
 	public static void main(String[] args) {
 		SimpleDateFormat datetime = new SimpleDateFormat("dd-MM-yyyy");

@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Student extends Person implements PrimaryKeyManager {
 	private static final long serialVersionUID = 1L;
@@ -156,5 +157,235 @@ public class Student extends Person implements PrimaryKeyManager {
 		if (this.getID() == temp.getID()) return true;
 		if (this.getName() == temp.getName()) return true;
 		return false;
+	}
+	
+	public void printParticulars() {
+		System.out.println(printParticulars(""));
+	}
+	public String printParticulars(String tabs) {
+		String msg = new String();
+		msg += String.format("%sGeneral Particulars: \n", tabs);
+		msg += printPersonParticulars(tabs+"\t");
+		msg += String.format("%sStudent Particulars: \n", tabs);
+		msg += printStudentParticulars(tabs+"\t");
+		return msg;
+	}
+	public String printStudentParticulars(String tabs) {
+		String msg = new String();
+		msg += String.format("%sStudent Particulars: \n", tabs);
+		msg += String.format("%sStudent Mail: %s\n", tabs, smail);
+		msg += String.format("%sSchool: %s\n", tabs, school.getName());
+		msg += String.format("%sProgram: %s\n", tabs, program);
+		msg += String.format("%sStudent Type: %s\n", tabs, type);
+		msg += String.format("%sCGPA: %s\n", tabs, CGPA);
+		return msg;
+	}
+	
+	public static void main(School school, Scanner scan) {
+		// Declarations
+		int choice = 0;
+		int studentID = 0;
+		boolean done = false;
+		char gender;
+		String stringInput = null;
+		Student student = null;
+		ArrayList<Student> studentList = null;
+		
+		while(!done) {
+			System.out.println("Welcome to Student Manager.");
+			System.out.println("\t1. Print students list by ID.");
+			System.out.println("\t2. Print students list by Name.");
+			System.out.println("\t3. Create a new student.");
+			System.out.println("\t4. Edit a student.");
+			System.out.println("\t5. Delete a student.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Please choose a choice: ");
+			choice = scan.nextInt();
+			
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+				case 2:
+					studentList = new ArrayList<Student>(school.getStudents().values());
+					if (choice == 1) Collections.sort(studentList);
+					else Collections.sort(studentList, new SortByNameComparator());
+					System.out.println("Students List:");
+					System.out.printf("%5s | %60s | %10s\n", "NO", "NAME", "STUDENT ID");
+					System.out.printf(String.format("%%0%dd \n", 81), "-");
+					for (Student std : studentList) {
+						System.out.printf("\t%5d | %60s | %10d\n", studentList.indexOf(std)+1, std.getName(), std.getID());
+					}
+					break;
+				case 3:
+					student = null;
+					System.out.print("Please input student name: ");
+					stringInput = scan.next();
+					System.out.print("Please choose gender (M/F): ");
+					gender = scan.next().charAt(0);
+					switch (gender) {
+						case 'M':
+						case 'm':
+							student = new Student(stringInput, Gender.MALE, school);
+							break;
+						case 'F':
+						case 'f':
+							student = new Student(stringInput, Gender.FEMALE, school);
+							break;
+						default:
+							System.out.println("Error: Invalid selection.");
+							break;
+					}
+					if (student != null) {
+						try {
+							school.addStudent(student);
+						} catch (DuplicateKeyException e) {
+							System.out.println(e.getMessage());
+						}
+					} else System.out.println("Error: Student not created.");
+					break;
+				case 4:
+				case 5:
+					student = null;
+					System.out.print("Please input student ID / Name: ");
+					stringInput = scan.next();
+					try {
+						studentID = Integer.parseInt(stringInput);
+						if (choice == 4) Student.main(school.getStudent(studentID), scan);
+						else {
+							student = school.getStudent(studentID);
+							school.rmStudent(student);
+							System.out.printf("Student %d, %s removed.\n", student.getID(), student.getName());
+						}
+					} catch (NumberFormatException e) {
+						for (Student std : school.getStudents().values()) {
+							if (std.getName() == stringInput) {
+								student = std;
+								if (choice == 4) Student.main(student, scan);
+								else {
+									try {
+										school.rmStudent(student);
+									} catch (KeyErrorException f) {
+										//pass
+									}
+									System.out.printf("Student %d, %s removed.\n", student.getID(), student.getName());
+								}
+								break;
+							}
+						}
+						if (student == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
+		}
+	}
+	public static void main(Student student, Scanner scan) {
+		int choice = 0;
+		boolean done = false;
+		String stringInput = null;
+		ArrayList<School> schoolList = null;
+		Program[] programs = null;
+		StudentType[] studentTypes = null;
+		
+		while (!done) {
+			System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
+			System.out.println(student.printParticulars("\t"));
+			System.out.println("\t1. Edit General Particulars.");
+			System.out.println("\t2. Edit Student Particulars.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Please choose an option: ");
+			choice = scan.nextInt();
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+					Person.main(student, scan);
+					break;
+				case 2:
+					while (!done) {
+						System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
+						System.out.println(student.printStudentParticulars("\t"));
+						System.out.println("\t1. Edit Student Mail.");
+						System.out.println("\t2. Edit School.");
+						System.out.println("\t3. Edit Program.");
+						System.out.println("\t4. Edit Student Type.");
+						System.out.println("\t0. Go back to previous menu.");
+						System.out.print("Please choose an option: ");
+						choice = scan.nextInt();
+						
+						switch (choice) {
+							case 0:
+								done = true;
+								break;
+							case 1:
+								System.out.print("Please input new name: ");
+								stringInput = scan.next();
+								student.setName(stringInput);
+								break;
+							case 2:
+								System.out.println("Please choose the following schools: ");
+								schoolList = new ArrayList<School>(SCRAME.data.getSchools());
+								for (School sch : schoolList) {
+									System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
+								}
+								System.out.print("Choice: ");
+								choice = scan.nextInt();
+								try {
+									schoolList.get(choice-1).addStudent(student);
+									student.getSchool().rmStudent(student);
+									student.setSchool(schoolList.get(choice-1));
+								} catch (IndexOutOfBoundsException e) {
+									System.out.println("Error: Invalid choice.");
+								} catch (DuplicateKeyException f) {
+									System.out.println(f.getMessage());
+								} catch (KeyErrorException g) {
+									System.out.println(g.getMessage());
+								}
+								break;
+							case 3:
+								System.out.println("Please choose the following programs: ");
+								programs = Program.values();
+								for (int i=0; i<programs.length; i++) {
+									System.out.printf("\t%d. %s\n", i+1, programs[i].getName());
+								}
+								System.out.print("Choice: ");
+								choice = scan.nextInt();
+								try {
+									student.setProgram(programs[choice-1]);
+								} catch (IndexOutOfBoundsException e) {
+									System.out.println("Error: Invalid choice.");
+								}
+								break;
+							case 4:
+								System.out.println("Please choose the following student types: ");
+								studentTypes = StudentType.values();
+								for (int i=0; i<studentTypes.length; i++) {
+									System.out.printf("\t%d. %s\n", i+1, studentTypes[i].getDescription());
+								}
+								System.out.print("Choice: ");
+								choice = scan.nextInt();
+								try {
+									student.setType(studentTypes[choice-1]);
+								} catch (IndexOutOfBoundsException e) {
+									System.out.println("Error: Invalid choice.");
+								}
+								break;
+							default:
+								System.out.println("Error: Invalid choice.");
+								break;
+						}
+						done = false;
+					}
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
+		}
 	}
 }

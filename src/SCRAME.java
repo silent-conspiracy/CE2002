@@ -1,59 +1,69 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SCRAME{
+public class SCRAME {
 	
-	private int schoolYear = 2012;
-	private int semester = 1;
-	private int choice;
+	public static int schoolYear = 2012;
+	public static SaveData data;
 	
 	public static void main (String[] args){
-		//UI
+		// Variable declaration
+		Scanner scan = new Scanner(System.in);
+		int choice = 0;
+		boolean done = false;
+		String stringInput = null;
+		School school = null;
+		ArrayList<School> schoolList = null;
+		
+		// Initialization
+		data = new SaveData();
+		school = new School("School of Computer Engineering");
+		try {
+			data.addSchool(school);
+		} catch (DuplicateKeyException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		// UI
 		while(true){
-			System.out.println("\n\n\tWelcome to Course Registration portal!" +
-					"\n\t(powered by KTCube)");
-			System.out.println();		//new line
-			System.out.println("\t1. ");
-			System.out.println("\t2. ");
-			System.out.println("\t3. ");
-			System.out.println("\t4. ");
-			System.out.println("\t5. ");
-			System.out.println();		//new line
-			System.out.println("\t6. ");
-			System.out.println("\t7. ");
-			System.out.println("\t8. ");
-			System.out.println("\t9. ");
-			System.out.println("\t10. ");
-			System.out.println();		//new line
-			System.out.print("Please select your option: ");
+			System.out.println("\n\n\tWelcome to Course Registration portal!\n\t(powered by KTCube)");
 			
-			Scanner scan = new Scanner(System.in);
-			choice = scan.nextInt();
-			
-			System.out.println();		//new line
-			
-			switch(choice){
-			case 1: 
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4: 
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			case 7: 
-				break;
-			case 8:
-				break;
-			case 9:
-				break;
-			case 10:
-				break;
-			default: break;
-			}
+			while (!done) {
+				System.out.println("Please select a school: ");
+				schoolList = new ArrayList<School>(data.getSchools());
+				System.out.println("\t0. Create new School.");
+				for (School sch : schoolList) {
+					System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
+				}
+				System.out.println("\t-1. Save and Quit.");
+				choice = scan.nextInt();
+				
+				switch(choice) {
+					case -1:
+						// TODO SAVE DATA
+						System.out.println("Thank you! Good Bye.");
+						return;
+					case 0:
+						System.out.println("Please input school name: ");
+						stringInput = scan.nextLine();
+						try {
+							data.addSchool(school = new School(stringInput));
+							done = true;
+						} catch (DuplicateKeyException e) {
+							System.out.println(e.getMessage());
+						}
+						break;
+					default:
+						try {
+							school = schoolList.get(choice-1);
+							done = true;
+						} catch (IndexOutOfBoundsException e) {
+							System.out.println("Error: Invalid choice.");
+						}
+						break;
+				}
+			}				
+			School.main(school, scan);
 		}
 	}
 	
