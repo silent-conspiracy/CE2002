@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Student extends Person implements PrimaryKeyManager{
@@ -103,6 +105,37 @@ public class Student extends Person implements PrimaryKeyManager{
 	public void rmGrade(Grade grade) throws KeyErrorException {
 		if (grades.containsKey(grade.getCourse())) grades.remove(grade.getCourse().getID());
 		else throw new KeyErrorException();
+	}
+	public HashMap<Semester, ArrayList<Course>> getCoursesBySemester() {
+		HashMap<Semester, ArrayList<Course>> courses = new HashMap<Semester, ArrayList<Course>>();
+		for (Course course : this.grades.keySet()) {
+			if (!courses.containsKey(course.getSemester()))
+				courses.put(course.getSemester(), new ArrayList<Course>());
+			courses.get(course.getSemester()).add(course);
+		}
+		for (ArrayList<Course> courseList : courses.values()) {
+			Collections.sort(courseList);
+		}
+		return courses;
+	}
+	public void printTranscript() {
+		System.out.println(printTranscript(""));
+	}
+	public String printTranscript(String tabs) {
+		String msg = new String();
+		HashMap<Semester, ArrayList<Course>> courses = getCoursesBySemester();
+		ArrayList<Semester> semList = new ArrayList<Semester>(courses.keySet());
+		Collections.sort(semList);
+		msg += String.format("%sCGPA: %.2f\n",tabs, this.CGPA);
+		msg += String.format("%sCourses taken: \n",tabs);
+		for (Semester sem : semList) {
+			msg += String.format("%sSemester: %s\n", tabs, sem.getName());
+			for (Course course : courses.get(sem)) {
+				msg += String.format("%s\tCourse: %d, %s\n", tabs, course.getID(), course.getName());
+				msg += this.grades.get(course).printGrade(tabs+"\t\t");
+			}
+		}
+		return msg+'\n';
 	}
 	
 	@Override

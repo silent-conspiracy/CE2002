@@ -29,4 +29,12 @@ public class Grade implements Serializable {
 	
 	// Specific methods
 	public Set<String> getComponents() { return grades.keySet(); }
+	public String printGrade(String tabs) {
+		String msg = new String();
+		msg += String.format("%sGrades:\n", tabs);
+		for (String type : getComponents()) {
+			msg += String.format("%s\t%s: %.2f", tabs, type, grades.get(type));
+		}
+		return msg+'\n';
+	}
 }

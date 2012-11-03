@@ -3,7 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Course implements PrimaryKeyManager, Serializable, SortByName {
+public class Course implements PrimaryKeyManager, Serializable, SortByName, Comparable<Course> {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	public static int pk; // To ensure id is unique.
@@ -92,7 +92,10 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName {
 		stream.defaultReadObject();
 		autoIncrement(this.id);
 	}
-	
+	@Override
+	public int compareTo(Course obj) {
+		return this.getID() - obj.getID();
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Course)) return false;

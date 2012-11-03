@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 
-public class Semester implements PrimaryKeyManager, Serializable{
+public class Semester implements PrimaryKeyManager, Serializable, Comparable<Semester>{
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	public static int pk = 1;
@@ -58,6 +58,12 @@ public class Semester implements PrimaryKeyManager, Serializable{
 			ClassNotFoundException {
 		stream.defaultReadObject();
 		autoIncrement(this.id);
+	}
+	
+	@Override
+	public int compareTo(Semester sem) {
+		// Reverse sorting
+		return sem.getID() - this.getID();
 	}
 	
 	@Override
