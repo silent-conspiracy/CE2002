@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class SCRAME {
 	
-	public static int schoolYear = 2012;
 	public static SaveData data;
 	
 	public static void main (String[] args){
@@ -31,19 +30,20 @@ public class SCRAME {
 			while (!done) {
 				System.out.println("Please select a school: ");
 				schoolList = new ArrayList<School>(data.getSchools());
-				System.out.println("\t0. Create new School.");
 				for (School sch : schoolList) {
 					System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
 				}
-				System.out.println("\t-1. Save and Quit.");
+				System.out.println("\t0. Save and Quit.");
+				//System.out.println("\t-1. Create new School.");
 				choice = scan.nextInt();
 				
 				switch(choice) {
-					case -1:
+					case 0:
 						// TODO SAVE DATA
 						System.out.println("Thank you! Good Bye.");
+						scan.close();
 						return;
-					case 0:
+					case -1:
 						System.out.println("Please input school name: ");
 						stringInput = scan.nextLine();
 						try {

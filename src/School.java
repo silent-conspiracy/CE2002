@@ -1,9 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -42,6 +37,10 @@ public class School implements Serializable, SortByName {
 	public Professor getProfessor(int id) throws KeyErrorException {
 		if (professors.containsKey(id)) return professors.get(id);
 		else throw new KeyErrorException(String.format("Professor ID %d does not exist.", id));
+	}
+	public Course getCourse(int id) throws KeyErrorException {
+		if (courses.containsKey(id)) return courses.get(id);
+		else throw new KeyErrorException(String.format("Course ID %d does not exist.", id));
 	}
 	public void addStudent(Student student) throws DuplicateKeyException {
 		if (students.containsValue(student)) throw new DuplicateKeyException();

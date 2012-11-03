@@ -90,7 +90,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 		String msg = new String();
 		msg += String.format("%sGeneral Particulars: \n", tabs);
 		msg += printPersonParticulars(tabs+"\t");
-		msg += String.format("%sStudent Particulars: \n", tabs);
+		msg += String.format("%sProfessor Particulars: \n", tabs);
 		msg += printProfessorParticulars(tabs+"\t");
 		return msg;
 	}
@@ -155,16 +155,16 @@ public class Professor extends Person implements PrimaryKeyManager{
 					profList = new ArrayList<Professor>(school.getProfessors().values());
 					if (choice == 1) Collections.sort(profList);
 					else Collections.sort(profList, new SortByNameComparator());
-					System.out.println("Students List:");
-					System.out.printf("%5s | %60s | %10s\n", "NO", "NAME", "STUDENT ID");
-					System.out.printf(String.format("%%0%dd \n", 81), "-");
-					for (Professor std : profList) {
-						System.out.printf("\t%5d | %60s | %10d\n", profList.indexOf(std)+1, std.getName(), std.getID());
+					System.out.println("Professors List:");
+					System.out.printf("%5s | %60s | %12s\n", "NO", "NAME", "PROFESSOR ID");
+					System.out.printf(String.format("%%0%dd \n", 83), "-");
+					for (Professor professor : profList) {
+						System.out.printf("\t%5d | %60s | %10d\n", profList.indexOf(professor)+1, professor.getName(), professor.getID());
 					}
 					break;
 				case 3:
 					prof = null;
-					System.out.print("Please input student name: ");
+					System.out.print("Please input professor name: ");
 					stringInput = scan.next();
 					System.out.print("Please choose gender (M/F): ");
 					gender = scan.next().charAt(0);
@@ -187,38 +187,38 @@ public class Professor extends Person implements PrimaryKeyManager{
 						} catch (DuplicateKeyException e) {
 							System.out.println(e.getMessage());
 						}
-					} else System.out.println("Error: Student not created.");
+					} else System.out.println("Error: Professor not created.");
 					break;
 				case 4:
 				case 5:
 					prof = null;
-					System.out.print("Please input student ID / Name: ");
+					System.out.print("Please input Professor ID / Name: ");
 					stringInput = scan.next();
 					try {
 						profID = Integer.parseInt(stringInput);
-						if (choice == 4) Student.main(school.getStudent(profID), scan);
+						if (choice == 4) Professor.main(school.getProfessor(profID), scan);
 						else {
 							prof = school.getProfessor(profID);
 							school.rmProfessor(prof);
-							System.out.printf("Student %d, %s removed.\n", prof.getID(), prof.getName());
+							System.out.printf("Professor %d, %s removed.\n", prof.getID(), prof.getName());
 						}
 					} catch (NumberFormatException e) {
 						for (Professor professor : school.getProfessors().values()) {
 							if (professor.getName() == stringInput) {
 								prof = professor;
-								if (choice == 4) Student.main(prof, scan);
+								if (choice == 4) Professor.main(prof, scan);
 								else {
 									try {
 										school.rmProfessor(prof);
 									} catch (KeyErrorException f) {
 										//pass
 									}
-									System.out.printf("Student %d, %s removed.\n", prof.getID(), prof.getName());
+									System.out.printf("Professor %d, %s removed.\n", prof.getID(), prof.getName());
 								}
 								break;
 							}
 						}
-						if (prof == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
+						if (prof == null) System.out.printf("Error: Professor %s does not exists.\n", stringInput);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}

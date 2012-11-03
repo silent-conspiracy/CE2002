@@ -107,6 +107,7 @@ public class Student extends Person implements PrimaryKeyManager {
 		if (grades.containsKey(grade.getCourse())) grades.remove(grade.getCourse().getID());
 		else throw new KeyErrorException();
 	}
+	// TODO calcCGPA();
 	public HashMap<Semester, ArrayList<Course>> getCoursesBySemester() {
 		HashMap<Semester, ArrayList<Course>> courses = new HashMap<Semester, ArrayList<Course>>();
 		for (Course course : this.grades.keySet()) {
