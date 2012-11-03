@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -75,6 +77,27 @@ public class CourseGroup implements Serializable {
 	public int getVacancy() { return (getCapacity() - getStudents().size()); }
 	public HashSet<Student> getStudents() {
 		HashSet<Student> students = new HashSet<Student>();
+		HashSet<Student> temp = null;
+		if (lecture != null) {
+			temp = getStudentsInLecture();
+			for (Student student : temp) students.add(student);
+		}
+		if (tutorials != null) {
+			for(int i : tutorials.keySet()) {
+				temp = getStudentsInTutorial(tutorials.get(i));
+				for (Student student : temp) students.add(student);
+			}
+		}
+		if (labs != null) {
+			for(int i : labs.keySet()) {
+				temp = getStudentsInLab(labs.get(i));
+				for (Student student : temp) students.add(student);
+			}
+		}
+		return students;
+	}
+	public HashSet<Student> getStudentsInLecture() {
+		HashSet<Student> students = new HashSet<Student>();
 		if (lecture != null) {
 			for (int i : lecture.getStudents().keySet()) {
 				try {
@@ -84,26 +107,26 @@ public class CourseGroup implements Serializable {
 				}
 			}
 		}
-		if (tutorials != null) {
-			for (int i : tutorials.keySet()) {
-				for (int j : tutorials.get(i).getStudents().keySet()) {
-					try {
-						students.add(tutorials.get(i).getStudent(j));
-					} catch (KeyErrorException e) {
-						// Pass
-					}
-				}
+		return students;
+	}
+	public HashSet<Student> getStudentsInTutorial(Group tutorial) {
+		HashSet<Student> students = new HashSet<Student>();
+		for (int j : tutorial.getStudents().keySet()) {
+			try {
+				students.add(tutorial.getStudent(j));
+			} catch (KeyErrorException e) {
+				// Pass
 			}
 		}
-		if (labs != null) {
-			for (int i : labs.keySet()) {
-				for (int j : labs.get(i).getStudents().keySet()) {
-					try {
-						students.add(labs.get(i).getStudent(j));
-					} catch (KeyErrorException e) {
-						// Pass
-					}
-				}
+		return students;
+	}
+	public HashSet<Student> getStudentsInLab(Group lab) {
+		HashSet<Student> students = new HashSet<Student>();
+		for (int j : lab.getStudents().keySet()) {
+			try {
+				students.add(lab.getStudent(j));
+			} catch (KeyErrorException e) {
+				// Pass
 			}
 		}
 		return students;
@@ -165,5 +188,67 @@ public class CourseGroup implements Serializable {
 				}
 			}
 		}
+	}
+	public void printStudents() {
+		System.out.println(printStudents(""));
+	}
+	public String printStudents(String tabs) {
+		String msg = new String();
+		if (getLecture() != null) {
+			msg += printStudentsInLecture(tabs+"\t");
+		}
+		if (getTutorials() != null) {
+			for (Group tutorial : getTutorials().values()) {
+				msg += printStudentsInTutorial(tabs+"\t", tutorial);
+			}
+		}
+		if (getLabs() != null) {
+			for (Group lab : getLabs().values()) {
+				msg += printStudentsInLab(tabs+"\t", lab);
+			}
+		}
+		return msg;
+	}
+	public String printStudentsInLecture(String tabs) {
+		String msg = new String();
+		ArrayList<Student> students = null;
+		students = new ArrayList<Student>(getStudentsInLecture());
+		int counter = 0;
+		Collections.sort(students, new SortByNameComparator());
+		msg += String.format("%sLecture ID, Name: %d, %d\n", tabs, getLecture().getID(), getLecture().getName());
+		msg += String.format("%sLecture Vacancy: %d / %d\n", tabs, students.size(), getLecture().getCapacity());
+		if (students.size() > 0) msg += String.format("%sStudent List:\n", tabs, students.size(), getLecture().getCapacity());
+		for (Student student : students) {
+			msg += String.format("%s\t%d. %s, ID: %d", tabs, ++counter, student.getName(), student.getID());
+		}
+		return msg+'\n';
+	}
+	public String printStudentsInTutorial(String tabs, Group tutorial) {
+		String msg = new String();
+		ArrayList<Student> students = null;
+		students = new ArrayList<Student>(getStudentsInTutorial(tutorial));
+		int counter = 0;
+		Collections.sort(students, new SortByNameComparator());
+		msg += String.format("%sTutorial ID, Name: %d, %d\n", tabs, tutorial.getID(), tutorial.getName());
+		msg += String.format("%sTutorial Vacancy: %d / %d\n", tabs, students.size(), tutorial.getCapacity());
+		if (students.size() > 0) msg += String.format("%sStudent List:\n", tabs, students.size(), tutorial.getCapacity());
+		for (Student student : students) {
+			msg += String.format("%s\t%d. %s, ID: %d", tabs, ++counter, student.getName(), student.getID());
+		}
+		return msg+'\n';
+	}
+	public String printStudentsInLab(String tabs, Group lab) {
+		String msg = new String();
+		ArrayList<Student> students = null;
+		students = new ArrayList<Student>(getStudentsInLab(lab));
+		int counter = 0;
+		Collections.sort(students, new SortByNameComparator());
+		msg += String.format("%sTutorial ID, Name: %d, %d\n", tabs, lab.getID(), lab.getName());
+		msg += String.format("%sTutorial Vacancy: %d / %d\n", tabs, students.size(), lab.getCapacity());
+		if (students.size() > 0) msg += String.format("%sStudent List:\n", tabs, students.size(), lab.getCapacity());
+		for (Student student : students) {
+			msg += String.format("%s\t%d. %s, ID: %d", tabs, ++counter, student.getName(), student.getID());
+		}
+		return msg+'\n';
 	}
 }
