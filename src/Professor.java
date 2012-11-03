@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -124,6 +125,109 @@ public class Professor extends Person implements PrimaryKeyManager{
 		return false;
 	}
 	
+	public static void main(School school, Scanner scan) {
+		// Declarations
+		int choice = 0;
+		int profID = 0;
+		boolean done = false;
+		char gender;
+		String stringInput = null;
+		Professor prof = null;
+		ArrayList<Professor> profList = null;
+		
+		while(!done) {
+			System.out.println("Welcome to Professor Manager.");
+			System.out.println("\t1. Print professors list by ID.");
+			System.out.println("\t2. Print professors list by Name.");
+			System.out.println("\t3. Create a new professor.");
+			System.out.println("\t4. Edit a professor.");
+			System.out.println("\t5. Delete a professor.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Please choose a choice: ");
+			choice = scan.nextInt();
+			
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+				case 2:
+					profList = new ArrayList<Professor>(school.getProfessors().values());
+					if (choice == 1) Collections.sort(profList);
+					else Collections.sort(profList, new SortByNameComparator());
+					System.out.println("Students List:");
+					System.out.printf("%5s | %60s | %10s\n", "NO", "NAME", "STUDENT ID");
+					System.out.printf(String.format("%%0%dd \n", 81), "-");
+					for (Professor std : profList) {
+						System.out.printf("\t%5d | %60s | %10d\n", profList.indexOf(std)+1, std.getName(), std.getID());
+					}
+					break;
+				case 3:
+					prof = null;
+					System.out.print("Please input student name: ");
+					stringInput = scan.next();
+					System.out.print("Please choose gender (M/F): ");
+					gender = scan.next().charAt(0);
+					switch (gender) {
+						case 'M':
+						case 'm':
+							prof = new Professor(stringInput, Gender.MALE, school);
+							break;
+						case 'F':
+						case 'f':
+							prof = new Professor(stringInput, Gender.FEMALE, school);
+							break;
+						default:
+							System.out.println("Error: Invalid selection.");
+							break;
+					}
+					if (prof != null) {
+						try {
+							school.addProfessor(prof);
+						} catch (DuplicateKeyException e) {
+							System.out.println(e.getMessage());
+						}
+					} else System.out.println("Error: Student not created.");
+					break;
+				case 4:
+				case 5:
+					prof = null;
+					System.out.print("Please input student ID / Name: ");
+					stringInput = scan.next();
+					try {
+						profID = Integer.parseInt(stringInput);
+						if (choice == 4) Student.main(school.getStudent(profID), scan);
+						else {
+							prof = school.getProfessor(profID);
+							school.rmProfessor(prof);
+							System.out.printf("Student %d, %s removed.\n", prof.getID(), prof.getName());
+						}
+					} catch (NumberFormatException e) {
+						for (Professor professor : school.getProfessors().values()) {
+							if (professor.getName() == stringInput) {
+								prof = professor;
+								if (choice == 4) Student.main(prof, scan);
+								else {
+									try {
+										school.rmProfessor(prof);
+									} catch (KeyErrorException f) {
+										//pass
+									}
+									System.out.printf("Student %d, %s removed.\n", prof.getID(), prof.getName());
+								}
+								break;
+							}
+						}
+						if (prof == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
+		}
+	}
 	public static void main(Professor prof, Scanner scan) {
 		int choice = 0;
 		boolean done = false;

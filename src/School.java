@@ -39,6 +39,10 @@ public class School implements Serializable, SortByName {
 		if (students.containsKey(id)) return students.get(id);
 		else throw new KeyErrorException(String.format("Student ID %d does not exist.", id));
 	}
+	public Professor getProfessor(int id) throws KeyErrorException {
+		if (professors.containsKey(id)) return professors.get(id);
+		else throw new KeyErrorException(String.format("Professor ID %d does not exist.", id));
+	}
 	public void addStudent(Student student) throws DuplicateKeyException {
 		if (students.containsValue(student)) throw new DuplicateKeyException();
 		else students.put(student.getID(), student);
