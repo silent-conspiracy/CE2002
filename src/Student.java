@@ -311,7 +311,7 @@ public class Student extends Person implements PrimaryKeyManager {
 					while (!done) {
 						System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
 						System.out.println(student.printStudentParticulars("\t"));
-						System.out.println("\t1. Edit Student Mail.");
+						System.out.println("\t1. Edit Student eMail.");
 						System.out.println("\t2. Edit School.");
 						System.out.println("\t3. Edit Program.");
 						System.out.println("\t4. Edit Student Type.");
@@ -324,9 +324,9 @@ public class Student extends Person implements PrimaryKeyManager {
 								done = true;
 								break;
 							case 1:
-								System.out.print("Please input new name: ");
+								System.out.print("Please input student eMail: ");
 								stringInput = scan.next();
-								student.setName(stringInput);
+								student.setSmail(stringInput);
 								break;
 							case 2:
 								System.out.println("Please choose the following schools: ");

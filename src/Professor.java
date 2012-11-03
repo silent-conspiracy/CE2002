@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Professor extends Person implements PrimaryKeyManager{
 	private static final long serialVersionUID = 1L;
@@ -80,6 +82,28 @@ public class Professor extends Person implements PrimaryKeyManager{
 		else throw new KeyErrorException();
 	}
 	
+	public void printParticulars() {
+		System.out.println(printParticulars(""));
+	}
+	public String printParticulars(String tabs) {
+		String msg = new String();
+		msg += String.format("%sGeneral Particulars: \n", tabs);
+		msg += printPersonParticulars(tabs+"\t");
+		msg += String.format("%sStudent Particulars: \n", tabs);
+		msg += printProfessorParticulars(tabs+"\t");
+		return msg;
+	}
+	public String printProfessorParticulars(String tabs) {
+		String msg = new String();
+		msg += String.format("%sProfessor Particulars: \n", tabs);
+		msg += String.format("%sProfessor Mail: %s\n", tabs, getPmail());
+		msg += String.format("%sSchool: %s\n", tabs, getSchool().getName());
+		msg += String.format("%sOffice Location: %s\n", tabs, getOffice());
+		msg += String.format("%sOffice Contact: %s\n", tabs, getOfficeContact());
+		msg += String.format("%sPosition: %s\n", tabs, getPosition());
+		return msg;
+	}
+	
 	@Override
 	public void autoIncrement(int id) {
 		if (id < pk) return;
@@ -100,4 +124,94 @@ public class Professor extends Person implements PrimaryKeyManager{
 		return false;
 	}
 	
+	public static void main(Professor prof, Scanner scan) {
+		int choice = 0;
+		boolean done = false;
+		String stringInput = null;
+		ArrayList<School> schoolList = null;
+		
+		while (!done) {
+			System.out.printf("Professor: %d, %s\n", prof.getID(), prof.getName());
+			System.out.println(prof.printParticulars("\t"));
+			System.out.println("\t1. Edit General Particulars.");
+			System.out.println("\t2. Edit Professor Particulars.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Please choose an option: ");
+			choice = scan.nextInt();
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+					Person.main(prof, scan);
+					break;
+				case 2:
+					while (!done) {
+						System.out.printf("Professor: %d, %s\n", prof.getID(), prof.getName());
+						System.out.println(prof.printProfessorParticulars("\t"));
+						System.out.println("\t1. Edit Professor eMail.");
+						System.out.println("\t2. Edit School.");
+						System.out.println("\t3. Edit Office Location.");
+						System.out.println("\t4. Edit Office Contact.");
+						System.out.println("\t5. Edit Position.");
+						System.out.println("\t0. Go back to previous menu.");
+						System.out.print("Please choose an option: ");
+						choice = scan.nextInt();
+						
+						switch (choice) {
+							case 0:
+								done = true;
+								break;
+							case 1:
+								System.out.print("Please input professor eMail: ");
+								stringInput = scan.next();
+								prof.setPmail(stringInput);
+								break;
+							case 2:
+								System.out.println("Please choose the following schools: ");
+								schoolList = new ArrayList<School>(SCRAME.data.getSchools());
+								for (School sch : schoolList) {
+									System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
+								}
+								System.out.print("Choice: ");
+								choice = scan.nextInt();
+								try {
+									schoolList.get(choice-1).addProfessor(prof);
+									prof.getSchool().rmProfessor(prof);
+									prof.setSchool(schoolList.get(choice-1));
+								} catch (IndexOutOfBoundsException e) {
+									System.out.println("Error: Invalid choice.");
+								} catch (DuplicateKeyException f) {
+									System.out.println(f.getMessage());
+								} catch (KeyErrorException g) {
+									System.out.println(g.getMessage());
+								}
+								break;
+							case 3:
+								System.out.print("Please input office location: ");
+								stringInput = scan.next();
+								prof.setOffice(stringInput);
+								break;
+							case 4:
+								System.out.print("Please input office contact: ");
+								stringInput = scan.next();
+								prof.setOfficeContact(stringInput);
+								break;
+							case 5:
+								System.out.print("Please input position: ");
+								stringInput = scan.next();
+								prof.setPosition(stringInput);
+								break;
+							default:
+								System.out.println("Error: Invalid choice.");
+								break;
+						}
+						done = false;
+					}
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
+		}
+	}
 }

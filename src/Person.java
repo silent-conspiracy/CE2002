@@ -1,5 +1,7 @@
 import java.util.Date;
+import java.util.Scanner;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public abstract class Person implements Serializable, SortByName, Comparable<Person> {
@@ -43,6 +45,21 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 	public void setAddress(String address) { this.address = address; }
 	public void setDob(Date dob) { this.dob = dob; }
 	
+	// Specific methods
+	public void readDOB(String string) throws ParseException {
+		SimpleDateFormat datetime = new SimpleDateFormat("dd/MM/yyyy");
+		datetime.setLenient(false);
+		if (string.matches("[0-3]\\d/[01]\\d/\\d{4}")) {
+			Date date = datetime.parse(string);
+			setDob(date);
+		}
+		else throw new ParseException("Format error", 0);
+	}
+	public String printDOB() {
+		SimpleDateFormat datetime = new SimpleDateFormat("dd/MM/yyyy");
+		return datetime.format(getDob());
+	}
+	
 	@Override
 	public int compareTo(Person obj) {
 		return (this.getID() - (obj.getID()));
@@ -67,18 +84,89 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 		msg += String.format("%sContact: %s\n", tabs, contact);
 		msg += String.format("%sPersonal email: %s\n", tabs, email);
 		msg += String.format("%sAddress: %s\n", tabs, address);
-		msg += String.format("%sDate of Birth: %s\n", tabs, dob);
+		msg += String.format("%sDate of Birth: %s\n", tabs, printDOB());
 		return msg;
 	}
 	
-	// TODO remove main method after implementing read method for Dates
-	public static void main(String[] args) {
-		SimpleDateFormat datetime = new SimpleDateFormat("dd-MM-yyyy");
-		try{
-		Date date = datetime.parse("30-10-2012");
-		System.out.println(datetime.format(date));
-		} catch(Exception e) {
+	public static void main(Person person, Scanner scan) {
+		// Declarations
+		int choice = 0;
+		boolean done = false;
+		String stringInput = null;
+		
+		while (!done) {
+			System.out.printf("Person: %d, %s\n", person.getID(), person.getName());
+			System.out.println(person.printPersonParticulars("\t"));
+			System.out.println("\t1. Edit Name.");
+			System.out.println("\t2. Edit Gender.");
+			System.out.println("\t3. Edit IC.");
+			System.out.println("\t4. Edit Contact.");
+			System.out.println("\t5. Edit Personal eMail.");
+			System.out.println("\t6. Edit Address.");
+			System.out.println("\t7. Edit Date of Birth.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Please choose an option: ");
+			choice = scan.nextInt();
 			
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+					System.out.print("Please input new name: ");
+					stringInput = scan.next();
+					person.setName(stringInput);
+					break;
+				case 2:
+					System.out.print("Please choose gender (M/F): ");
+					choice = scan.next().charAt(0);
+					switch (choice) {
+						case 'M':
+						case 'm':
+							person.setGender(Gender.MALE);
+							break;
+						case 'F':
+						case 'f':
+							person.setGender(Gender.FEMALE);
+							break;
+						default:
+							System.out.println("Error: Invalid selection.");
+							break;
+					}
+					break;
+				case 3:
+					System.out.print("Please input IC: ");
+					stringInput = scan.next();
+					person.setIC(stringInput);
+					break;
+				case 4:
+					System.out.print("Please input Contact: ");
+					stringInput = scan.next();
+					person.setContact(stringInput);
+					break;
+				case 5:
+					System.out.print("Please input Personal eMail: ");
+					stringInput = scan.next();
+					person.setEmail(stringInput);
+					break;
+				case 6:
+					System.out.print("Please input Address: ");
+					stringInput = scan.next();
+					person.setAddress(stringInput);
+					break;
+				case 7:
+					System.out.print("Please input Date of Birth (DD/MM/YYYY): ");
+					stringInput = scan.next();
+					try {
+						person.readDOB(stringInput);
+					} catch (ParseException e) {
+						System.out.println("Error: Date format or value incompatible.");
+					}
+					break;
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
 		}
 	}
 }
