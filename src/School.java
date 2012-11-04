@@ -32,46 +32,49 @@ public class School implements Serializable, SortByName {
 	// Specific Methods
 	public Student getStudent(int id) throws KeyErrorException {
 		if (students.containsKey(id)) return students.get(id);
-		else throw new KeyErrorException(String.format("Student ID %d does not exist.", id));
+		else throw new KeyErrorException(String.format("Student ID %d does not exist", id));
 	}
 	public Professor getProfessor(int id) throws KeyErrorException {
 		if (professors.containsKey(id)) return professors.get(id);
-		else throw new KeyErrorException(String.format("Professor ID %d does not exist.", id));
+		else throw new KeyErrorException(String.format("Professor ID %d does not exist", id));
 	}
 	public Course getCourse(int id) throws KeyErrorException {
 		if (courses.containsKey(id)) return courses.get(id);
-		else throw new KeyErrorException(String.format("Course ID %d does not exist.", id));
+		else throw new KeyErrorException(String.format("Course ID %d does not exist", id));
 	}
 	public void addStudent(Student student) throws DuplicateKeyException {
-		if (students.containsValue(student)) throw new DuplicateKeyException();
+		if (students.containsValue(student)) 
+			throw new DuplicateKeyException(String.format("Student ID %d, %s already exists", student.getID(), student.getName()));
 		else students.put(student.getID(), student);
 	}
 	public void addProfessor(Professor prof) throws DuplicateKeyException {
-		if (professors.containsValue(prof)) throw new DuplicateKeyException();
+		if (professors.containsValue(prof)) 
+			throw new DuplicateKeyException(String.format("Professor ID %d, %s already exists", prof.getID(), prof.getName()));
 		else professors.put(prof.getID(), prof);
 	}
 	public void addCourse(Course course) throws DuplicateKeyException {
-		if (courses.containsValue(course)) throw new DuplicateKeyException();
+		if (courses.containsValue(course))
+			throw new DuplicateKeyException(String.format("Course ID %d, %s already exists", course.getID(), course.getName()));
 		else courses.put(course.getID(), course);
 	}
 	public void rmStudent(Student student) throws KeyErrorException {
 		if (students.containsKey(student.getID())) students.remove(student.getID());
-		else throw new KeyErrorException();
+		else throw new KeyErrorException(String.format("Student ID %d, %s does not exist", student.getID(), student.getName()));
 	}
 	public void rmProfessor(Professor prof) throws KeyErrorException {
 		if (professors.containsKey(prof.getID())) professors.remove(prof.getID());
-		else throw new KeyErrorException();
+		else throw new KeyErrorException(String.format("Professor ID %d, %s does not exist", prof.getID(), prof.getName()));
 	}
 	public void rmCourse(Course course) throws KeyErrorException {
 		if (courses.containsKey(course.getID())) courses.remove(course.getID());
-		else throw new KeyErrorException();
+		else throw new KeyErrorException(String.format("Course ID %d, %s does not exist", course.getID(), course.getName()));
 	}
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof School)) return false;
-		return (this.name == ((School) obj).getName());
+		return (this.getName().equals(((School) obj).getName()));
 	}
-	public static void main(School school, Scanner scan) {
+	public static void main(School school, SaveData data, Scanner scan) {
 		// Declarations
 		int choice = 0;
 		boolean done = false;
@@ -84,7 +87,8 @@ public class School implements Serializable, SortByName {
 			System.out.println("\t3. Manage Courses");
 			System.out.println("\t4. Manage Semesters");
 			System.out.println("\t0. Go back to previous menu");
-			choice = scan.nextInt();
+			System.out.print("Choice: ");
+			choice = scan.nextInt(); scan.nextLine();
 			
 			switch(choice){
 				case 0:
@@ -100,7 +104,7 @@ public class School implements Serializable, SortByName {
 					Course.main(school, scan);
 					break;
 				case 4: 
-					Semester.main(school, scan);
+					Semester.main(school, data, scan);
 					break;
 				default:
 					System.out.println("Error: Invalid choice.");

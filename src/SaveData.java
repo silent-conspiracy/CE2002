@@ -19,7 +19,7 @@ public class SaveData implements Serializable {
 	}
 	
 	// Getters and setters
-	public int getCurrentSemester() { return currentSemester; }
+	public Semester getCurrentSemester() { return semesters.get(currentSemester); }
 	public HashSet<School> getSchools() { return schools; }
 	public HashMap<Integer, Semester> getSemesters() { return semesters; }
 	

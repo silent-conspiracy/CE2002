@@ -81,7 +81,7 @@ public class Student extends Person implements PrimaryKeyManager {
 	}
 	public Grade getGrade(Course course) throws KeyErrorException {
 		if (grades.containsKey(course)) return grades.get(course);
-		else throw new KeyErrorException(String.format("Student %d, %s is not enrolled in course ID %d",getID(),getName(),course.getID()));
+		else throw new KeyErrorException(String.format("Student %d, %s have no grades in course ID %d",getID(),getName(),course.getID()));
 	}
 	public void addCourse(Course course) throws DuplicateKeyException {
 		if (courses.containsKey(course.getID())) throw new DuplicateKeyException();
@@ -107,7 +107,15 @@ public class Student extends Person implements PrimaryKeyManager {
 		if (grades.containsKey(grade.getCourse())) grades.remove(grade.getCourse().getID());
 		else throw new KeyErrorException();
 	}
-	// TODO calcCGPA();
+	public void calcCGPA() {
+		double cgp = 0.0;
+		int totalAU = 0;
+		for (Grade grade : getGrades().values()) {
+			cgp += grade.getGPA();
+			totalAU += grade.getCourse().getAU();
+		}
+		setCGPA(cgp/totalAU);
+	}
 	public HashMap<Semester, ArrayList<Course>> getCoursesBySemester() {
 		HashMap<Semester, ArrayList<Course>> courses = new HashMap<Semester, ArrayList<Course>>();
 		for (Course course : this.grades.keySet()) {
@@ -120,14 +128,12 @@ public class Student extends Person implements PrimaryKeyManager {
 		}
 		return courses;
 	}
-	public void printTranscript() {
-		System.out.println(printTranscript(""));
-	}
 	public String printTranscript(String tabs) {
 		String msg = new String();
 		HashMap<Semester, ArrayList<Course>> courses = getCoursesBySemester();
 		ArrayList<Semester> semList = new ArrayList<Semester>(courses.keySet());
 		Collections.sort(semList);
+		msg += String.format("%sStudent: %d, %s\n",tabs, getID(), getName());
 		msg += String.format("%sCGPA: %.2f\n",tabs, this.CGPA);
 		msg += String.format("%sCourses taken: \n",tabs);
 		for (Semester sem : semList) {
@@ -137,7 +143,7 @@ public class Student extends Person implements PrimaryKeyManager {
 				msg += this.grades.get(course).printMarks(tabs+"\t\t");
 			}
 		}
-		return msg+'\n';
+		return msg;
 	}
 	
 	@Override
@@ -149,15 +155,6 @@ public class Student extends Person implements PrimaryKeyManager {
 	public void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
 		stream.defaultReadObject();
 		autoIncrement(this.getID());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof Person)) return false;
-		Person temp = (Person) obj;
-		if (this.getID() == temp.getID()) return true;
-		if (this.getName() == temp.getName()) return true;
-		return false;
 	}
 	
 	public void printParticulars() {
@@ -173,7 +170,6 @@ public class Student extends Person implements PrimaryKeyManager {
 	}
 	public String printStudentParticulars(String tabs) {
 		String msg = new String();
-		msg += String.format("%sStudent Particulars: \n", tabs);
 		msg += String.format("%sStudent Mail: %s\n", tabs, smail);
 		msg += String.format("%sSchool: %s\n", tabs, school.getName());
 		msg += String.format("%sProgram: %s\n", tabs, program);
@@ -196,12 +192,13 @@ public class Student extends Person implements PrimaryKeyManager {
 			System.out.println("Welcome to Student Manager.");
 			System.out.println("\t1. Print students list by ID.");
 			System.out.println("\t2. Print students list by Name.");
-			System.out.println("\t3. Create a new student.");
-			System.out.println("\t4. Edit a student.");
-			System.out.println("\t5. Delete a student.");
+			System.out.println("\t3. Print student transcript.");
+			System.out.println("\t4. Create a new student.");
+			System.out.println("\t5. Edit a student.");
+			System.out.println("\t6. Delete a student.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose a choice: ");
-			choice = scan.nextInt();
+			System.out.print("Choice: ");
+			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
 				case 0:
@@ -213,18 +210,38 @@ public class Student extends Person implements PrimaryKeyManager {
 					if (choice == 1) Collections.sort(studentList);
 					else Collections.sort(studentList, new SortByNameComparator());
 					System.out.println("Students List:");
-					System.out.printf("%5s | %60s | %10s\n", "NO", "NAME", "STUDENT ID");
-					System.out.printf(String.format("%%0%dd \n", 81), "-");
+					System.out.printf("%-5s | %-10s | %-60s\n", "NO", "STUDENT ID", "NAME");
+					System.out.println(new String(new char[81]).replace('\0', '-'));
 					for (Student std : studentList) {
-						System.out.printf("\t%5d | %60s | %10d\n", studentList.indexOf(std)+1, std.getName(), std.getID());
+						System.out.printf("%-5d | %-10d | %-60s\n", studentList.indexOf(std)+1, std.getID(), std.getName());
 					}
 					break;
 				case 3:
 					student = null;
+					System.out.print("Please input student ID / Name: ");
+					stringInput = scan.nextLine();
+					try {
+						studentID = Integer.parseInt(stringInput);
+						System.out.println(school.getStudent(studentID).printTranscript("\t"));
+					} catch (NumberFormatException e) {
+						for (Student std : school.getStudents().values()) {
+							if (std.getName().equals(stringInput)) {
+								student = std;
+								System.out.println(std.printTranscript("\t"));
+								break;
+							}
+						}
+						if (student == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
+					} catch (KeyErrorException f) {
+						System.out.println(f.getMessage());
+					}
+					break;
+				case 4:
+					student = null;
 					System.out.print("Please input student name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					System.out.print("Please choose gender (M/F): ");
-					gender = scan.next().charAt(0);
+					gender = scan.nextLine().charAt(0);
 					switch (gender) {
 						case 'M':
 						case 'm':
@@ -246,14 +263,14 @@ public class Student extends Person implements PrimaryKeyManager {
 						}
 					} else System.out.println("Error: Student not created.");
 					break;
-				case 4:
 				case 5:
+				case 6:
 					student = null;
 					System.out.print("Please input student ID / Name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					try {
 						studentID = Integer.parseInt(stringInput);
-						if (choice == 4) Student.main(school.getStudent(studentID), scan);
+						if (choice == 5) Student.main(school.getStudent(studentID), scan);
 						else {
 							student = school.getStudent(studentID);
 							school.rmStudent(student);
@@ -261,16 +278,16 @@ public class Student extends Person implements PrimaryKeyManager {
 						}
 					} catch (NumberFormatException e) {
 						for (Student std : school.getStudents().values()) {
-							if (std.getName() == stringInput) {
+							if (std.getName().equals(stringInput)) {
 								student = std;
-								if (choice == 4) Student.main(student, scan);
+								if (choice == 5) Student.main(std, scan);
 								else {
 									try {
-										school.rmStudent(student);
+										school.rmStudent(std);
 									} catch (KeyErrorException f) {
 										//pass
 									}
-									System.out.printf("Student %d, %s removed.\n", student.getID(), student.getName());
+									System.out.printf("Student %d, %s removed.\n", std.getID(), std.getName());
 								}
 								break;
 							}
@@ -279,6 +296,7 @@ public class Student extends Person implements PrimaryKeyManager {
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}
+					break;
 				default:
 					System.out.println("Error: Invalid choice.");
 					break;
@@ -300,7 +318,7 @@ public class Student extends Person implements PrimaryKeyManager {
 			System.out.println("\t2. Edit Student Particulars.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose an option: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
 					done = true;
@@ -318,7 +336,7 @@ public class Student extends Person implements PrimaryKeyManager {
 						System.out.println("\t4. Edit Student Type.");
 						System.out.println("\t0. Go back to previous menu.");
 						System.out.print("Please choose an option: ");
-						choice = scan.nextInt();
+						choice = scan.nextInt(); scan.nextLine();
 						
 						switch (choice) {
 							case 0:
@@ -326,7 +344,7 @@ public class Student extends Person implements PrimaryKeyManager {
 								break;
 							case 1:
 								System.out.print("Please input student eMail: ");
-								stringInput = scan.next();
+								stringInput = scan.nextLine();
 								student.setSmail(stringInput);
 								break;
 							case 2:
@@ -336,7 +354,7 @@ public class Student extends Person implements PrimaryKeyManager {
 									System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
 								}
 								System.out.print("Choice: ");
-								choice = scan.nextInt();
+								choice = scan.nextInt(); scan.nextLine();
 								try {
 									schoolList.get(choice-1).addStudent(student);
 									student.getSchool().rmStudent(student);
@@ -356,7 +374,7 @@ public class Student extends Person implements PrimaryKeyManager {
 									System.out.printf("\t%d. %s\n", i+1, programs[i].getName());
 								}
 								System.out.print("Choice: ");
-								choice = scan.nextInt();
+								choice = scan.nextInt(); scan.nextLine();
 								try {
 									student.setProgram(programs[choice-1]);
 								} catch (IndexOutOfBoundsException e) {
@@ -370,7 +388,7 @@ public class Student extends Person implements PrimaryKeyManager {
 									System.out.printf("\t%d. %s\n", i+1, studentTypes[i].getDescription());
 								}
 								System.out.print("Choice: ");
-								choice = scan.nextInt();
+								choice = scan.nextInt(); scan.nextLine();
 								try {
 									student.setType(studentTypes[choice-1]);
 								} catch (IndexOutOfBoundsException e) {

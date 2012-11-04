@@ -116,15 +116,6 @@ public class Professor extends Person implements PrimaryKeyManager{
 		autoIncrement(this.getID());
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof Person)) return false;
-		Person temp = (Person) obj;
-		if (this.getID() == temp.getID()) return true;
-		if (this.getName() == temp.getName()) return true;
-		return false;
-	}
-	
 	public static void main(School school, Scanner scan) {
 		// Declarations
 		int choice = 0;
@@ -144,7 +135,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 			System.out.println("\t5. Delete a professor.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose a choice: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
 				case 0:
@@ -156,18 +147,18 @@ public class Professor extends Person implements PrimaryKeyManager{
 					if (choice == 1) Collections.sort(profList);
 					else Collections.sort(profList, new SortByNameComparator());
 					System.out.println("Professors List:");
-					System.out.printf("%5s | %60s | %12s\n", "NO", "NAME", "PROFESSOR ID");
-					System.out.printf(String.format("%%0%dd \n", 83), "-");
+					System.out.printf("%-5s | %-12s | %-60s\n", "NO", "PROFESSOR ID", "NAME");
+					System.out.println(new String(new char[83]).replace('\0', '-'));
 					for (Professor professor : profList) {
-						System.out.printf("\t%5d | %60s | %10d\n", profList.indexOf(professor)+1, professor.getName(), professor.getID());
+						System.out.printf("%-5d | %-10d | %-60s\n", profList.indexOf(professor)+1, professor.getID(), professor.getName());
 					}
 					break;
 				case 3:
 					prof = null;
 					System.out.print("Please input professor name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					System.out.print("Please choose gender (M/F): ");
-					gender = scan.next().charAt(0);
+					gender = scan.nextLine().charAt(0);
 					switch (gender) {
 						case 'M':
 						case 'm':
@@ -193,7 +184,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 				case 5:
 					prof = null;
 					System.out.print("Please input Professor ID / Name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					try {
 						profID = Integer.parseInt(stringInput);
 						if (choice == 4) Professor.main(school.getProfessor(profID), scan);
@@ -204,16 +195,16 @@ public class Professor extends Person implements PrimaryKeyManager{
 						}
 					} catch (NumberFormatException e) {
 						for (Professor professor : school.getProfessors().values()) {
-							if (professor.getName() == stringInput) {
+							if (professor.getName().equals(stringInput)) {
 								prof = professor;
-								if (choice == 4) Professor.main(prof, scan);
+								if (choice == 4) Professor.main(professor, scan);
 								else {
 									try {
-										school.rmProfessor(prof);
+										school.rmProfessor(professor);
 									} catch (KeyErrorException f) {
 										//pass
 									}
-									System.out.printf("Professor %d, %s removed.\n", prof.getID(), prof.getName());
+									System.out.printf("Professor %d, %s removed.\n", professor.getID(), professor.getName());
 								}
 								break;
 							}
@@ -241,7 +232,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 			System.out.println("\t2. Edit Professor Particulars.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose an option: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
 					done = true;
@@ -260,7 +251,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 						System.out.println("\t5. Edit Position.");
 						System.out.println("\t0. Go back to previous menu.");
 						System.out.print("Please choose an option: ");
-						choice = scan.nextInt();
+						choice = scan.nextInt(); scan.nextLine();
 						
 						switch (choice) {
 							case 0:
@@ -268,7 +259,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 								break;
 							case 1:
 								System.out.print("Please input professor eMail: ");
-								stringInput = scan.next();
+								stringInput = scan.nextLine();
 								prof.setPmail(stringInput);
 								break;
 							case 2:
@@ -278,7 +269,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 									System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
 								}
 								System.out.print("Choice: ");
-								choice = scan.nextInt();
+								choice = scan.nextInt(); scan.nextLine();
 								try {
 									schoolList.get(choice-1).addProfessor(prof);
 									prof.getSchool().rmProfessor(prof);
@@ -293,17 +284,17 @@ public class Professor extends Person implements PrimaryKeyManager{
 								break;
 							case 3:
 								System.out.print("Please input office location: ");
-								stringInput = scan.next();
+								stringInput = scan.nextLine();
 								prof.setOffice(stringInput);
 								break;
 							case 4:
 								System.out.print("Please input office contact: ");
-								stringInput = scan.next();
+								stringInput = scan.nextLine();
 								prof.setOfficeContact(stringInput);
 								break;
 							case 5:
 								System.out.print("Please input position: ");
-								stringInput = scan.next();
+								stringInput = scan.nextLine();
 								prof.setPosition(stringInput);
 								break;
 							default:

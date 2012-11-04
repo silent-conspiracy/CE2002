@@ -1,9 +1,13 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class Group implements PrimaryKeyManager, Serializable, SortByName {
+public class Group implements PrimaryKeyManager, Serializable, SortByName, Comparable<Group> {
 	private static final long serialVersionUID = 1L;
 	// Attributes
 	public static int pk = 1;
@@ -18,10 +22,19 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName {
 	public Group(CourseType type, int capacity) {
 		this.id = pk;
 		autoIncrement(this.id);
-		this.name = null;
+		this.name = "Group "+this.id;
 		this.type = type;
 		this.capacity = capacity;
 		this.professor = null;
+		this.students = new HashMap<Integer, Student>();
+	}
+	public Group(CourseType type, int capacity, Professor prof) {
+		this.id = pk;
+		autoIncrement(this.id);
+		this.name = "Group "+this.id;
+		this.type = type;
+		this.capacity = capacity;
+		this.professor = prof;
 		this.students = new HashMap<Integer, Student>();
 	}
 	
@@ -36,7 +49,10 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName {
 	public void setID(int id) { this.id = id; }
 	public void setName(String name) { this.name = name; }
 	public void setType(CourseType type) { this.type = type; }
-	public void setCapacity(int capacity) { this.capacity = capacity; }
+	public void setCapacity(int capacity) throws MaxCapacityException { 
+		if (capacity < getStudents().size()) throw new MaxCapacityException("Capacity must not be less than current student size");
+		this.capacity = capacity; 
+	}
 	public void setProfessor(Professor prof) { this.professor = prof; }
 	public void setStudents(HashMap<Integer, Student> students) { this.students = students; }
 	
@@ -67,12 +83,93 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName {
 		stream.defaultReadObject();
 		autoIncrement(this.id);
 	}
-	
+	@Override
+	public int compareTo(Group obj) {
+		return (this.getID()-obj.getID());
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Group)) return false;
 		Group temp = (Group) obj;
 		if (this.id == temp.getID()) return true;
 		return false;
+	}
+	public String print(String tabs) {
+		String msg = new String();
+		msg += String.format("%sGroup ID: %d\n", tabs, getID());
+		msg += String.format("%sGroup Name: %s\n", tabs, getName());
+		msg += String.format("%sGroup Type: %s\n", tabs, getType());
+		msg += String.format("%sGroup Capacity: %d\n", tabs, getCapacity());
+		msg += String.format("%sRegistered Students: %d\n", tabs, getStudents().size());
+		msg += String.format("%sGroup Vacancy: %d\n", tabs, getVacancy());
+		msg += String.format("%sGroup Professor: %d, %s\n", tabs, getProfessor().getID(), getProfessor().getName());
+		return msg;
+	}
+	public String printStudents(String tabs, Comparator<SortByName> comparator) {
+		String msg = new String();
+		msg += String.format("%sStudents list of Group: %d, %s\n", tabs, getID(), getName());
+		msg += String.format("%s%-5s | %-10s | %-60s\n", tabs, "NO", "STUDENT ID", "NAME");
+		msg += String.format(String.format("%s%%0%dd \n", 81), "-");
+		ArrayList<Student> studentList = new ArrayList<Student>(getStudents().values());
+		if (comparator != null) Collections.sort(studentList, comparator);
+		else Collections.sort(studentList);
+		for (Student std : studentList) {
+			msg += String.format("%s%-5d | %-10d | %-60s\n", tabs, studentList.indexOf(std)+1, std.getID(), std.getName());
+		}
+		return msg;
+	}
+	public static void main(Group group, School school, Scanner scan) {
+		int choice = 0;
+		boolean done = false;
+		String stringInput = null;
+		
+		while (!done) {
+			System.out.printf("Group ID: %d, Type: %s\n", group.getID(), group.getType());
+			System.out.println(group.print("\t"));
+			System.out.println("1. Print students list by ID.");
+			System.out.println("2. Print students list by Name.");
+			System.out.println("3. Edit name.");
+			System.out.println("4. Edit Capacity.");
+			System.out.println("5. Edit Professor.");
+			System.out.println("0. Go back to previous menu.");
+			choice = scan.nextInt(); scan.nextLine();
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				case 1:
+					System.out.println(group.printStudents("\t", (SortByNameComparator)null ));
+					break;
+				case 2:
+					System.out.println(group.printStudents("\t", new SortByNameComparator()));
+					break;
+				case 3:
+					System.out.print("Please input new group name: ");
+					stringInput = scan.nextLine();
+					group.setName(stringInput);
+					break;
+				case 4:
+					System.out.print("Please input new capacity: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						group.setCapacity(choice);
+					} catch (MaxCapacityException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 5:
+					System.out.print("Please input new Professor ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						group.setProfessor(school.getProfessor(choice));
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				default:
+					System.out.println("Error: Invalid choice.");
+					break;
+			}
+		}
 	}
 }

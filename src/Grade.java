@@ -1,5 +1,7 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Grade implements Serializable {
@@ -54,19 +56,23 @@ public class Grade implements Serializable {
 		if (getComponents().contains(string)) getMarks().put(string, grade);
 		else throw new KeyErrorException("Grade component does not exist.");
 	}
-	public double scaleMarks(String type) { 
+	public double scaleMarks(String component) { 
 		double weight = 0.0;
-		weight = getCourse().getWeights().get(type);
-		return getMarks().get(type) * weight;
+		double total = 0.0;
+		for (double i : getCourse().getWeights().values())
+			total += i;
+		weight = getCourse().getWeights().get(component);
+		return getMarks().get(component) * weight/total;
 	}
 	public void calcOverall() {
 		double results = 0.0;
-		for (String type : marks.keySet()) {
-			results += scaleMarks(type);
+		for (String component : getMarks().keySet()) {
+			results += scaleMarks(component);
 		}
 		this.overall = results;
 	}
 	public void calcGPA() {
+		calcOverall();
 		setGPA(5.0);
 		if (this.overall < A) setGPA(4.5);
 		if (this.overall < A_M) setGPA(4.0);
@@ -86,6 +92,54 @@ public class Grade implements Serializable {
 		for (String type : getComponents()) {
 			msg += String.format("%s\t%s: %.2f => %.2f", tabs, type, getMarks().get(type), scaleMarks(type));
 		}
-		return msg+'\n';
+		return msg;
+	}
+	
+	public static void main(Student student, Course course, Scanner scan) {
+		int choice = 0;
+		double marks = 0.0;
+		boolean done = false;
+		Grade grade = null;
+		
+		try {
+			grade = student.getGrade(course);
+		} catch (KeyErrorException e) {
+			grade = new Grade(course);
+			try {
+				student.addGrade(grade);
+			} catch (DuplicateKeyException f) {
+				// Pass
+			}
+		}
+		
+		while (!done) {
+			grade.calcGPA();
+			System.out.println("Grade Manager.");
+			System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
+			System.out.printf("Course: %d, %s\n", course.getID(), course.getName());
+			System.out.println(grade.printMarks("\t"));
+			ArrayList<String> components = new ArrayList<String>(grade.getComponents());
+			for (String component : components) {
+				System.out.printf("%d. %s\n", components.indexOf(component)+1, component);
+			}
+			System.out.println("0. Go back to previous menu.");
+			System.out.print("Choice: ");
+			choice = scan.nextInt(); scan.nextLine();
+			
+			switch (choice) {
+				case 0:
+					done = true;
+					break;
+				default:
+					System.out.print("Please input marks: ");
+					marks = scan.nextDouble(); scan.nextLine();
+					try {
+						grade.getMarks().put(components.get(choice-1), marks);
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Error: Invalid choice.");
+					}
+					break;
+			}
+		}
 	}
 }

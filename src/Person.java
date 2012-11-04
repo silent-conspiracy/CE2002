@@ -57,6 +57,7 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 	}
 	public String printDOB() {
 		SimpleDateFormat datetime = new SimpleDateFormat("dd/MM/yyyy");
+		if (getDob() == null) return null;
 		return datetime.format(getDob());
 	}
 	
@@ -68,9 +69,9 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Person)) return false;
 		Person person = (Person) obj;
-		if (person.getClass() == this.getClass()) {
+		if (person.getClass().equals(this.getClass())) {
 			if (person.getID() == this.getID()) return true;
-			if (person.getName() == this.getName() &&
+			if (person.getName().equals(this.getName()) &&
 				person.getGender() == this.getGender() ) return true;
 		}
 		return false;
@@ -106,7 +107,7 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 			System.out.println("\t7. Edit Date of Birth.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose an option: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
 				case 0:
@@ -114,12 +115,12 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 					break;
 				case 1:
 					System.out.print("Please input new name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					person.setName(stringInput);
 					break;
 				case 2:
 					System.out.print("Please choose gender (M/F): ");
-					choice = scan.next().charAt(0);
+					choice = scan.nextLine().charAt(0);
 					switch (choice) {
 						case 'M':
 						case 'm':
@@ -136,27 +137,27 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 					break;
 				case 3:
 					System.out.print("Please input IC: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					person.setIC(stringInput);
 					break;
 				case 4:
 					System.out.print("Please input Contact: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					person.setContact(stringInput);
 					break;
 				case 5:
 					System.out.print("Please input Personal eMail: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					person.setEmail(stringInput);
 					break;
 				case 6:
 					System.out.print("Please input Address: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					person.setAddress(stringInput);
 					break;
 				case 7:
 					System.out.print("Please input Date of Birth (DD/MM/YYYY): ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					try {
 						person.readDOB(stringInput);
 					} catch (ParseException e) {

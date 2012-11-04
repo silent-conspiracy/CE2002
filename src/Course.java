@@ -27,9 +27,9 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		this.AU = 1;
 		this.type = type;
 		this.weights = new HashMap<String, Double>();
-		this.groups = new CourseGroup(type, capacity);
 		this.coordinator = prof;
 		this.semester = null;
+		this.groups = new CourseGroup(this, capacity);
 	}
 	public Course(
 			String name, 
@@ -45,19 +45,19 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		this.AU = AU;
 		this.type = type;
 		this.weights = weights;
-		this.groups = new CourseGroup(type, capacity);
 		this.coordinator = prof;
 		this.semester = null;
+		this.groups = new CourseGroup(this, capacity);
 	}
-	public Course(Course course) { // Deep copy purpose.
+	public Course(Course course) { // Shallow copy purpose.
 		this.id = course.getID();
 		this.name = course.getName();
 		this.AU = course.getAU();
 		this.type = course.getType();
 		this.weights = course.getWeights();
-		this.groups = course.getGroups();
 		this.coordinator = course.getCoordinator();
 		this.semester = course.getSemester();
+		this.groups = course.getGroups();
 	}
 	
 	// Getters and Setters
@@ -73,18 +73,13 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 	public void setID(int id) { this.id = id; }
 	public void setName(String name) { this.name = name; }
 	public void setAU(int number) { this.AU = number; }
-	public void setType(CourseType type) { this.type = type; setGroups(type); }
+	public void setType(CourseType type) { this.type = type; groups.resetGroups(type); }
 	public void setWeights(HashMap<String, Double> weights) { this.weights = weights; }
 	public void setGroups(CourseGroup groups) { this.groups = groups; }
 	public void setCoordinator(Professor prof) { this.coordinator = prof; }
 	public void setSemester(Semester sem) { this.semester = sem; }
 	
 	// Specific methods
-	public void setGroups(CourseType type) {
-		// Overwrites current CourseGroup
-		int capacity = this.groups.getCapacity();
-		this.groups = new CourseGroup(type, capacity);
-	}
 	public void printResults() {
 		System.out.println(printResults(""));
 	}
@@ -123,21 +118,22 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 	}
 	public String print(String tabs) {
 		String msg = new String();
+		double total = 0;
 		msg += String.format("%sCourse ID: %d\n", tabs, getID());
 		msg += String.format("%sCourse Name: %s\n", tabs, getName());
 		msg += String.format("%sCourse AU: &d\n", tabs, getAU());
 		msg += String.format("%sCourse Type: &d\n", tabs, getType().getDescription());
+		msg += String.format("%sCourse Capacity: %d\n", tabs, getGroups().getCapacity());
 		msg += String.format("%sCourse Weights: \n", tabs);
-		for (String type : getWeights().keySet())
+		for (String type : getWeights().keySet()) {
 			msg += String.format("%s\t%s: &.2f\n", tabs, type, getWeights().get(type));
-		
-		this.name = name;
-		this.AU = AU;
-		this.type = type;
-		this.weights = weights;
-		this.groups = new CourseGroup(type, capacity);
-		this.coordinator = prof;
-		this.semester = null;
+			total += getWeights().get(type);
+		}
+		msg += String.format("%s\tTotal Weights: &.2f\n", tabs, total);
+		msg += String.format("%sCourse Groups: \n", tabs);
+		msg += String.format("%s\t%s: \n", tabs, getGroups().print(tabs+'\t'));
+		msg += String.format("%sCourse Coordinator: %d, %s\n", tabs, getCoordinator().getID(), getCoordinator().getName());
+		return msg;
 	}
 	
 	@Override
@@ -159,15 +155,13 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		if (!(obj instanceof Course)) return false;
 		Course course = (Course) obj;
 		if (course.getID() == this.id) return true;
-		if (course.getName() == this.getName()) return true;
+		if (course.getName().equals(this.getName())) return true;
 		return false;
 	}
 	
 	public static void main(School school, Scanner scan) {
 		int choice = 0;
-		int weight = 0;
-		int counter = 0;
-		char ch;
+		char ch = 0;
 		boolean done = false;
 		String stringInput = null;
 		Course course = null;
@@ -182,7 +176,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 			System.out.println("\t5. Delete a course.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose a choice: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
 				case 0:
@@ -194,25 +188,25 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					if (choice == 1) Collections.sort(courseList);
 					else Collections.sort(courseList, new SortByNameComparator());
 					System.out.println("Courses List:");
-					System.out.printf("%5s | %60s | %10s\n", "NO", "COURSE NAME", "COURSE ID");
-					System.out.printf(String.format("%%0%dd \n", 81), "-");
+					System.out.printf("%-5s | %-10s | %-60s\n", "NO", "COURSE NAME", "COURSE ID");
+					System.out.println(new String(new char[81]).replace('\0', '-'));
 					for (Course cs : courseList) {
-						System.out.printf("\t%5d | %60s | %10d\n", courseList.indexOf(cs)+1, cs.getName(), cs.getID());
+						System.out.printf("%-5d | %-10d | %-60s\n", courseList.indexOf(cs)+1, cs.getID(), cs.getName());
 					}
 					break;
 				case 3:
 					course = null;
 					System.out.print("Please input course name: ");
-					String name = scan.next();
+					String name = scan.nextLine();
 					System.out.print("Please input academic units: ");
-					int au = scan.nextInt();
+					int au = scan.nextInt(); scan.nextLine();
 					
 					// Setting CourseType
 					CourseType[] courseTypes = CourseType.values();
 					System.out.println("Please choose the following Course Types: ");
 					for (int i=0; i<courseTypes.length; i++)
 						System.out.printf("\t%d. %s\n", i+1, courseTypes[i].getDescription());
-					choice = scan.nextInt();
+					choice = scan.nextInt(); scan.nextLine();
 					CourseType courseType;
 					try {
 						courseType = courseTypes[choice-1];
@@ -224,7 +218,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					
 					// Setting Professor as course coordinator
 					System.out.print("Please input ID of professor as Course Coordinator: ");
-					choice = scan.nextInt();
+					choice = scan.nextInt(); scan.nextLine();
 					Professor professor;
 					try {
 						professor = school.getProfessor(choice);
@@ -238,13 +232,13 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					HashMap<String, Double> weights =  new HashMap<String, Double>();
 					while (ch != 'Y' && ch != 'N') {
 						System.out.print("Does this course constitutes a final exam? (Y/N): ");
-						ch = scan.next().toUpperCase().charAt(0);
+						ch = scan.nextLine().toUpperCase().charAt(0);
 						if (ch == 'Y') weights.put("Final Exam", 100.0);
 					}
 					
 					// Capacity
 					System.out.print("Please input course capacity: ");
-					int capacity = scan.nextInt();
+					int capacity = scan.nextInt(); scan.nextLine();
 					
 					course = new Course(name, au, courseType, professor, capacity, weights);
 					try {
@@ -264,10 +258,10 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 				case 5:
 					course = null;
 					System.out.print("Please input Course ID / Name: ");
-					stringInput = scan.next();
+					stringInput = scan.nextLine();
 					try {
 						int courseID = Integer.parseInt(stringInput);
-						if (choice == 4) Course.main(school.getCourse(courseID), scan);
+						if (choice == 4) Course.main(school.getCourse(courseID), school, scan);
 						else {
 							course = school.getCourse(courseID);
 							school.rmCourse(course);
@@ -278,7 +272,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 						for (Course cs : school.getCourses().values()) {
 							if (cs.getName() == stringInput) {
 								course = cs;
-								if (choice == 4) Course.main(course, scan);
+								if (choice == 4) Course.main(course, school, scan);
 								else {
 									try {
 										school.rmCourse(course);
@@ -302,107 +296,95 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		}
 	}
 	
-	public static void main(Course course, Scanner scan) {
-		SaveData data = SCRAME.data;
-		// if (data.getCurrentSemester() != 0)
-		
+	public static void main(Course course, School school, Scanner scan) {
+		// Declarations
 		int choice = 0;
 		boolean done = false;
 		String stringInput = null;
-		ArrayList<School> schoolList = null;
-		Program[] programs = null;
-		StudentType[] studentTypes = null;
 		
 		while (!done) {
-			System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
+			System.out.printf("Course: %d, %s\n", course.getID(), course.getName());
 			System.out.println(course.print("\t"));
-			System.out.println("\t1. Edit General Particulars.");
-			System.out.println("\t2. Edit Student Particulars.");
+			System.out.println("\t1. Edit Course Name.");
+			System.out.println("\t2. Edit Course AU.");
+			System.out.println("\t3. Edit Course Type.");
+			System.out.println("\t4. Edit Course Capacity.");
+			System.out.println("\t5. Edit Course Assessments Weights.");
+			System.out.println("\t6. Edit Course Groups.");
+			System.out.println("\t7. Edit Course Coordinator.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Please choose an option: ");
-			choice = scan.nextInt();
+			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
 					done = true;
 					break;
 				case 1:
-					Person.main(student, scan);
+					System.out.print("Please input new course name: ");
+					stringInput = scan.nextLine();
+					course.setName(stringInput);
 					break;
 				case 2:
-					while (!done) {
-						System.out.printf("Student: %d, %s\n", student.getID(), student.getName());
-						System.out.println(student.printStudentParticulars("\t"));
-						System.out.println("\t1. Edit Student eMail.");
-						System.out.println("\t2. Edit School.");
-						System.out.println("\t3. Edit Program.");
-						System.out.println("\t4. Edit Student Type.");
-						System.out.println("\t0. Go back to previous menu.");
-						System.out.print("Please choose an option: ");
-						choice = scan.nextInt();
-						
-						switch (choice) {
-							case 0:
-								done = true;
-								break;
-							case 1:
-								System.out.print("Please input student eMail: ");
-								stringInput = scan.next();
-								student.setSmail(stringInput);
-								break;
-							case 2:
-								System.out.println("Please choose the following schools: ");
-								schoolList = new ArrayList<School>(SCRAME.data.getSchools());
-								for (School sch : schoolList) {
-									System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
-								}
-								System.out.print("Choice: ");
-								choice = scan.nextInt();
-								try {
-									schoolList.get(choice-1).addStudent(student);
-									student.getSchool().rmStudent(student);
-									student.setSchool(schoolList.get(choice-1));
-								} catch (IndexOutOfBoundsException e) {
-									System.out.println("Error: Invalid choice.");
-								} catch (DuplicateKeyException f) {
-									System.out.println(f.getMessage());
-								} catch (KeyErrorException g) {
-									System.out.println(g.getMessage());
-								}
-								break;
-							case 3:
-								System.out.println("Please choose the following programs: ");
-								programs = Program.values();
-								for (int i=0; i<programs.length; i++) {
-									System.out.printf("\t%d. %s\n", i+1, programs[i].getName());
-								}
-								System.out.print("Choice: ");
-								choice = scan.nextInt();
-								try {
-									student.setProgram(programs[choice-1]);
-								} catch (IndexOutOfBoundsException e) {
-									System.out.println("Error: Invalid choice.");
-								}
-								break;
-							case 4:
-								System.out.println("Please choose the following student types: ");
-								studentTypes = StudentType.values();
-								for (int i=0; i<studentTypes.length; i++) {
-									System.out.printf("\t%d. %s\n", i+1, studentTypes[i].getDescription());
-								}
-								System.out.print("Choice: ");
-								choice = scan.nextInt();
-								try {
-									student.setType(studentTypes[choice-1]);
-								} catch (IndexOutOfBoundsException e) {
-									System.out.println("Error: Invalid choice.");
-								}
-								break;
-							default:
-								System.out.println("Error: Invalid choice.");
-								break;
-						}
-						done = false;
+					System.out.print("Please input academic units: ");
+					choice = scan.nextInt(); scan.nextLine();
+					course.setAU(choice);
+					break;
+				case 3:
+					CourseType[] courseTypes = CourseType.values();
+					System.out.println("Please choose the following Course Types: ");
+					for (int i=0; i<courseTypes.length; i++)
+						System.out.printf("\t%d. %s\n", i+1, courseTypes[i].getDescription());
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						course.setType(courseTypes[choice-1]);
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Error: Invalid choice.");
 					}
+					break;
+				case 4:
+					System.out.print("Please input new course capacity: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						course.getGroups().setCapacity(choice);
+					} catch (MaxCapacityException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 5:
+					System.out.println("Please choose the following: ");
+					System.out.println("\t1. Add assessment.");
+					System.out.println("\t2. Edit assessment.");
+					System.out.println("\t3. Delete assessment.");
+					System.out.print("Choice: ");
+					choice = scan.nextInt(); scan.nextLine();
+					switch(choice) {
+						case 1:
+						case 2:
+							System.out.print("Please input name of assessment: ");
+							stringInput = scan.nextLine();
+							System.out.print("Please input name of assessment: ");
+							double weight = scan.nextDouble(); scan.nextLine();
+							course.getWeights().put(stringInput, weight);
+							break;
+						case 3:
+							System.out.print("Please input name of assessment: ");
+							stringInput = scan.nextLine();
+							course.getWeights().remove(stringInput);
+							break;
+					}
+					break;
+				case 6:
+					CourseGroup.main(course.getGroups(), school, scan);
+					break;
+				case 7:
+					System.out.print("Please input new Professor ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						course.setCoordinator(school.getProfessor(choice));
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
 				default:
 					System.out.println("Error: Invalid choice.");
 					break;
@@ -410,37 +392,3 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		}
 	}
 }
-
-/*
-//Weight allocation for course assessments
-HashMap<String, Double> weights =  new HashMap<String, Double>();
-while (ch != 'Y' && ch != 'N') {
-	System.out.print("Does this course constitutes a final exam? (Y/N): ");
-	ch = scan.next().toUpperCase().charAt(0);
-	if (ch == 'Y') {
-		choice--;
-		while (weight == 0 && weight <= 100) {
-			System.out.print("Please input weight of final exam in percentage: ");
-			weight = scan.nextInt();
-			if (weight > 100) System.out.print("Error: Weight must not exceed 100.");
-		}
-		weights.put("Final Exam", weight/100.0);
-		counter += weight;
-	}
-}
-while (counter < 100) {
-	System.out.print("Please input name of additional course assessment: ");
-	stringInput = scan.next();
-	System.out.print("Please input weight in percentage: ");
-	weight = scan.nextInt();
-	counter += weight;
-	if (counter > 100) {
-		if (counter > 100) System.out.printf("Error: Weights must not exceed 100. Exceeded by %d.\n", counter-weight);
-		counter -= weight;
-		weight = 0;
-	}
-	else if (counter <= 100) {
-		weights.put(stringInput, weight/100.0);
-	}
-}
-*/
