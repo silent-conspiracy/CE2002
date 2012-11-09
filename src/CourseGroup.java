@@ -441,6 +441,7 @@ public class CourseGroup implements Serializable {
 						}
 					}
 					done = false;
+					break;
 				case 4:
 				case 5:
 					if (choice == 4) System.out.println(courseGroup.printStudents("\t", null));
