@@ -213,6 +213,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}
+					break;
 				default:
 					System.out.println("Error: Invalid choice.");
 					break;
