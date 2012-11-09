@@ -301,8 +301,9 @@ public class Professor extends Person implements PrimaryKeyManager{
 								System.out.println("Error: Invalid choice.");
 								break;
 						}
-						done = false;
 					}
+					done = false;
+					break;
 				default:
 					System.out.println("Error: Invalid choice.");
 					break;
