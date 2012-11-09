@@ -188,6 +188,7 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					courseID = scan.nextInt(); scan.nextLine();
 					try {
 						sem.addCourse(school.getCourse(courseID));
+						school.getCourse(courseID.setSemester(sem));
 						System.out.printf("Course ID %d added successfully.\n", courseID);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
@@ -202,6 +203,7 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					System.out.print("Please input course ID: ");
 					courseID = scan.nextInt(); scan.nextLine();
 					try {
+						sem.getCourse(courseID).setSemester((Semester)null);
 						sem.rmCourse(sem.getCourse(courseID));
 						System.out.printf("Course ID %d removed successfully.\n", courseID);
 					} catch (KeyErrorException e) {
@@ -209,6 +211,9 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					}
 					break;
 				case 4:
+					for (Course course: school.getCourses().values()) {
+						course.setSemester((Semester)null);
+					}
 					sem.setCourses(new HashMap<Integer, Course>());
 					break;
 				case 5:
