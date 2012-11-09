@@ -64,7 +64,7 @@ public class SCRAME {
 				System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
 			}
 			System.out.println("\t0. Save and Quit.");
-			//System.out.println("\t-1. Create new School.");
+			System.out.println("\t-1. Create new School.");
 			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			
@@ -86,7 +86,6 @@ public class SCRAME {
 					stringInput = scan.nextLine();
 					try {
 						data.addSchool(school = new School(stringInput));
-						done = true;
 					} catch (DuplicateKeyException e) {
 						System.out.println(e.getMessage());
 					}
@@ -94,14 +93,15 @@ public class SCRAME {
 				default:
 					try {
 						school = schoolList.get(choice-1);
-						done = true;
+						School.main(school, data, scan);
 					} catch (IndexOutOfBoundsException e) {
 						System.out.println("Error: Invalid choice.");
 					}
 					break;
 			}
-		}				
-		School.main(school, data, scan);
+		}		
+		
+			
 	}
 	
 	private void printTranscript(String studName){
