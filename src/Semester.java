@@ -188,7 +188,7 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					courseID = scan.nextInt(); scan.nextLine();
 					try {
 						sem.addCourse(school.getCourse(courseID));
-						school.getCourse(courseID.setSemester(sem));
+						school.getCourse(courseID).setSemester(sem);
 						System.out.printf("Course ID %d added successfully.\n", courseID);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());

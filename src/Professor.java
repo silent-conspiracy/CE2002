@@ -183,33 +183,15 @@ public class Professor extends Person implements PrimaryKeyManager{
 				case 4:
 				case 5:
 					prof = null;
-					System.out.print("Please input Professor ID / Name: ");
-					stringInput = scan.nextLine();
+					System.out.print("Please input Professor ID: ");
 					try {
-						profID = Integer.parseInt(stringInput);
+						profID = scan.nextInt(); scan.nextLine();
 						if (choice == 4) Professor.main(school.getProfessor(profID), scan);
 						else {
 							prof = school.getProfessor(profID);
 							school.rmProfessor(prof);
 							System.out.printf("Professor %d, %s removed.\n", prof.getID(), prof.getName());
 						}
-					} catch (NumberFormatException e) {
-						for (Professor professor : school.getProfessors().values()) {
-							if (professor.getName().equals(stringInput)) {
-								prof = professor;
-								if (choice == 4) Professor.main(professor, scan);
-								else {
-									try {
-										school.rmProfessor(professor);
-									} catch (KeyErrorException f) {
-										//pass
-									}
-									System.out.printf("Professor %d, %s removed.\n", professor.getID(), professor.getName());
-								}
-								break;
-							}
-						}
-						if (prof == null) System.out.printf("Error: Professor %s does not exists.\n", stringInput);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}

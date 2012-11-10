@@ -64,7 +64,7 @@ public class SCRAME {
 				System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
 			}
 			System.out.println("\t0. Save and Quit.");
-			System.out.println("\t-1. Create new School.");
+			//System.out.println("\t-1. Create new School.");
 			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			

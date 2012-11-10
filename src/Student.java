@@ -186,8 +186,8 @@ public class Student extends Person implements PrimaryKeyManager {
 		char gender;
 		String stringInput = null;
 		Student student = null;
-		ArrayList<Student> studentList = null;
-		
+		ArrayList<Student> studentList = new ArrayList<Student>(school.getStudents().values());
+				
 		while(!done) {
 			System.out.println("Welcome to Student Manager.");
 			System.out.println("\t1. Print students list by ID.");
@@ -206,7 +206,6 @@ public class Student extends Person implements PrimaryKeyManager {
 					break;
 				case 1:
 				case 2:
-					studentList = new ArrayList<Student>(school.getStudents().values());
 					if (choice == 1) Collections.sort(studentList);
 					else Collections.sort(studentList, new SortByNameComparator());
 					System.out.println("Students List:");
@@ -218,20 +217,10 @@ public class Student extends Person implements PrimaryKeyManager {
 					break;
 				case 3:
 					student = null;
-					System.out.print("Please input student ID / Name: ");
-					stringInput = scan.nextLine();
+					System.out.print("Please input student ID: ");
 					try {
-						studentID = Integer.parseInt(stringInput);
+						studentID = scan.nextInt(); scan.nextLine();
 						System.out.println(school.getStudent(studentID).printTranscript("\t"));
-					} catch (NumberFormatException e) {
-						for (Student std : school.getStudents().values()) {
-							if (std.getName().equals(stringInput)) {
-								student = std;
-								System.out.println(std.printTranscript("\t"));
-								break;
-							}
-						}
-						if (student == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
 					} catch (KeyErrorException f) {
 						System.out.println(f.getMessage());
 					}
@@ -258,6 +247,14 @@ public class Student extends Person implements PrimaryKeyManager {
 					if (student != null) {
 						try {
 							school.addStudent(student);
+							System.out.printf("Student %d, %s created successfully.\n", student.getID(), student.getName());
+							System.out.println();
+							System.out.println("Students List:");
+							System.out.printf("%-5s | %-10s | %-60s\n", "NO", "STUDENT ID", "NAME");
+							System.out.println(new String(new char[81]).replace('\0', '-'));
+							for (Student std : studentList) {
+								System.out.printf("%-5d | %-10d | %-60s\n", studentList.indexOf(std)+1, std.getID(), std.getName());
+							}
 						} catch (DuplicateKeyException e) {
 							System.out.println(e.getMessage());
 						}
@@ -266,33 +263,15 @@ public class Student extends Person implements PrimaryKeyManager {
 				case 5:
 				case 6:
 					student = null;
-					System.out.print("Please input student ID / Name: ");
-					stringInput = scan.nextLine();
+					System.out.print("Please input student ID: ");
 					try {
-						studentID = Integer.parseInt(stringInput);
+						studentID = scan.nextInt(); scan.nextLine();
 						if (choice == 5) Student.main(school.getStudent(studentID), scan);
 						else {
 							student = school.getStudent(studentID);
 							school.rmStudent(student);
 							System.out.printf("Student %d, %s removed.\n", student.getID(), student.getName());
 						}
-					} catch (NumberFormatException e) {
-						for (Student std : school.getStudents().values()) {
-							if (std.getName().equals(stringInput)) {
-								student = std;
-								if (choice == 5) Student.main(std, scan);
-								else {
-									try {
-										school.rmStudent(std);
-									} catch (KeyErrorException f) {
-										//pass
-									}
-									System.out.printf("Student %d, %s removed.\n", std.getID(), std.getName());
-								}
-								break;
-							}
-						}
-						if (student == null) System.out.printf("Error: Student %s does not exists.\n", stringInput);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}
