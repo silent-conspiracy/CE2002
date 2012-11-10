@@ -188,7 +188,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					if (choice == 1) Collections.sort(courseList);
 					else Collections.sort(courseList, new SortByNameComparator());
 					System.out.println("Courses List:");
-					System.out.printf("%-5s | %-10s | %-60s\n", "NO", "COURSE NAME", "COURSE ID");
+					System.out.printf("%-5s | %-10s | %-60s\n", "NO", "COURSE ID", "COURSE NAME");
 					System.out.println(new String(new char[81]).replace('\0', '-'));
 					for (Course cs : courseList) {
 						System.out.printf("%-5d | %-10d | %-60s\n", courseList.indexOf(cs)+1, cs.getID(), cs.getName());
