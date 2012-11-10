@@ -298,7 +298,7 @@ public class Student extends Person implements PrimaryKeyManager {
 			System.out.println("\t1. Edit General Particulars.");
 			System.out.println("\t2. Edit Student Particulars.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose an option: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
@@ -316,7 +316,7 @@ public class Student extends Person implements PrimaryKeyManager {
 						System.out.println("\t3. Edit Program.");
 						System.out.println("\t4. Edit Student Type.");
 						System.out.println("\t0. Go back to previous menu.");
-						System.out.print("Please choose an option: ");
+						System.out.print("Choice: ");
 						choice = scan.nextInt(); scan.nextLine();
 						
 						switch (choice) {

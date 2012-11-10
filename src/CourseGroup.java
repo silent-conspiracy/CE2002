@@ -47,7 +47,7 @@ public class CourseGroup implements Serializable {
 	public void setLabs(HashMap<Integer, Group> labs) { this.labs = labs; }
 	
 	// Specific methods
-	public void setLecture() { lecture = new Group(CourseType.LECTURE, capacity); }
+	public void setLecture() { lecture = new Group(CourseType.LECTURE, capacity, getCourse().getCoordinator()); }
 	public void setTutorials() { tutorials = new HashMap<Integer, Group>(); }
 	public void setLabs() { labs = new HashMap<Integer, Group>(); }
 	public Group getTutorial(int gid) throws KeyErrorException { 
@@ -60,12 +60,12 @@ public class CourseGroup implements Serializable {
 	}
 	public void addTutorial(int capacity) {
 		if (tutorials == null) return;
-		Group tutorial = new Group(CourseType.TUTORIAL, capacity);
+		Group tutorial = new Group(CourseType.TUTORIAL, capacity, getCourse().getCoordinator());
 		tutorials.put(tutorial.getID(), tutorial);
 	}
 	public void addLab(int capacity) {
 		if (labs == null) return;
-		Group lab = new Group(CourseType.LAB, capacity);
+		Group lab = new Group(CourseType.LAB, capacity, getCourse().getCoordinator());
 		labs.put(lab.getID(), lab);
 	}
 	public void rmTutorial(int id) throws KeyErrorException, MaxCapacityException {
@@ -283,17 +283,19 @@ public class CourseGroup implements Serializable {
 	}
 	public String printTutorials(String tabs) {
 		String msg = new String();
-		msg += String.format("%s%-5d%-20s", tabs, "ID", "GROUP NAME");
+		msg += String.format("%s%-5s | %-60s\n", tabs, "ID", "GROUP NAME");
+		msg += String.format("%s%s\n", tabs, new String(new char[68]).replace('\0', '-'));
 		for (Group tutorial : getTutorials().values()) {
-			msg += String.format("%s%-5d%-20s", tabs, tutorial.getID(), tutorial.getName());
+			msg += String.format("%s%-5d | %-60s\n", tabs, tutorial.getID(), tutorial.getName());
 		}
 		return msg;
 	}
 	public String printLabs(String tabs) {
 		String msg = new String();
-		msg += String.format("%s%-5d%-20s", tabs, "ID", "GROUP NAME");
+		msg += String.format("%s%-5s | %-60s\n", tabs, "ID", "GROUP NAME");
+		msg += String.format("%s%s\n", tabs, new String(new char[68]).replace('\0', '-'));
 		for (Group lab : getLabs().values()) {
-			msg += String.format("%s%-5d%-20s", tabs, lab.getID(), lab.getName());
+			msg += String.format("%s%-5d | %-60s\n", tabs, lab.getID(), lab.getName());
 		}
 		return msg;
 	}

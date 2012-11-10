@@ -96,7 +96,6 @@ public class Professor extends Person implements PrimaryKeyManager{
 	}
 	public String printProfessorParticulars(String tabs) {
 		String msg = new String();
-		msg += String.format("%sProfessor Particulars: \n", tabs);
 		msg += String.format("%sProfessor Mail: %s\n", tabs, getPmail());
 		msg += String.format("%sSchool: %s\n", tabs, getSchool().getName());
 		msg += String.format("%sOffice Location: %s\n", tabs, getOffice());
@@ -134,7 +133,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 			System.out.println("\t4. Edit a professor.");
 			System.out.println("\t5. Delete a professor.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose a choice: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
@@ -175,6 +174,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 					if (prof != null) {
 						try {
 							school.addProfessor(prof);
+							System.out.printf("Professor %d, %s created successfully.\n", prof.getID(), prof.getName());
 						} catch (DuplicateKeyException e) {
 							System.out.println(e.getMessage());
 						}
@@ -214,7 +214,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 			System.out.println("\t1. Edit General Particulars.");
 			System.out.println("\t2. Edit Professor Particulars.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose an option: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
@@ -233,7 +233,7 @@ public class Professor extends Person implements PrimaryKeyManager{
 						System.out.println("\t4. Edit Office Contact.");
 						System.out.println("\t5. Edit Position.");
 						System.out.println("\t0. Go back to previous menu.");
-						System.out.print("Please choose an option: ");
+						System.out.print("Choice: ");
 						choice = scan.nextInt(); scan.nextLine();
 						
 						switch (choice) {

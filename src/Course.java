@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Course implements PrimaryKeyManager, Serializable, SortByName, Comparable<Course> {
 	private static final long serialVersionUID = 1L;
 	// Attributes
-	public static int pk; // To ensure id is unique.
+	public static int pk = 1;// To ensure id is unique.
 	private int id;
 	private String name;
 	private int AU;
@@ -121,17 +121,17 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		double total = 0;
 		msg += String.format("%sCourse ID: %d\n", tabs, getID());
 		msg += String.format("%sCourse Name: %s\n", tabs, getName());
-		msg += String.format("%sCourse AU: &d\n", tabs, getAU());
-		msg += String.format("%sCourse Type: &d\n", tabs, getType().getDescription());
+		msg += String.format("%sCourse AU: %d\n", tabs, getAU());
+		msg += String.format("%sCourse Type: %s\n", tabs, getType().getDescription());
 		msg += String.format("%sCourse Capacity: %d\n", tabs, getGroups().getCapacity());
 		msg += String.format("%sCourse Weights: \n", tabs);
 		for (String type : getWeights().keySet()) {
-			msg += String.format("%s\t%s: &.2f\n", tabs, type, getWeights().get(type));
+			msg += String.format("%s\t%s: %.2f\n", tabs, type, getWeights().get(type));
 			total += getWeights().get(type);
 		}
-		msg += String.format("%s\tTotal Weights: &.2f\n", tabs, total);
+		msg += String.format("%s\tTotal Weights: %.2f\n", tabs, total);
 		msg += String.format("%sCourse Groups: \n", tabs);
-		msg += String.format("%s\t%s: \n", tabs, getGroups().print(tabs+'\t'));
+		msg += String.format(getGroups().print(tabs+'\t'));
 		msg += String.format("%sCourse Coordinator: %d, %s\n", tabs, getCoordinator().getID(), getCoordinator().getName());
 		return msg;
 	}
@@ -163,7 +163,6 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		int choice = 0;
 		char ch = 0;
 		boolean done = false;
-		String stringInput = null;
 		Course course = null;
 		ArrayList<Course> courseList = null;
 		
@@ -175,7 +174,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 			System.out.println("\t4. Edit a course.");
 			System.out.println("\t5. Delete a course.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose a choice: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
@@ -206,6 +205,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					System.out.println("Please choose the following Course Types: ");
 					for (int i=0; i<courseTypes.length; i++)
 						System.out.printf("\t%d. %s\n", i+1, courseTypes[i].getDescription());
+					System.out.print("Choice: ");
 					choice = scan.nextInt(); scan.nextLine();
 					CourseType courseType;
 					try {
@@ -257,10 +257,9 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 				case 4:
 				case 5:
 					course = null;
-					System.out.print("Please input Course ID / Name: ");
-					stringInput = scan.nextLine();
+					System.out.print("Please input Course ID: ");
 					try {
-						int courseID = Integer.parseInt(stringInput);
+						int courseID = scan.nextInt();
 						if (choice == 4) Course.main(school.getCourse(courseID), school, scan);
 						else {
 							course = school.getCourse(courseID);
@@ -268,24 +267,6 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 							course.getCoordinator().rmCourse(course);
 							System.out.printf("Course %d, %s removed.\n", course.getID(), course.getName());
 						}
-					} catch (NumberFormatException e) {
-						for (Course cs : school.getCourses().values()) {
-							if (cs.getName() == stringInput) {
-								course = cs;
-								if (choice == 4) Course.main(course, school, scan);
-								else {
-									try {
-										school.rmCourse(course);
-										course.getCoordinator().rmCourse(course);
-									} catch (KeyErrorException f) {
-										//pass
-									}
-									System.out.printf("Course %d, %s removed.\n", course.getID(), course.getName());
-								}
-								break;
-							}
-						}
-						if (course == null) System.out.printf("Error: Course %s does not exists.\n", stringInput);
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}
@@ -313,7 +294,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 			System.out.println("\t6. Edit Course Groups.");
 			System.out.println("\t7. Edit Course Coordinator.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose an option: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:
@@ -352,24 +333,25 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					break;
 				case 5:
 					System.out.println("Please choose the following: ");
-					System.out.println("\t1. Add assessment.");
-					System.out.println("\t2. Edit assessment.");
-					System.out.println("\t3. Delete assessment.");
+					System.out.println("\t1. Add or Edit assessment.");
+					System.out.println("\t2. Delete assessment.");
 					System.out.print("Choice: ");
 					choice = scan.nextInt(); scan.nextLine();
 					switch(choice) {
 						case 1:
-						case 2:
 							System.out.print("Please input name of assessment: ");
 							stringInput = scan.nextLine();
-							System.out.print("Please input name of assessment: ");
+							System.out.print("Please input weight of assessment: ");
 							double weight = scan.nextDouble(); scan.nextLine();
 							course.getWeights().put(stringInput, weight);
 							break;
-						case 3:
+						case 2:
 							System.out.print("Please input name of assessment: ");
 							stringInput = scan.nextLine();
 							course.getWeights().remove(stringInput);
+							break;
+						default:
+							System.out.print("Error: Invalid input.");
 							break;
 					}
 					break;

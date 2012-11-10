@@ -106,7 +106,7 @@ public abstract class Person implements Serializable, SortByName, Comparable<Per
 			System.out.println("\t6. Edit Address.");
 			System.out.println("\t7. Edit Date of Birth.");
 			System.out.println("\t0. Go back to previous menu.");
-			System.out.print("Please choose an option: ");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			
 			switch (choice) {
