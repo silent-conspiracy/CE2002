@@ -186,7 +186,7 @@ public class Student extends Person implements PrimaryKeyManager {
 		char gender;
 		String stringInput = null;
 		Student student = null;
-		ArrayList<Student> studentList = new ArrayList<Student>(school.getStudents().values());
+		ArrayList<Student> studentList = null;
 				
 		while(!done) {
 			System.out.println("Welcome to Student Manager.");
@@ -206,6 +206,7 @@ public class Student extends Person implements PrimaryKeyManager {
 					break;
 				case 1:
 				case 2:
+					studentList = new ArrayList<Student>(school.getStudents().values());
 					if (choice == 1) Collections.sort(studentList);
 					else Collections.sort(studentList, new SortByNameComparator());
 					System.out.println("Students List:");
@@ -247,6 +248,7 @@ public class Student extends Person implements PrimaryKeyManager {
 					if (student != null) {
 						try {
 							school.addStudent(student);
+							studentList = new ArrayList<Student>(school.getStudents().values());
 							System.out.printf("Student %d, %s created successfully.\n", student.getID(), student.getName());
 							System.out.println();
 							System.out.println("Students List:");
