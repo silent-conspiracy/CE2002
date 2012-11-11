@@ -316,7 +316,7 @@ public class CourseGroup implements Serializable {
 	}
 	public String printStudentsInLecture(String tabs, Comparator<SortByName> comparator) {
 		String msg = new String();
-		msg += String.format("%sLecture ID, Name: %d, %d\n", tabs, getLecture().getID(), getLecture().getName());
+		msg += String.format("%sLecture ID, Name: %d, %s\n", tabs, getLecture().getID(), getLecture().getName());
 		msg += String.format("%sLecture Vacancy: %d / %d\n", tabs, getLecture().getStudents().size(), getLecture().getCapacity());
 		getLecture().printStudents(tabs+"\t", comparator);
 		return msg;
@@ -324,7 +324,7 @@ public class CourseGroup implements Serializable {
 	public String printStudentsInTutorials(String tabs, Comparator<SortByName> comparator) {
 		String msg = new String();
 		for (Group tutorial : getTutorials().values()) {
-			msg += printStudentsInTutorial(tabs+"\t", tutorial, comparator);
+			msg += printStudentsInTutorial(tabs, tutorial, comparator);
 		}
 		return msg;
 	}
@@ -338,7 +338,7 @@ public class CourseGroup implements Serializable {
 	public String printStudentsInLabs(String tabs, Comparator<SortByName> comparator) {
 		String msg = new String();
 		for (Group lab : getLabs().values()) {
-			msg += printStudentsInLab(tabs+"\t", lab, comparator);
+			msg += printStudentsInLab(tabs, lab, comparator);
 		}
 		return msg;
 	}

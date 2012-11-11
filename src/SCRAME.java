@@ -23,15 +23,26 @@ public class SCRAME {
 		objectWriter.writeObject(Group.pk);
 		objectWriter.close();
 	}
+	public static void saveData(SaveData data, String temp) throws IOException {
+		FileOutputStream fileWriter = new FileOutputStream(temp);
+		BufferedOutputStream bufferedWriter = new BufferedOutputStream(fileWriter);
+		ObjectOutputStream objectWriter = new ObjectOutputStream(bufferedWriter);
+		objectWriter.writeObject(data);
+		objectWriter.writeObject(Professor.pk);
+		objectWriter.writeObject(Student.pk);
+		objectWriter.writeObject(Course.pk);
+		objectWriter.writeObject(Group.pk);
+		objectWriter.close();
+	}
 	public static SaveData loadData() throws ClassNotFoundException, IOException {
 		FileInputStream fileReader = new FileInputStream(SAVE_FILE);
 		BufferedInputStream bufferedReader = new BufferedInputStream(fileReader);
 		ObjectInputStream objectReader = new ObjectInputStream(bufferedReader);
 		SaveData data = (SaveData) objectReader.readObject();
-		Professor.pk = (int) objectReader.readObject();
-		Student.pk = (int) objectReader.readObject();
-		Course.pk = (int) objectReader.readObject();
-		Group.pk = (int) objectReader.readObject();
+		Professor.pk = (Integer) objectReader.readObject();
+		Student.pk = (Integer) objectReader.readObject();
+		Course.pk = (Integer) objectReader.readObject();
+		Group.pk = (Integer) objectReader.readObject();
 		objectReader.close();
 		return data;
 	}
@@ -39,23 +50,25 @@ public class SCRAME {
 		// Variable declaration
 		Scanner scan = new Scanner(System.in);
 		int choice = 0;
+		int error_count = 0;
 		boolean done = false;
 		String stringInput = null;
 		School school = null;
 		ArrayList<School> schoolList = null;
 
-		System.out.println("Welcome to Course Registration portal! (powered by KTCube)");
-		
+		System.out.println("Loading data from 'SCRAME.sav'... Please wait...");
 		// Load data
 		try {
 			data = loadData();
+			System.out.println("Data load successful.");
 		} catch (IOException e) {
 			System.out.println("Error: "+SAVE_FILE+" not found.");
-		} catch (ClassNotFoundException f) {
-			System.out.println("Error: "+SAVE_FILE+" corrupt!");
+		} catch (Exception f) {
+			System.out.println("Error: "+SAVE_FILE+" corrupted!");
 		} finally {
 			if (data == null) {
 				// Initialization
+				System.out.println("Initializing default data...");
 				data = new SaveData();
 				school = new School("School of Computer Engineering");
 				try {
@@ -65,7 +78,8 @@ public class SCRAME {
 				}
 			}
 		}
-			
+		System.out.println();
+		System.out.println("Welcome to Course Registration portal! (powered by KTCube)");
 		while (!done) {
 			try {
 				System.out.println("Please select a school: ");
@@ -115,12 +129,20 @@ public class SCRAME {
 				System.out.println("NOTICE: Please save your work or progress to avoid loss of data.");
 			} catch (Exception f) {
 				System.out.println("Error: Unexpected error occured.");
+				System.out.println("NOTICE: Attempting to save data in 'SCRAME_TEMP.sav'.");
+				try {
+					saveData(data, "SCRAME_TEMP.sav");
+					System.out.println("NOTICE: Data saved in 'SCRAME_TEMP.sav'.");
+				} catch (IOException e) {
+					System.out.println("Error: Unable to save data.");
+				}
 				System.out.println("Please copy the following lines and send it to your system provider.");
 				System.out.println(new String(new char [60]).replace('\0','-'));
 				System.out.println(f.getMessage());
 				f.printStackTrace(System.out);
 				System.out.println(new String(new char [60]).replace('\0','-'));
 				System.out.println("NOTICE: Please save your work or progress to avoid loss of data.");
+				if (error_count++ > 10) return;
 			}
 		}		
 	}

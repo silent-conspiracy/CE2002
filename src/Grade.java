@@ -133,6 +133,10 @@ public class Grade implements Serializable {
 				default:
 					System.out.print("Please input marks: ");
 					marks = scan.nextDouble(); scan.nextLine();
+					if (marks > 100.0) {
+						System.out.println("Error: Marks cannot be higher than 100%.");
+						break;
+					}
 					try {
 						grade.getMarks().put(components.get(choice-1), marks);
 					} catch (IndexOutOfBoundsException e) {

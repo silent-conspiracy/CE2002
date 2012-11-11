@@ -80,9 +80,6 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 	public void setSemester(Semester sem) { this.semester = sem; }
 	
 	// Specific methods
-	public void printResults() {
-		System.out.println(printResults(""));
-	}
 	public String printResults(String tabs) {
 		String msg = new String();
 		Grade mark = null;
@@ -92,7 +89,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		ArrayList<Student> students = new ArrayList<Student>(getGroups().getStudents());
 		Collections.sort(students);
 		msg += String.format("%sCourse Statistics:\n", tabs);
-		msg += String.format("%s\tStudents: \n", tabs);
+		msg += String.format("%sStudents: \n", tabs);
 		for (Student student : students) {
 			msg += String.format("%s\t%d, %s: \n", tabs, student.getID(), student.getName());
 			try {
@@ -110,11 +107,11 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 				msg += String.format("%s\t\t%s\n", tabs, e.getMessage());
 			}
  		}
-		msg += String.format("%s\tMean Overall: %.2f / %d = %.2f", tabs, marks, studentCount, marks/studentCount);
+		msg += String.format("%s\tOverall Mean: %.2f / %d = %.2f\n", tabs, marks, studentCount, marks/studentCount);
 		for (String type : components.keySet()) {
-			msg += String.format("%s\tMean %s: %.2f / %d = %.2f", tabs, type, components.get(type), studentCount, components.get(type)/studentCount);
+			msg += String.format("%s\t%s Mean: %.2f / %d = %.2f\n", tabs, type, components.get(type), studentCount, components.get(type)/studentCount);
 		}
-		return msg+'\n';
+		return msg;
 	}
 	public String print(String tabs) {
 		String msg = new String();
@@ -173,6 +170,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 			System.out.println("\t3. Create a new course.");
 			System.out.println("\t4. Edit a course.");
 			System.out.println("\t5. Delete a course.");
+			System.out.println("\t6. Print course statistics.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
@@ -187,10 +185,14 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					if (choice == 1) Collections.sort(courseList);
 					else Collections.sort(courseList, new SortByNameComparator());
 					System.out.println("Courses List:");
-					System.out.printf("%-5s | %-10s | %-60s\n", "NO", "COURSE ID", "COURSE NAME");
-					System.out.println(new String(new char[81]).replace('\0', '-'));
+					System.out.printf("%-5s | %-10s | %-60s | %-11s | %-50s\n", 
+							"NO", "COURSE ID", "COURSE NAME", "CAPACITY", "COORDINATOR");
+					System.out.println(new String(new char[148]).replace('\0', '-'));
 					for (Course cs : courseList) {
-						System.out.printf("%-5d | %-10d | %-60s\n", courseList.indexOf(cs)+1, cs.getID(), cs.getName());
+						System.out.printf("%-5d | %-10d | %-60s | %5d/%-5d | %-50s\n", 
+								courseList.indexOf(cs)+1, cs.getID(), cs.getName(), 
+								cs.getGroups().getStudents().size(), cs.getGroups().getCapacity(),
+								cs.getCoordinator().getName());
 					}
 					break;
 				case 3:
@@ -260,7 +262,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					course = null;
 					System.out.print("Please input Course ID: ");
 					try {
-						int courseID = scan.nextInt();
+						int courseID = scan.nextInt(); scan.nextLine();
 						if (choice == 4) Course.main(school.getCourse(courseID), school, scan);
 						else {
 							course = school.getCourse(courseID);
@@ -268,6 +270,17 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 							course.getCoordinator().rmCourse(course);
 							System.out.printf("Course %d, %s removed.\n", course.getID(), course.getName());
 						}
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 6:
+					course = null;
+					System.out.print("Please input Course ID: ");
+					try {
+						int courseID = scan.nextInt(); scan.nextLine();
+						course = school.getCourse(courseID);
+						System.out.println(course.printResults("\t"));
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}

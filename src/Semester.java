@@ -58,11 +58,15 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 		ArrayList<Course> courseList = new ArrayList<Course>(getCourses().values());
 		if (choice == 1) Collections.sort(courseList);
 		else Collections.sort(courseList, new SortByNameComparator());
-		System.out.printf("%sCourses List:\n", tabs);
-		System.out.printf("%s%-5s | %-10s | %-60s\n", tabs, "NO", "COURSE ID", "COURSE NAME");
-		System.out.printf("%s%s\n", tabs, new String(new char[81]).replace('\0', '-'));
+		msg += String.format("%sCourses List:\n", tabs);
+		msg += String.format("%s%-5s | %-10s | %-60s | %-11s | %-50s\n", tabs,
+				"NO", "COURSE ID", "COURSE NAME", "CAPACITY", "COORDINATOR");
+		msg += String.format("%s%s\n",tabs , new String(new char[148]).replace('\0', '-'));
 		for (Course cs : courseList) {
-			System.out.printf("%s%-5d | %-10d | %-60s\n", tabs, courseList.indexOf(cs)+1, cs.getID(), cs.getName());
+			msg += String.format("%s%-5d | %-10d | %-60s | %5d/%-5d | %-50s\n", 
+					tabs, courseList.indexOf(cs)+1, cs.getID(), cs.getName(), 
+					cs.getGroups().getStudents().size(), cs.getGroups().getCapacity(),
+					cs.getCoordinator().getName());
 		}
 		return msg;
 	}
@@ -88,12 +92,7 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 			// Shallow copy all courses in semester for archiving.
 			// By replacing courses in school with new ones.
 			newCourse = new Course(course);
-			try {
-				school.rmCourse(course);
-				school.addCourse(newCourse);
-			} catch (Exception e) {
-				//Pass
-			}
+			school.getCourses().put(newCourse.getID(), newCourse);
 			
 			// Clear all registered students in school's courses.
 			newCourse.setGroups(new CourseGroup(course, course.getGroups().getCapacity()));
@@ -190,7 +189,10 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 			System.out.println("\t8. Manage grades for a student of a course.");
 			System.out.println("\t9. Unregister a student from a course.");
 			System.out.println("\t10. Unregister all students from a course.");
-			System.out.println("\t11. End current semester.");
+			System.out.println("\t11. Print student list of a course.");
+			System.out.println("\t12. Print student transcript.");
+			System.out.println("\t13. Print course statistics.");
+			System.out.println("\t14. End current semester.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
@@ -216,7 +218,14 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					}
 					break;
 				case 3:
-					sem.setCourses(school.getCourses());
+					for (Course course : school.getCourses().values()) {
+						try {
+							sem.addCourse(course);
+							course.setSemester(sem);
+						} catch (DuplicateKeyException g) {
+							System.out.println(g.getMessage());
+						}
+					}
 					System.out.printf("All courses added successfully.\n", courseID);
 					break;
 				case 4:
@@ -255,10 +264,6 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 							groups.rmStudent(student);
 						}
 						System.out.println(groups.print(""));
-						if (groups.getLecture() != null) {
-							System.out.print("Please input Lecture group: ");
-							groupIDs.put(CourseType.LECTURE, scan.nextInt());
-						}
 						if (groups.getTutorials() != null) {
 							System.out.print("Please input Tutorial group: ");
 							groupIDs.put(CourseType.TUTORIAL, scan.nextInt());
@@ -273,14 +278,24 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 								student.getID(), student.getName(), course.getID(), course.getName());
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
+						try {
+							if (groups != null) groups.rmStudent(school.getStudent(studentID));
+						} catch (KeyErrorException a) {
+							// Pass
+						}
 					} catch (MaxCapacityException f) {
 						System.out.println(f.getMessage());
+						try {
+							groups.rmStudent(school.getStudent(studentID));
+						} catch (KeyErrorException a) {
+							// Pass
+						}
 					} catch (DuplicateKeyException g) {
 						System.out.println(g.getMessage());
 					} finally {
 						if (choice == 7 && oriGroupIDs != null) {
 							try {
-								groups.addStudent(school.getStudent(studentID), oriGroupIDs);
+								if (groups != null) groups.addStudent(school.getStudent(studentID), oriGroupIDs);
 							} catch (Exception e) {
 								// pass
 							}
@@ -323,16 +338,20 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					choice = scan.nextLine().toUpperCase().charAt(0);
 					if (choice == 'Y') {
 						System.out.print("Please input course ID: ");
-						choice = scan.nextInt(); scan.nextLine();
+						courseID = scan.nextInt(); scan.nextLine();
 						HashSet<Student> students = null;
 						CourseGroup courseGroup = null;
 						try {
 							courseGroup = sem.getCourse(courseID).getGroups();
 							students = courseGroup.getStudents();
 							for (Student stud : students) {
-								courseGroup.rmStudent(stud);
-								stud.rmCourse(courseGroup.getCourse());
-								stud.rmGrade(courseGroup.getCourse());
+								try {
+									courseGroup.rmStudent(stud);
+									stud.rmCourse(sem.getCourse(courseID));
+									stud.rmGrade(sem.getCourse(courseID));
+								} catch (KeyErrorException e) {
+									// Pass
+								}
 							}
 						} catch (KeyErrorException e) {
 							System.out.println(e.getMessage());
@@ -340,6 +359,33 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 					}
 					break;
 				case 11:
+					System.out.print("Please input Course ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						System.out.println(sem.getCourse(choice).getGroups().printStudents("\t", null));
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 12:
+					System.out.print("Please input Student ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						System.out.println(school.getStudent(choice).printTranscript("\t"));
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 13:
+					System.out.print("Please input Course ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						System.out.println(sem.getCourse(choice).printResults("\t"));
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 14:
 					System.out.printf("Are you sure to end Semester %d, %s? (Y/N): ", sem.getID(), sem.getName());
 					choice = scan.nextLine().toUpperCase().charAt(0);
 					if (choice != 'Y') break;

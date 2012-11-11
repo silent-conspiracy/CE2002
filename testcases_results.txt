@@ -1,5 +1,8 @@
-Welcome to Course Registration portal! (powered by KTCube)
+Loading data from 'SCRAME.sav'... Please wait...
 Error: SCRAME.sav not found.
+Initializing default data...
+
+Welcome to Course Registration portal! (powered by KTCube)
 Please select a school: 
 	1. School of Computer Engineering
 	0. Save and Quit.
@@ -177,6 +180,12 @@ y
 0
 4
 11
+1
+12
+1
+13
+1
+14
 Y
 8
 1
@@ -186,7 +195,7 @@ Y
 2
 90
 0
-11
+14
 Y
 1
 5
@@ -863,6 +872,7 @@ Choice: Welcome to Course Manager.
 	3. Create a new course.
 	4. Edit a course.
 	5. Delete a course.
+	6. Print course statistics.
 	0. Go back to previous menu.
 Choice: Please input course name: Please input academic units: Please choose the following Course Types: 
 	1. Lectures only
@@ -878,6 +888,7 @@ Choice: Please input ID of professor as Course Coordinator: Does this course con
 	3. Create a new course.
 	4. Edit a course.
 	5. Delete a course.
+	6. Print course statistics.
 	0. Go back to previous menu.
 Choice: Please input Course ID: Course: 1, Object Oriented Programming
 	Course ID: 1
@@ -1232,6 +1243,7 @@ Choice: Welcome to Course Manager.
 	3. Create a new course.
 	4. Edit a course.
 	5. Delete a course.
+	6. Print course statistics.
 	0. Go back to previous menu.
 Choice: Welcome to School of Computer Engineering
 Please select an option: 
@@ -1254,7 +1266,10 @@ Choice: Please input semester name: Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input course ID: Course ID 1 added successfully.
 Semester Registration Manager.
@@ -1268,7 +1283,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input course ID: Course ID 1 removed successfully.
 Semester Registration Manager.
@@ -1282,7 +1300,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: All courses added successfully.
 Semester Registration Manager.
@@ -1296,7 +1317,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
 	ID    | No. of Students | GROUP NAME                              
@@ -1320,7 +1344,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
 	ID    | No. of Students | GROUP NAME                              
@@ -1344,7 +1371,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
 	ID    | No. of Students | GROUP NAME                              
@@ -1368,7 +1398,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Grade Manager.
 Student: 1, Kenny
@@ -1417,7 +1450,10 @@ Choice: Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Are you sure? (Y/N): Please input course ID: Semester Registration Manager.
 	1. Print courses open for registration.
@@ -1430,7 +1466,10 @@ Choice: Are you sure? (Y/N): Please input course ID: Semester Registration Manag
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
 	ID    | No. of Students | GROUP NAME                              
@@ -1454,7 +1493,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Welcome to School of Computer Engineering
 Please select an option: 
@@ -1469,6 +1511,7 @@ Choice: Welcome to Course Manager.
 	3. Create a new course.
 	4. Edit a course.
 	5. Delete a course.
+	6. Print course statistics.
 	0. Go back to previous menu.
 Choice: Please input Course ID: Course: 1, Object Oriented Programming
 	Course ID: 1
@@ -1584,6 +1627,7 @@ Choice: Welcome to Course Manager.
 	3. Create a new course.
 	4. Edit a course.
 	5. Delete a course.
+	6. Print course statistics.
 	0. Go back to previous menu.
 Choice: Welcome to School of Computer Engineering
 Please select an option: 
@@ -1603,7 +1647,81 @@ Choice: Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: Please input Course ID: 			Tutorial ID, Name: 2, Group 2
+			Tutorial Vacancy: 1 / 1
+				Students list of Group: 2, Group 2
+				NO    | STUDENT ID | NAME                                                        
+				---------------------------------------------------------------------------------
+				1     | 1          | Kenny                                                       
+			Lab ID, Name: 4, Group 4
+			Lab Vacancy: 1 / 1
+				Students list of Group: 4, Group 4
+				NO    | STUDENT ID | NAME                                                        
+				---------------------------------------------------------------------------------
+				1     | 1          | Kenny                                                       
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: Please input Student ID: 	Student: 1, Kenny
+	CGPA: 0.00
+	Courses taken: 
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: Please input Course ID: 	Course Statistics:
+	Students: 
+		1, Kenny: 
+			Error: Student 1, Kenny have no grades in course ID 1.
+		Mean Overall: 0.00 / 0 = NaN
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Are you sure to end Semester 1, AY2012-2013? (Y/N): Error: Student 1, Kenny have no grades in Course 1, Object Oriented Programming.
 Semester Registration Manager.
@@ -1617,7 +1735,10 @@ Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Please input student ID: Please input Course ID: Grade Manager.
 Student: 1, Kenny
@@ -1666,7 +1787,10 @@ Choice: Semester Registration Manager.
 	8. Manage grades for a student of a course.
 	9. Unregister a student from a course.
 	10. Unregister all students from a course.
-	11. End current semester.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
 	0. Go back to previous menu.
 Choice: Are you sure to end Semester 1, AY2012-2013? (Y/N): Semester 1, AY2012-2013 ended.
 Welcome to School of Computer Engineering
