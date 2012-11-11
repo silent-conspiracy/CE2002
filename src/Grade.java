@@ -86,11 +86,11 @@ public class Grade implements Serializable {
 	}
 	public String printMarks(String tabs) {
 		String msg = new String();
-		msg += String.format("%sGPA: %.2f", tabs, getGPA());
-		msg += String.format("%sOverall Marks: %.2f", tabs, getOverall());
+		msg += String.format("%sGPA: %.2f\n", tabs, getGPA());
+		msg += String.format("%sOverall Marks: %.2f\n", tabs, getOverall());
 		msg += String.format("%sComponent Marks:\n", tabs);
 		for (String type : getComponents()) {
-			msg += String.format("%s\t%s: %.2f => %.2f", tabs, type, getMarks().get(type), scaleMarks(type));
+			msg += String.format("%s\t%s: %.2f => %.2f\n", tabs, type, getMarks().get(type), scaleMarks(type));
 		}
 		return msg;
 	}

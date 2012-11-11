@@ -1,0 +1,1811 @@
+Welcome to Course Registration portal! (powered by KTCube)
+Error: SCRAME.sav not found.
+Please select a school: 
+	1. School of Computer Engineering
+	0. Save and Quit.
+Choice: 1
+1
+4
+Kenny
+M
+4
+Adam
+M
+4
+Eve
+F
+1
+2
+5
+1
+1
+2
+F
+3
+P0988P
+4
+12345
+5
+kenny@magic.com
+6
+#20-10-20 Bishan, Singapore
+7
+12/12/1991
+0
+2
+1
+kenny@magic.com
+2
+1
+3
+1
+4
+1
+0
+0
+6
+3
+6
+3
+0
+2
+3
+Eve
+F
+3
+Maid
+M
+5
+2
+4
+1
+1
+2
+M
+3
+Pkuh98
+4
+12345
+5
+Eve@school.com
+6
+#20-10-12 Bishan, Singapore
+7
+13/02/1991
+0
+2
+1
+eve@school.com
+3
+@lolol
+4
+12345
+5
+Assoc Prof
+0
+0
+0
+3
+3
+Object Oriented Programming
+20
+5
+1
+Y
+1
+4
+1
+2
+4
+3
+7
+4
+1
+5
+1
+Assignment
+30
+5
+1
+Final Exam
+70
+6
+1
+1
+2
+5
+1
+5
+1
+7
+3
+0
+3
+5
+1
+0
+0
+0
+0
+4
+1
+AY2012-2013
+2
+1
+4
+1
+3
+6
+1
+1
+2
+4
+7
+1
+1
+2
+4
+6
+2
+1
+2
+4
+8
+1
+1
+1
+50
+2
+100
+0
+10
+y
+1
+6
+1
+1
+2
+4
+0
+3
+4
+1
+6
+5
+0
+0
+0
+4
+11
+Y
+8
+1
+1
+1
+70
+2
+90
+0
+11
+Y
+1
+5
+1
+3
+1
+1
+80
+0
+4
+0
+0
+Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student name: Please choose gender (M/F): Student 1, Kenny created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 1          | Kenny                                                       
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student name: Please choose gender (M/F): Student 2, Adam created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 1          | Kenny                                                       
+2     | 2          | Adam                                                        
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student name: Please choose gender (M/F): Student 3, Eve created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 1          | Kenny                                                       
+2     | 2          | Adam                                                        
+3     | 3          | Eve                                                         
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 1          | Kenny                                                       
+2     | 2          | Adam                                                        
+3     | 3          | Eve                                                         
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 2          | Adam                                                        
+2     | 3          | Eve                                                         
+3     | 1          | Kenny                                                       
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student ID: Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Male
+		IC: null
+		Contact: null
+		Personal email: null
+		Address: null
+		Date of Birth: null
+	Student Particulars: 
+		Student Mail: null
+		School: School of Computer Engineering
+		Program: null
+		Student Type: null
+		CGPA: 0.0
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: Person: 1, Kenny
+	Name: Kenny
+	Gender: Male
+	IC: null
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please choose gender (M/F): Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: null
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input IC: Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: P0988P
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Contact: Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: P0988P
+	Contact: 12345
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Personal eMail: Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: P0988P
+	Contact: 12345
+	Personal email: kenny@magic.com
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Address: Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: P0988P
+	Contact: 12345
+	Personal email: kenny@magic.com
+	Address: #20-10-20 Bishan, Singapore
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Date of Birth (DD/MM/YYYY): Person: 1, Kenny
+	Name: Kenny
+	Gender: Female
+	IC: P0988P
+	Contact: 12345
+	Personal email: kenny@magic.com
+	Address: #20-10-20 Bishan, Singapore
+	Date of Birth: 12/12/1991
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Female
+		IC: P0988P
+		Contact: 12345
+		Personal email: kenny@magic.com
+		Address: #20-10-20 Bishan, Singapore
+		Date of Birth: 12/12/1991
+	Student Particulars: 
+		Student Mail: null
+		School: School of Computer Engineering
+		Program: null
+		Student Type: null
+		CGPA: 0.0
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: Student: 1, Kenny
+	Student Mail: null
+	School: School of Computer Engineering
+	Program: null
+	Student Type: null
+	CGPA: 0.0
+
+	1. Edit Student eMail.
+	2. Edit School.
+	3. Edit Program.
+	4. Edit Student Type.
+	0. Go back to previous menu.
+Choice: Please input student eMail: Student: 1, Kenny
+	Student Mail: kenny@magic.com
+	School: School of Computer Engineering
+	Program: null
+	Student Type: null
+	CGPA: 0.0
+
+	1. Edit Student eMail.
+	2. Edit School.
+	3. Edit Program.
+	4. Edit Student Type.
+	0. Go back to previous menu.
+Choice: Please choose the following schools: 
+	1. School of Computer Engineering
+Choice: Error: Student ID 1, Kenny already exists.
+Student: 1, Kenny
+	Student Mail: kenny@magic.com
+	School: School of Computer Engineering
+	Program: null
+	Student Type: null
+	CGPA: 0.0
+
+	1. Edit Student eMail.
+	2. Edit School.
+	3. Edit Program.
+	4. Edit Student Type.
+	0. Go back to previous menu.
+Choice: Please choose the following programs: 
+	1. Computer Engineering
+	2. Computer Science
+Choice: Student: 1, Kenny
+	Student Mail: kenny@magic.com
+	School: School of Computer Engineering
+	Program: CE
+	Student Type: null
+	CGPA: 0.0
+
+	1. Edit Student eMail.
+	2. Edit School.
+	3. Edit Program.
+	4. Edit Student Type.
+	0. Go back to previous menu.
+Choice: Please choose the following student types: 
+	1. Full Time Student
+	2. Part Time Student
+Choice: Student: 1, Kenny
+	Student Mail: kenny@magic.com
+	School: School of Computer Engineering
+	Program: CE
+	Student Type: FULL_TIME
+	CGPA: 0.0
+
+	1. Edit Student eMail.
+	2. Edit School.
+	3. Edit Program.
+	4. Edit Student Type.
+	0. Go back to previous menu.
+Choice: Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Female
+		IC: P0988P
+		Contact: 12345
+		Personal email: kenny@magic.com
+		Address: #20-10-20 Bishan, Singapore
+		Date of Birth: 12/12/1991
+	Student Particulars: 
+		Student Mail: kenny@magic.com
+		School: School of Computer Engineering
+		Program: CE
+		Student Type: FULL_TIME
+		CGPA: 0.0
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student ID: Student 3, Eve removed.
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student ID: Error: Student ID 3 does not exist.
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: Please input professor name: Please choose gender (M/F): Professor 1, Eve created successfully.
+Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: Please input professor name: Please choose gender (M/F): Professor 2, Maid created successfully.
+Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: Please input Professor ID: Professor 2, Maid removed.
+Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: Please input Professor ID: Professor: 1, Eve
+	General Particulars: 
+		Name: Eve
+		Gender: Female
+		IC: null
+		Contact: null
+		Personal email: null
+		Address: null
+		Date of Birth: null
+	Professor Particulars: 
+		Professor Mail: null
+		School: School of Computer Engineering
+		Office Location: null
+		Office Contact: null
+		Position: null
+
+	1. Edit General Particulars.
+	2. Edit Professor Particulars.
+	0. Go back to previous menu.
+Choice: Person: 1, Eve
+	Name: Eve
+	Gender: Female
+	IC: null
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please choose gender (M/F): Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: null
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input IC: Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: Pkuh98
+	Contact: null
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Contact: Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: Pkuh98
+	Contact: 12345
+	Personal email: null
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Personal eMail: Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: Pkuh98
+	Contact: 12345
+	Personal email: Eve@school.com
+	Address: null
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Address: Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: Pkuh98
+	Contact: 12345
+	Personal email: Eve@school.com
+	Address: #20-10-12 Bishan, Singapore
+	Date of Birth: null
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Please input Date of Birth (DD/MM/YYYY): Person: 1, Eve
+	Name: Eve
+	Gender: Male
+	IC: Pkuh98
+	Contact: 12345
+	Personal email: Eve@school.com
+	Address: #20-10-12 Bishan, Singapore
+	Date of Birth: 13/02/1991
+
+	1. Edit Name.
+	2. Edit Gender.
+	3. Edit IC.
+	4. Edit Contact.
+	5. Edit Personal eMail.
+	6. Edit Address.
+	7. Edit Date of Birth.
+	0. Go back to previous menu.
+Choice: Professor: 1, Eve
+	General Particulars: 
+		Name: Eve
+		Gender: Male
+		IC: Pkuh98
+		Contact: 12345
+		Personal email: Eve@school.com
+		Address: #20-10-12 Bishan, Singapore
+		Date of Birth: 13/02/1991
+	Professor Particulars: 
+		Professor Mail: null
+		School: School of Computer Engineering
+		Office Location: null
+		Office Contact: null
+		Position: null
+
+	1. Edit General Particulars.
+	2. Edit Professor Particulars.
+	0. Go back to previous menu.
+Choice: Professor: 1, Eve
+	Professor Mail: null
+	School: School of Computer Engineering
+	Office Location: null
+	Office Contact: null
+	Position: null
+
+	1. Edit Professor eMail.
+	2. Edit School.
+	3. Edit Office Location.
+	4. Edit Office Contact.
+	5. Edit Position.
+	0. Go back to previous menu.
+Choice: Please input professor eMail: Professor: 1, Eve
+	Professor Mail: eve@school.com
+	School: School of Computer Engineering
+	Office Location: null
+	Office Contact: null
+	Position: null
+
+	1. Edit Professor eMail.
+	2. Edit School.
+	3. Edit Office Location.
+	4. Edit Office Contact.
+	5. Edit Position.
+	0. Go back to previous menu.
+Choice: Please input office location: Professor: 1, Eve
+	Professor Mail: eve@school.com
+	School: School of Computer Engineering
+	Office Location: @lolol
+	Office Contact: null
+	Position: null
+
+	1. Edit Professor eMail.
+	2. Edit School.
+	3. Edit Office Location.
+	4. Edit Office Contact.
+	5. Edit Position.
+	0. Go back to previous menu.
+Choice: Please input office contact: Professor: 1, Eve
+	Professor Mail: eve@school.com
+	School: School of Computer Engineering
+	Office Location: @lolol
+	Office Contact: 12345
+	Position: null
+
+	1. Edit Professor eMail.
+	2. Edit School.
+	3. Edit Office Location.
+	4. Edit Office Contact.
+	5. Edit Position.
+	0. Go back to previous menu.
+Choice: Please input position: Professor: 1, Eve
+	Professor Mail: eve@school.com
+	School: School of Computer Engineering
+	Office Location: @lolol
+	Office Contact: 12345
+	Position: Assoc Prof
+
+	1. Edit Professor eMail.
+	2. Edit School.
+	3. Edit Office Location.
+	4. Edit Office Contact.
+	5. Edit Position.
+	0. Go back to previous menu.
+Choice: Professor: 1, Eve
+	General Particulars: 
+		Name: Eve
+		Gender: Male
+		IC: Pkuh98
+		Contact: 12345
+		Personal email: Eve@school.com
+		Address: #20-10-12 Bishan, Singapore
+		Date of Birth: 13/02/1991
+	Professor Particulars: 
+		Professor Mail: eve@school.com
+		School: School of Computer Engineering
+		Office Location: @lolol
+		Office Contact: 12345
+		Position: Assoc Prof
+
+	1. Edit General Particulars.
+	2. Edit Professor Particulars.
+	0. Go back to previous menu.
+Choice: Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	0. Go back to previous menu.
+Choice: Please input course name: Please input academic units: Please choose the following Course Types: 
+	1. Lectures only
+	2. Tutorials only
+	3. Labs only
+	4. Lectures and tutorials
+	5. Lectures, tutorials and labs
+	6. Lectures and labs
+	7. Tutorials and labs
+Choice: Please input ID of professor as Course Coordinator: Does this course constitutes a final exam? (Y/N): Please input course capacity: Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	0. Go back to previous menu.
+Choice: Please input Course ID: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 20
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 1
+			No. of Students: 0
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Please input academic units: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 1
+			No. of Students: 0
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Please choose the following Course Types: 
+	1. Lectures only
+	2. Tutorials only
+	3. Labs only
+	4. Lectures and tutorials
+	5. Lectures, tutorials and labs
+	6. Lectures and labs
+	7. Tutorials and labs
+Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Please input new course capacity: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Please choose the following: 
+	1. Add or Edit assessment.
+	2. Delete assessment.
+Choice: Please input name of assessment: Please input weight of assessment: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 100.00
+		Assignment: 30.00
+		Total Weights: 130.00
+	Course Groups: 
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Please choose the following: 
+	1. Add or Edit assessment.
+	2. Delete assessment.
+Choice: Please input name of assessment: Please input weight of assessment: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 70.00
+		Assignment: 30.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Welcome to Course Group Manager.
+Course: 1, Object Oriented Programming
+	Tutorial Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Error: Lecture group does not exists.
+Course: 1, Object Oriented Programming
+	Tutorial Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Error: Lecture group does not exists.
+Course: 1, Object Oriented Programming
+	Tutorial Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Please input group capacity: Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Please input group capacity: Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Please input group ID: Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Course: 1, Object Oriented Programming
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		2     |       0/1       | Group 2                                 
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Lab Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Please input group capacity: Lab Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: Course: 1, Object Oriented Programming
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		2     |       0/1       | Group 2                                 
+	Lab Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		4     |       0/1       | Group 4                                 
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 70.00
+		Assignment: 30.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			2     |       0/1       | Group 2                                 
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			4     |       0/1       | Group 4                                 
+		Total no. of students: 0 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Semester Manager.
+	1. Start a new semester.
+	0. Go back to previous menu.
+Choice: Please input semester name: Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input course ID: Course ID 1 added successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input course ID: Course ID 1 removed successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: All courses added successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	2     |       0/1       | Group 2                                 
+Lab Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	4     |       0/1       | Group 4                                 
+Total no. of students: 0 
+
+Please input Tutorial group: Please input Lab group: Student ID 1, Kenny registered in Course ID 1, Object Oriented Programming successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	2     |       0/1       | Group 2                                 
+Lab Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	4     |       0/1       | Group 4                                 
+Total no. of students: 0 
+
+Please input Tutorial group: Please input Lab group: Student ID 1, Kenny registered in Course ID 1, Object Oriented Programming successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	2     |       1/1       | Group 2                                 
+Lab Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	4     |       1/1       | Group 4                                 
+Total no. of students: 1 
+
+Please input Tutorial group: Please input Lab group: Error: No more vacancy.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 0.00
+	Overall Marks: 0.00
+	Component Marks:
+		Final Exam: 0.00 => 0.00
+		Assignment: 0.00 => 0.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Please input marks: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 2.90
+	Overall Marks: 35.00
+	Component Marks:
+		Final Exam: 50.00 => 35.00
+		Assignment: 0.00 => 0.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Please input marks: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 3.50
+	Overall Marks: 65.00
+	Component Marks:
+		Final Exam: 50.00 => 35.00
+		Assignment: 100.00 => 30.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Are you sure? (Y/N): Please input course ID: Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Tutorial Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	2     |       0/1       | Group 2                                 
+Lab Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	4     |       0/1       | Group 4                                 
+Total no. of students: 0 
+
+Please input Tutorial group: Please input Lab group: Student ID 1, Kenny registered in Course ID 1, Object Oriented Programming successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	0. Go back to previous menu.
+Choice: Please input Course ID: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 70.00
+		Assignment: 30.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			2     |       1/1       | Group 2                                 
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			4     |       1/1       | Group 4                                 
+		Total no. of students: 1 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Welcome to Course Group Manager.
+Course: 1, Object Oriented Programming
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		2     |       1/1       | Group 2                                 
+	Lab Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		4     |       1/1       | Group 4                                 
+	Total no. of students: 1 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: 			Tutorial ID, Name: 2, Group 2
+			Tutorial Vacancy: 1 / 1
+				Students list of Group: 2, Group 2
+				NO    | STUDENT ID | NAME                                                        
+				---------------------------------------------------------------------------------
+				1     | 1          | Kenny                                                       
+			Lab ID, Name: 4, Group 4
+			Lab Vacancy: 1 / 1
+				Students list of Group: 4, Group 4
+				NO    | STUDENT ID | NAME                                                        
+				---------------------------------------------------------------------------------
+				1     | 1          | Kenny                                                       
+
+Course: 1, Object Oriented Programming
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		2     |       1/1       | Group 2                                 
+	Lab Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		4     |       1/1       | Group 4                                 
+	Total no. of students: 1 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: Course: 1, Object Oriented Programming
+	Course ID: 1
+	Course Name: Object Oriented Programming
+	Course AU: 4
+	Course Type: Tutorials and labs
+	Course Capacity: 1
+	Course Weights: 
+		Final Exam: 70.00
+		Assignment: 30.00
+		Total Weights: 100.00
+	Course Groups: 
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			2     |       1/1       | Group 2                                 
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			4     |       1/1       | Group 4                                 
+		Total no. of students: 1 
+	Course Coordinator: 1, Eve
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Are you sure to end Semester 1, AY2012-2013? (Y/N): Error: Student 1, Kenny have no grades in Course 1, Object Oriented Programming.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Please input student ID: Please input Course ID: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 0.00
+	Overall Marks: 0.00
+	Component Marks:
+		Final Exam: 0.00 => 0.00
+		Assignment: 0.00 => 0.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Please input marks: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 2.50
+	Overall Marks: 49.00
+	Component Marks:
+		Final Exam: 70.00 => 49.00
+		Assignment: 0.00 => 0.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Please input marks: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 4.00
+	Overall Marks: 76.00
+	Component Marks:
+		Final Exam: 70.00 => 49.00
+		Assignment: 90.00 => 27.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. End current semester.
+	0. Go back to previous menu.
+Choice: Are you sure to end Semester 1, AY2012-2013? (Y/N): Semester 1, AY2012-2013 ended.
+Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Please input student ID: Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Female
+		IC: P0988P
+		Contact: 12345
+		Personal email: kenny@magic.com
+		Address: #20-10-20 Bishan, Singapore
+		Date of Birth: 12/12/1991
+	Student Particulars: 
+		Student Mail: kenny@magic.com
+		School: School of Computer Engineering
+		Program: CE
+		Student Type: FULL_TIME
+		CGPA: 4.0
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: 	Student: 1, Kenny
+	CGPA: 4.00
+	Courses taken: 
+	Semester: AY2012-2013
+		Course: 1, Object Oriented Programming
+			GPA: 4.00
+			Overall Marks: 76.00
+			Component Marks:
+				Final Exam: 70.00 => 49.00
+				Assignment: 90.00 => 27.00
+
+Please input course ID: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 4.00
+	Overall Marks: 76.00
+	Component Marks:
+		Final Exam: 70.00 => 49.00
+		Assignment: 90.00 => 27.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Please input marks: Grade Manager.
+Student: 1, Kenny
+Course: 1, Object Oriented Programming
+	GPA: 4.50
+	Overall Marks: 83.00
+	Component Marks:
+		Final Exam: 80.00 => 56.00
+		Assignment: 90.00 => 27.00
+
+1. Final Exam
+2. Assignment
+0. Go back to previous menu.
+Choice: Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Female
+		IC: P0988P
+		Contact: 12345
+		Personal email: kenny@magic.com
+		Address: #20-10-20 Bishan, Singapore
+		Date of Birth: 12/12/1991
+	Student Particulars: 
+		Student Mail: kenny@magic.com
+		School: School of Computer Engineering
+		Program: CE
+		Student Type: FULL_TIME
+		CGPA: 4.5
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: 	Student: 1, Kenny
+	CGPA: 4.50
+	Courses taken: 
+	Semester: AY2012-2013
+		Course: 1, Object Oriented Programming
+			GPA: 4.50
+			Overall Marks: 83.00
+			Component Marks:
+				Final Exam: 80.00 => 56.00
+				Assignment: 90.00 => 27.00
+
+Student: 1, Kenny
+	General Particulars: 
+		Name: Kenny
+		Gender: Female
+		IC: P0988P
+		Contact: 12345
+		Personal email: kenny@magic.com
+		Address: #20-10-20 Bishan, Singapore
+		Date of Birth: 12/12/1991
+	Student Particulars: 
+		Student Mail: kenny@magic.com
+		School: School of Computer Engineering
+		Program: CE
+		Student Type: FULL_TIME
+		CGPA: 4.5
+
+	1. Edit General Particulars.
+	2. Edit Student Particulars.
+	3. Edit Student Grades.
+	4. Print Student Transcript.
+	0. Go back to previous menu.
+Choice: Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 

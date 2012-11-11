@@ -1,0 +1,60 @@
+1
+3
+3
+Object Oriented Programming
+3
+5
+1
+Y
+12
+3
+Algorithms
+3
+5
+2
+Y
+12
+3
+Effective Communication
+2
+2
+3
+N
+15
+4
+1
+5
+1
+Assignment
+30
+5
+1
+Final Exam
+70
+0
+4
+2
+5
+1
+Assignment
+30
+5
+1
+Final Exam
+70
+0
+4
+3
+5
+1
+Group Project
+70
+5
+1
+Oral Presentation
+30
+0
+0
+0
+0
+N

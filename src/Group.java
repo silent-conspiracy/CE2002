@@ -109,7 +109,7 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName, Compa
 		String msg = new String();
 		msg += String.format("%sStudents list of Group: %d, %s\n", tabs, getID(), getName());
 		msg += String.format("%s%-5s | %-10s | %-60s\n", tabs, "NO", "STUDENT ID", "NAME");
-		msg += String.format(String.format("%s%%0%dd \n", 81), "-");
+		msg += String.format("%s%s\n", tabs, new String(new char[81]).replace('\0','-'));
 		ArrayList<Student> studentList = new ArrayList<Student>(getStudents().values());
 		if (comparator != null) Collections.sort(studentList, comparator);
 		else Collections.sort(studentList);
@@ -126,12 +126,13 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName, Compa
 		while (!done) {
 			System.out.printf("Group ID: %d, Type: %s\n", group.getID(), group.getType());
 			System.out.println(group.print("\t"));
-			System.out.println("1. Print students list by ID.");
-			System.out.println("2. Print students list by Name.");
-			System.out.println("3. Edit name.");
-			System.out.println("4. Edit Capacity.");
-			System.out.println("5. Edit Professor.");
-			System.out.println("0. Go back to previous menu.");
+			System.out.println("\t1. Print students list by ID.");
+			System.out.println("\t2. Print students list by Name.");
+			System.out.println("\t3. Edit name.");
+			System.out.println("\t4. Edit Capacity.");
+			System.out.println("\t5. Edit Professor.");
+			System.out.println("\t0. Go back to previous menu.");
+			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
 			switch (choice) {
 				case 0:

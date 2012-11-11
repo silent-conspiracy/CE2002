@@ -84,34 +84,37 @@ public class Student extends Person implements PrimaryKeyManager {
 		else throw new KeyErrorException(String.format("Student %d, %s have no grades in course ID %d",getID(),getName(),course.getID()));
 	}
 	public void addCourse(Course course) throws DuplicateKeyException {
-		if (courses.containsKey(course.getID())) throw new DuplicateKeyException();
+		if (courses.containsKey(course.getID())) 
+			throw new DuplicateKeyException(String.format("Student is already registered for Course ID %d", course.getID()));
 		else courses.put(course.getID(), course);
 	}
 	public void addClass(Group group) throws DuplicateKeyException {
-		if (classes.containsKey(group.getID())) throw new DuplicateKeyException();
+		if (classes.containsKey(group.getID())) 
+			throw new DuplicateKeyException(String.format("Student is already enrolled in Group ID %d", group.getID()));
 		else classes.put(group.getID(), group);
 	}
 	public void addGrade(Grade grade) throws DuplicateKeyException {
-		if (grades.containsKey(grade.getCourse().getID())) throw new DuplicateKeyException();
+		if (grades.containsKey(grade.getCourse().getID())) 
+			throw new DuplicateKeyException(String.format("Student already has grade for Course ID %d", grade.getCourse().getID()));
 		else grades.put(grade.getCourse(), grade);
 	}
 	public void rmCourse(Course course) throws KeyErrorException {
 		if (courses.containsKey(course.getID())) courses.remove(course.getID());
-		else throw new KeyErrorException();
+		else throw new KeyErrorException(String.format("Student not registered in Course ID %d", course.getID()));
 	}
 	public void rmClass(Group group) throws KeyErrorException {
 		if (classes.containsKey(group.getID())) classes.remove(group.getID());
-		else throw new KeyErrorException();
+		else throw new KeyErrorException(String.format("Student not registered in Group ID %d", group.getID()));
 	}
-	public void rmGrade(Grade grade) throws KeyErrorException {
-		if (grades.containsKey(grade.getCourse())) grades.remove(grade.getCourse().getID());
-		else throw new KeyErrorException();
+	public void rmGrade(Course course) throws KeyErrorException {
+		if (grades.containsKey(course)) grades.remove(course);
+		else throw new KeyErrorException(String.format("Grade for Course ID %d does not exists", course.getID()));
 	}
 	public void calcCGPA() {
 		double cgp = 0.0;
 		int totalAU = 0;
 		for (Grade grade : getGrades().values()) {
-			cgp += grade.getGPA();
+			cgp += grade.getGPA() * grade.getCourse().getAU();
 			totalAU += grade.getCourse().getAU();
 		}
 		setCGPA(cgp/totalAU);
@@ -297,6 +300,8 @@ public class Student extends Person implements PrimaryKeyManager {
 			System.out.println(student.printParticulars("\t"));
 			System.out.println("\t1. Edit General Particulars.");
 			System.out.println("\t2. Edit Student Particulars.");
+			System.out.println("\t3. Edit Student Grades.");
+			System.out.println("\t4. Print Student Transcript.");
 			System.out.println("\t0. Go back to previous menu.");
 			System.out.print("Choice: ");
 			choice = scan.nextInt(); scan.nextLine();
@@ -382,6 +387,20 @@ public class Student extends Person implements PrimaryKeyManager {
 						}
 					}
 					done = false;
+					break;
+				case 3:
+					System.out.println(student.printTranscript("\t"));
+					System.out.print("Please input course ID: ");
+					choice = scan.nextInt(); scan.nextLine();
+					try {
+						Grade.main(student, student.getCourse(choice), scan);
+						student.calcCGPA();
+					} catch (KeyErrorException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+				case 4:
+					System.out.println(student.printTranscript("\t"));
 					break;
 				default:
 					System.out.println("Error: Invalid choice.");

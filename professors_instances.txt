@@ -1,0 +1,118 @@
+1
+2
+3
+Martin Ng
+M
+3
+Melvin Tan
+M
+3
+Vanissa Leong
+F
+3
+Kayla Lin
+F
+4
+1
+1
+3
+S0909090A
+4
+98997887
+5
+martin@yahoo.com
+6
+#32-1-630 Hall of Residence 6, NTU, Singapore
+7
+12/06/1988
+0
+2
+1
+martinng@ntu.edu.sg
+3
+#N4-01B-02C
+4
+68767656
+5
+Assoc Prof
+0
+0
+4
+2
+1
+3
+S1239868A
+4
+98797732
+5
+melvin@yahoo.com
+6
+#32-1-631 Hall of Residence 6, NTU, Singapore
+7
+22/10/1980
+0
+2
+1
+melvin.tan@ntu.edu.sg
+3
+#N4-02B-02C
+4
+68768989
+5
+Assoc Prof
+0
+0
+4
+3
+1
+3
+S8479403A
+4
+98991208
+5
+vanissa@yahoo.com
+6
+#32-2-630 Hall of Residence 6, NTU, Singapore
+7
+01/12/1985
+0
+2
+1
+vanissa.leong@ntu.edu.sg
+3
+#N4-03B-02C
+4
+68766543
+5
+Assoc Prof
+0
+0
+4
+4
+1
+3
+S1087856A
+4
+97658669
+5
+kayla@yahoo.com
+6
+#32-2-630 Hall of Residence 6, NTU, Singapore
+7
+22/06/1991
+0
+2
+1
+kaylalin@ntu.edu.sg
+3
+#N4-04B-02C
+4
+68765555
+5
+Assoc Prof
+0
+0
+0
+0
+0
+N

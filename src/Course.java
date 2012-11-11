@@ -230,6 +230,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					
 					// Weight allocation for course assessments
 					HashMap<String, Double> weights =  new HashMap<String, Double>();
+					ch = '\0';
 					while (ch != 'Y' && ch != 'N') {
 						System.out.print("Does this course constitutes a final exam? (Y/N): ");
 						ch = scan.nextLine().toUpperCase().charAt(0);
@@ -270,6 +271,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					} catch (KeyErrorException e) {
 						System.out.println(e.getMessage());
 					}
+					break;
 				default:
 					System.out.println("Error: Invalid choice.");
 					break;
@@ -351,7 +353,7 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 							course.getWeights().remove(stringInput);
 							break;
 						default:
-							System.out.print("Error: Invalid input.");
+							System.out.println("Error: Invalid choice.");
 							break;
 					}
 					break;

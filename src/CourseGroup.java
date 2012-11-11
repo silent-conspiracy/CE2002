@@ -211,7 +211,7 @@ public class CourseGroup implements Serializable {
 		// Depending on course types, gid must have group ids for tutorials and labs
 		// Method overloading not used as to reduce copy and pasting, and number of methods.
 		CourseType type = getCourse().getType();
-		if (getVacancy() <= 0) throw new MaxCapacityException(String.format("No more vacancy."));
+		if (getVacancy() <= 0) throw new MaxCapacityException("No more vacancy");
 		try{
 			if (getStudents().contains(obj)) throw new DuplicateKeyException(String.format("Student %s is already enrolled.", obj.getName()));
 			if (type.getLectures().contains(type)) {
@@ -270,6 +270,7 @@ public class CourseGroup implements Serializable {
 		String msg = new String();
 		if (getLecture() != null) {
 			msg += String.format("%sLecture Group ID: %d\n", tabs, getLecture().getID());
+			msg += String.format("%s\tNo. of Students: %d\n", tabs, getLecture().getStudents().size());
 		}
 		if (getTutorials() != null) {
 			msg += String.format("%sTutorial Groups: %d group(s)\n", tabs, getTutorials().size());
@@ -279,23 +280,26 @@ public class CourseGroup implements Serializable {
 			msg += String.format("%sLab Groups: %d group(s)\n", tabs, getLabs().size());
 			msg += printLabs(tabs+"\t");
 		}
+		msg += String.format("%sTotal no. of students: %d \n", tabs, getStudents().size());
 		return msg;
 	}
 	public String printTutorials(String tabs) {
 		String msg = new String();
-		msg += String.format("%s%-5s | %-60s\n", tabs, "ID", "GROUP NAME");
-		msg += String.format("%s%s\n", tabs, new String(new char[68]).replace('\0', '-'));
+		msg += String.format("%s%-5s | %-15s | %-40s\n", tabs, "ID", "No. of Students", "GROUP NAME");
+		msg += String.format("%s%s\n", tabs, new String(new char[83]).replace('\0', '-'));
 		for (Group tutorial : getTutorials().values()) {
-			msg += String.format("%s%-5d | %-60s\n", tabs, tutorial.getID(), tutorial.getName());
+			msg += String.format("%s%-5d | %7d/%-7d | %-40s\n", 
+					tabs, tutorial.getID(), tutorial.getStudents().size(), tutorial.getCapacity(), tutorial.getName());
 		}
 		return msg;
 	}
 	public String printLabs(String tabs) {
 		String msg = new String();
-		msg += String.format("%s%-5s | %-60s\n", tabs, "ID", "GROUP NAME");
-		msg += String.format("%s%s\n", tabs, new String(new char[68]).replace('\0', '-'));
+		msg += String.format("%s%-5s | %-15s | %-40s\n", tabs, "ID", "No. of Students", "GROUP NAME");
+		msg += String.format("%s%s\n", tabs, new String(new char[83]).replace('\0', '-'));
 		for (Group lab : getLabs().values()) {
-			msg += String.format("%s%-5d | %-60s\n", tabs, lab.getID(), lab.getName());
+			msg += String.format("%s%-5d | %7d/%-7d | %-40s\n", 
+					tabs, lab.getID(), lab.getStudents().size(), lab.getCapacity(), lab.getName());
 		}
 		return msg;
 	}
@@ -326,9 +330,9 @@ public class CourseGroup implements Serializable {
 	}
 	public String printStudentsInTutorial(String tabs, Group tutorial, Comparator<SortByName> comparator) {
 		String msg = new String();
-		msg += String.format("%sTutorial ID, Name: %d, %d\n", tabs, tutorial.getID(), tutorial.getName());
+		msg += String.format("%sTutorial ID, Name: %d, %s\n", tabs, tutorial.getID(), tutorial.getName());
 		msg += String.format("%sTutorial Vacancy: %d / %d\n", tabs, tutorial.getStudents().size(), tutorial.getCapacity());
-		tutorial.printStudents(tabs+"\t", comparator);
+		msg += tutorial.printStudents(tabs+"\t", comparator);
 		return msg;
 	}
 	public String printStudentsInLabs(String tabs, Comparator<SortByName> comparator) {
@@ -340,9 +344,9 @@ public class CourseGroup implements Serializable {
 	}
 	public String printStudentsInLab(String tabs, Group lab, Comparator<SortByName> comparator) {
 		String msg = new String();
-		msg += String.format("%sLab ID, Name: %d, %d\n", tabs, lab.getID(), lab.getName());
+		msg += String.format("%sLab ID, Name: %d, %s\n", tabs, lab.getID(), lab.getName());
 		msg += String.format("%sLab Vacancy: %d / %d\n", tabs, lab.getStudents().size(), lab.getCapacity());
-		lab.printStudents(tabs+"\t", comparator);
+		msg += lab.printStudents(tabs+"\t", comparator);
 		return msg;
 	}
 	

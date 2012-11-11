@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SCRAME {
@@ -58,70 +59,61 @@ public class SCRAME {
 		}
 			
 		while (!done) {
-			System.out.println("Please select a school: ");
-			schoolList = new ArrayList<School>(data.getSchools());
-			for (School sch : schoolList) {
-				System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
-			}
-			System.out.println("\t0. Save and Quit.");
-			//System.out.println("\t-1. Create new School.");
-			System.out.print("Choice: ");
-			choice = scan.nextInt(); scan.nextLine();
-			
-			switch(choice) {
-				case 0:
-					try {
-						saveData(data);
-					} catch (IOException e) {
-						System.out.println("Error: Unable to save data.");
-					}
-					System.out.print("Proceed to quit? (Y/N): ");
-					if (scan.nextLine().toUpperCase().charAt(0) != 'Y') break;
-					System.out.println("Thank you! Good Bye.");
-					scan.close();
-					done = true;
-					break;
-				case -1:
-					System.out.println("Please input school name: ");
-					stringInput = scan.nextLine();
-					try {
-						data.addSchool(school = new School(stringInput));
-					} catch (DuplicateKeyException e) {
-						System.out.println(e.getMessage());
-					}
-					break;
-				default:
-					try {
-						school = schoolList.get(choice-1);
-						School.main(school, data, scan);
-					} catch (IndexOutOfBoundsException e) {
-						System.out.println("Error: Invalid choice.");
-					}
-					break;
+			try {
+				System.out.println("Please select a school: ");
+				schoolList = new ArrayList<School>(data.getSchools());
+				for (School sch : schoolList) {
+					System.out.printf("\t%d. %s\n", (schoolList.indexOf(sch))+1, sch.getName());
+				}
+				System.out.println("\t0. Save and Quit.");
+				//System.out.println("\t-1. Create new School.");
+				System.out.print("Choice: ");
+				choice = scan.nextInt(); scan.nextLine();
+				
+				switch(choice) {
+					case 0:
+						try {
+							saveData(data);
+						} catch (IOException e) {
+							System.out.println("Error: Unable to save data.");
+						}
+						System.out.print("Proceed to quit? (Y/N): ");
+						if (scan.nextLine().toUpperCase().charAt(0) != 'Y') break;
+						System.out.println("Thank you! Good Bye.");
+						scan.close();
+						done = true;
+						break;
+					case -1:
+						System.out.println("Please input school name: ");
+						stringInput = scan.nextLine();
+						try {
+							data.addSchool(school = new School(stringInput));
+						} catch (DuplicateKeyException e) {
+							System.out.println(e.getMessage());
+						}
+						break;
+					default:
+						try {
+							school = schoolList.get(choice-1);
+							School.main(school, data, scan);
+						} catch (IndexOutOfBoundsException e) {
+							System.out.println("Error: Invalid choice.");
+						}
+						break;
+				}
+			} catch (InputMismatchException e) {
+				scan.nextLine(); // Eat up bad inputs.
+				System.out.println("Error: Input Mismatch. Please provide compatible inputs.");
+				System.out.println("NOTICE: Please save your work or progress to avoid loss of data.");
+			} catch (Exception f) {
+				System.out.println("Error: Unexpected error occured.");
+				System.out.println("Please copy the following lines and send it to your system provider.");
+				System.out.println(new String(new char [60]).replace('\0','-'));
+				System.out.println(f.getMessage());
+				f.printStackTrace(System.out);
+				System.out.println(new String(new char [60]).replace('\0','-'));
+				System.out.println("NOTICE: Please save your work or progress to avoid loss of data.");
 			}
 		}		
-		
-			
-	}
-	
-	private void printTranscript(String studName){
-		//search for student by name
-		//check for student registered courses (by checking the acadamic year, sem, etc...)
-			//for every course the student takes
-				//print the final result
-	}
-	
-	private void printTranscript(int studID){
-		//search for student by ID
-		//check for student registered courses (by checking the acadamic year, sem, etc...)
-			//for every course the student takes
-				//print the final result
-	}
-	
-	private void printSemStat(int semester, int year){
-		//for every Course in the semester of the year
-			//take the average of total grade from all the student
-			//compute pass/fail, 3rd, 2nd, 1st class, etc... 
-			//print out the results
 	}
 }
