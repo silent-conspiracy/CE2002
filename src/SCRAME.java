@@ -17,6 +17,10 @@ public class SCRAME {
 		BufferedOutputStream bufferedWriter = new BufferedOutputStream(fileWriter);
 		ObjectOutputStream objectWriter = new ObjectOutputStream(bufferedWriter);
 		objectWriter.writeObject(data);
+		objectWriter.writeObject(Professor.pk);
+		objectWriter.writeObject(Student.pk);
+		objectWriter.writeObject(Course.pk);
+		objectWriter.writeObject(Group.pk);
 		objectWriter.close();
 	}
 	public static SaveData loadData() throws ClassNotFoundException, IOException {
@@ -24,6 +28,10 @@ public class SCRAME {
 		BufferedInputStream bufferedReader = new BufferedInputStream(fileReader);
 		ObjectInputStream objectReader = new ObjectInputStream(bufferedReader);
 		SaveData data = (SaveData) objectReader.readObject();
+		Professor.pk = (int) objectReader.readObject();
+		Student.pk = (int) objectReader.readObject();
+		Course.pk = (int) objectReader.readObject();
+		Group.pk = (int) objectReader.readObject();
 		objectReader.close();
 		return data;
 	}
