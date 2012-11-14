@@ -83,9 +83,6 @@ public class Professor extends Person implements PrimaryKeyManager{
 		else throw new KeyErrorException();
 	}
 	
-	public void printParticulars() {
-		System.out.println(printParticulars(""));
-	}
 	public String printParticulars(String tabs) {
 		String msg = new String();
 		msg += String.format("%sGeneral Particulars: \n", tabs);

@@ -80,6 +80,25 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 	public void setSemester(Semester sem) { this.semester = sem; }
 	
 	// Specific methods
+	public String print(String tabs) {
+		String msg = new String();
+		double total = 0;
+		msg += String.format("%sCourse ID: %d\n", tabs, getID());
+		msg += String.format("%sCourse Name: %s\n", tabs, getName());
+		msg += String.format("%sCourse AU: %d\n", tabs, getAU());
+		msg += String.format("%sCourse Type: %s\n", tabs, getType().getDescription());
+		msg += String.format("%sCourse Capacity: %d\n", tabs, getGroups().getCapacity());
+		msg += String.format("%sCourse Weights: \n", tabs);
+		for (String type : getWeights().keySet()) {
+			msg += String.format("%s\t%s: %.2f\n", tabs, type, getWeights().get(type));
+			total += getWeights().get(type);
+		}
+		msg += String.format("%s\tTotal Weights: %.2f\n", tabs, total);
+		msg += String.format("%sCourse Groups: \n", tabs);
+		msg += String.format(getGroups().print(tabs+'\t'));
+		msg += String.format("%sCourse Coordinator: %d, %s\n", tabs, getCoordinator().getID(), getCoordinator().getName());
+		return msg;
+	}
 	public String printResults(String tabs) {
 		String msg = new String();
 		Grade mark = null;
@@ -111,25 +130,6 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		for (String type : components.keySet()) {
 			msg += String.format("%s\t%s Mean: %.2f / %d = %.2f\n", tabs, type, components.get(type), studentCount, components.get(type)/studentCount);
 		}
-		return msg;
-	}
-	public String print(String tabs) {
-		String msg = new String();
-		double total = 0;
-		msg += String.format("%sCourse ID: %d\n", tabs, getID());
-		msg += String.format("%sCourse Name: %s\n", tabs, getName());
-		msg += String.format("%sCourse AU: %d\n", tabs, getAU());
-		msg += String.format("%sCourse Type: %s\n", tabs, getType().getDescription());
-		msg += String.format("%sCourse Capacity: %d\n", tabs, getGroups().getCapacity());
-		msg += String.format("%sCourse Weights: \n", tabs);
-		for (String type : getWeights().keySet()) {
-			msg += String.format("%s\t%s: %.2f\n", tabs, type, getWeights().get(type));
-			total += getWeights().get(type);
-		}
-		msg += String.format("%s\tTotal Weights: %.2f\n", tabs, total);
-		msg += String.format("%sCourse Groups: \n", tabs);
-		msg += String.format(getGroups().print(tabs+'\t'));
-		msg += String.format("%sCourse Coordinator: %d, %s\n", tabs, getCoordinator().getID(), getCoordinator().getName());
 		return msg;
 	}
 	
@@ -243,7 +243,24 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 					System.out.print("Please input course capacity: ");
 					int capacity = scan.nextInt(); scan.nextLine();
 					
+					// No. of tutorials and lab groups
+					int group_count = 0;
+					if (courseType.getTutorials().contains(courseType) || 
+						courseType.getLabs().contains(courseType)) {
+						System.out.print("Please input number of tutorial or lab groups: ");
+						group_count = scan.nextInt(); scan.nextLine();
+					}
+					
 					course = new Course(name, au, courseType, professor, capacity, weights);
+					for (int i=0; i<group_count; i++) {
+						if (i == group_count-1) {
+							course.getGroups().addTutorial(capacity - ((capacity/group_count)*i));
+							course.getGroups().addLab(capacity - ((capacity/group_count)*i));
+						}
+						course.getGroups().addTutorial(capacity/group_count);
+						course.getGroups().addLab(capacity/group_count);
+					}
+					
 					try {
 						school.addCourse(course);
 						professor.addCourse(course);
@@ -256,7 +273,6 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 						}
 					}
 					break;
-					
 				case 4:
 				case 5:
 					course = null;
