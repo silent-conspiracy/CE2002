@@ -274,11 +274,15 @@ public class CourseGroup implements Serializable {
 		}
 		if (getTutorials() != null) {
 			msg += String.format("%sTutorial Groups: %d group(s)\n", tabs, getTutorials().size());
-			msg += printTutorials(tabs+"\t");
+			if (getTutorials().size() < 1) {
+				msg += String.format("%s\tError: Please create tutorial groups in Course Manager -> Edit Course -> Edit CourseGroup.\n", tabs);
+			} else msg += printTutorials(tabs+"\t");
 		}
 		if (getLabs() != null) {
 			msg += String.format("%sLab Groups: %d group(s)\n", tabs, getLabs().size());
-			msg += printLabs(tabs+"\t");
+			if (getLabs().size() < 1) {
+				msg += String.format("%s\tError: Please create lab groups in Course Manager -> Edit Course -> Edit CourseGroup.\n", tabs);
+			} else msg += printLabs(tabs+"\t");
 		}
 		msg += String.format("%sTotal no. of students: %d \n", tabs, getStudents().size());
 		return msg;

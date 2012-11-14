@@ -56,8 +56,8 @@ public class Course implements PrimaryKeyManager, Serializable, SortByName, Comp
 		this.type = course.getType();
 		this.weights = course.getWeights();
 		this.coordinator = course.getCoordinator();
-		this.semester = course.getSemester();
-		this.groups = course.getGroups();
+		this.semester = null;
+		this.groups = new CourseGroup(this, course.getGroups().getCapacity());
 	}
 	
 	// Getters and Setters

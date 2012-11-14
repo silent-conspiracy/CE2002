@@ -90,10 +90,32 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 			// Shallow copy all courses in semester for archiving.
 			// By replacing courses in school with new ones.
 			newCourse = new Course(course);
+			// Instantiate No. of tutorials and lab groups.
+			int group_count = 0;
+			int capacity = newCourse.getGroups().getCapacity();
+			if (course.getGroups().getTutorials() != null) {
+				group_count = course.getGroups().getTutorials().size();
+				for (int i=0; i<group_count; i++) {
+					if (i == group_count - 1) {
+						newCourse.getGroups().addTutorial(capacity - ((capacity/group_count)*i));
+					}
+					else {
+						newCourse.getGroups().addTutorial(capacity/group_count);
+					}
+				}
+			}
+			if (course.getGroups().getLabs() != null) {
+				group_count = course.getGroups().getLabs().size();
+				for (int i=0; i<group_count; i++) {
+					if (i == group_count - 1) {
+						newCourse.getGroups().addLab(capacity - ((capacity/group_count)*i));
+					}
+					else {
+						newCourse.getGroups().addLab(capacity/group_count);
+					}
+				}
+			}
 			school.getCourses().put(newCourse.getID(), newCourse);
-			
-			// Clear all registered students in school's courses.
-			newCourse.setGroups(new CourseGroup(course, course.getGroups().getCapacity()));
 		}
 		data.setCurrentSemester(0);
 	}
