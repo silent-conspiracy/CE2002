@@ -41,9 +41,7 @@ public class Semester implements PrimaryKeyManager, Serializable, Comparable<Sem
 		if (courses.containsKey(course.getID()))
 			throw new DuplicateKeyException(String.format("Course ID %d has already been added", course.getID()));
 		else {
-			Course copyCourse = new Course(course);
-			copyCourse.setSemester(this);
-			courses.put(copyCourse.getID(), copyCourse);
+			getCourses().put(course.getID(), course);
 		}
 	}
 	public void rmCourse(Course course) throws KeyErrorException {

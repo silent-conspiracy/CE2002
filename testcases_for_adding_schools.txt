@@ -1,0 +1,867 @@
+Loading data from 'SCRAME.sav'... Please wait...
+Data load successful.
+
+Welcome to Course Registration portal! (powered by KTCube)
+Please select a school: 
+	1. School of Computer Engineering
+	0. Save and Quit.
+Choice: -1
+Please input school name: 
+School of Magic
+Please select a school: 
+	1. School of Computer Engineering
+	2. School of Magic
+	0. Save and Quit.
+Choice: 2
+Welcome to School of Magic
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 1
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 1
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 4
+Please input student name: 1
+Please choose gender (M/F): m
+Student 16, 1 created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 16         | 1                                                           
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 4
+Please input student name: Keng Wei
+Please choose gender (M/F): m
+Student 17, Keng Wei created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 17         | Keng Wei                                                    
+2     | 16         | 1                                                           
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 2
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 16         | 1                                                           
+2     | 17         | Keng Wei                                                    
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 1
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 16         | 1                                                           
+2     | 17         | Keng Wei                                                    
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 4
+Please input student name: Porings
+Please choose gender (M/F): F
+Student 18, Porings created successfully.
+
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 17         | Keng Wei                                                    
+2     | 16         | 1                                                           
+3     | 18         | Porings                                                     
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 1
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 16         | 1                                                           
+2     | 17         | Keng Wei                                                    
+3     | 18         | Porings                                                     
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 2
+Students List:
+NO    | STUDENT ID | NAME                                                        
+---------------------------------------------------------------------------------
+1     | 16         | 1                                                           
+2     | 17         | Keng Wei                                                    
+3     | 18         | Porings                                                     
+Welcome to Student Manager.
+	1. Print students list by ID.
+	2. Print students list by Name.
+	3. Print student transcript.
+	4. Create a new student.
+	5. Edit a student.
+	6. Delete a student.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to School of Magic
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 2
+Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: 3
+Please input professor name: Dumbledore
+Please choose gender (M/F): M
+Professor 5, Dumbledore created successfully.
+Welcome to Professor Manager.
+	1. Print professors list by ID.
+	2. Print professors list by Name.
+	3. Create a new professor.
+	4. Edit a professor.
+	5. Delete a professor.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to School of Magic
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 3
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 3
+Please input course name: Protect Against the Dark Arts
+Please input academic units: 10
+Please choose the following Course Types: 
+	1. Lectures only
+	2. Tutorials only
+	3. Labs only
+	4. Lectures and tutorials
+	5. Lectures, tutorials and labs
+	6. Lectures and labs
+	7. Tutorials and labs
+Choice: 5
+Please input ID of professor as Course Coordinator: 5
+Does this course constitutes a final exam? (Y/N): Y
+Please input course capacity: 2
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 4
+Please input Course ID: 4
+Course: 4, Protect Against the Dark Arts
+	Course ID: 4
+	Course Name: Protect Against the Dark Arts
+	Course AU: 10
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 2
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 12
+			No. of Students: 0
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 5, Dumbledore
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 4
+Please input Course ID: 1
+Error: Course ID 1 does not exist.
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 4
+Please input Course ID: 5
+Error: Course ID 5 does not exist.
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 4
+Please input Course ID: 4
+Course: 4, Protect Against the Dark Arts
+	Course ID: 4
+	Course Name: Protect Against the Dark Arts
+	Course AU: 10
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 2
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 12
+			No. of Students: 0
+		Tutorial Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Lab Groups: 0 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+		Total no. of students: 0 
+	Course Coordinator: 5, Dumbledore
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: 6
+Welcome to Course Group Manager.
+Course: 4, Protect Against the Dark Arts
+	Lecture Group ID: 12
+		No. of Students: 0
+	Tutorial Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: 2
+Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: 5
+Please input group capacity: 2
+Tutorial Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: 0
+Course: 4, Protect Against the Dark Arts
+	Lecture Group ID: 12
+		No. of Students: 0
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		13    |       0/2       | Group 13                                
+	Lab Groups: 0 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: 3
+Lab Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: 5
+Please input group capacity: 2
+Lab Groups Manager
+	1. Print all groups by ID.
+	2. Print all groups by Name.
+	3. Print all students by ID.
+	4. Print all students by Name.
+	5. Add a new group.
+	6. Edit a group.
+	7. Delete a group.
+	0. Go back to previous menu.
+Choice: 0
+Course: 4, Protect Against the Dark Arts
+	Lecture Group ID: 12
+		No. of Students: 0
+	Tutorial Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		13    |       0/2       | Group 13                                
+	Lab Groups: 1 group(s)
+		ID    | No. of Students | GROUP NAME                              
+		-----------------------------------------------------------------------------------
+		14    |       0/2       | Group 14                                
+	Total no. of students: 0 
+
+	1. Manage Lecture Group.
+	2. Manage Tutorial Groups.
+	3. Manage Lab Groups.
+	4. Print student lists by ID.
+	5. Print student lists by Name.
+	0. Go back to previous menu.
+Choice: 0
+Course: 4, Protect Against the Dark Arts
+	Course ID: 4
+	Course Name: Protect Against the Dark Arts
+	Course AU: 10
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 2
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 12
+			No. of Students: 0
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			13    |       0/2       | Group 13                                
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			14    |       0/2       | Group 14                                
+		Total no. of students: 0 
+	Course Coordinator: 5, Dumbledore
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 4
+Please input Course ID: 4
+Course: 4, Protect Against the Dark Arts
+	Course ID: 4
+	Course Name: Protect Against the Dark Arts
+	Course AU: 10
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 2
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 12
+			No. of Students: 0
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			13    |       0/2       | Group 13                                
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			14    |       0/2       | Group 14                                
+		Total no. of students: 0 
+	Course Coordinator: 5, Dumbledore
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: 7
+Please input new Professor ID: 1
+Error: Professor ID 1 does not exist.
+Course: 4, Protect Against the Dark Arts
+	Course ID: 4
+	Course Name: Protect Against the Dark Arts
+	Course AU: 10
+	Course Type: Lectures, tutorials and labs
+	Course Capacity: 2
+	Course Weights: 
+		Final Exam: 100.00
+		Total Weights: 100.00
+	Course Groups: 
+		Lecture Group ID: 12
+			No. of Students: 0
+		Tutorial Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			13    |       0/2       | Group 13                                
+		Lab Groups: 1 group(s)
+			ID    | No. of Students | GROUP NAME                              
+			-----------------------------------------------------------------------------------
+			14    |       0/2       | Group 14                                
+		Total no. of students: 0 
+	Course Coordinator: 5, Dumbledore
+
+	1. Edit Course Name.
+	2. Edit Course AU.
+	3. Edit Course Type.
+	4. Edit Course Capacity.
+	5. Edit Course Assessments Weights.
+	6. Edit Course Groups.
+	7. Edit Course Coordinator.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to Course Manager.
+	1. Print courses list by ID.
+	2. Print courses list by Name.
+	3. Create a new course.
+	4. Edit a course.
+	5. Delete a course.
+	6. Print course statistics.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to School of Magic
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 4
+Semester Manager.
+	1. Start a new semester.
+	0. Go back to previous menu.
+Choice: 1
+Please input semester name: AY2012
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 3
+All courses added successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 1
+	Courses List:
+	NO    | COURSE ID  | COURSE NAME                                                  | CAPACITY    | COORDINATOR                                       
+	----------------------------------------------------------------------------------------------------------------------------------------------------
+	1     | 4          | Protect Against the Dark Arts                                |     0/2     | Dumbledore                                        
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 0
+Welcome to School of Magic
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 0
+Please select a school: 
+	1. School of Computer Engineering
+	2. School of Magic
+	0. Save and Quit.
+Choice: 1
+Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 4
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 3
+All courses added successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 1
+	Courses List:
+	NO    | COURSE ID  | COURSE NAME                                                  | CAPACITY    | COORDINATOR                                       
+	----------------------------------------------------------------------------------------------------------------------------------------------------
+	1     | 1          | Object Oriented Programming                                  |     0/12    | Martin Ng                                         
+	2     | 2          | Algorithms                                                   |     0/12    | Melvin Tan                                        
+	3     | 3          | Effective Communication                                      |     0/15    | Vanissa Leong                                     
+	4     | 4          | Protect Against the Dark Arts                                |     0/2     | Dumbledore                                        
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 6
+Please input student ID: 1
+Please input Course ID: 4
+Lecture Group ID: 12
+	No. of Students: 0
+Tutorial Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	13    |       0/2       | Group 13                                
+Lab Groups: 1 group(s)
+	ID    | No. of Students | GROUP NAME                              
+	-----------------------------------------------------------------------------------
+	14    |       0/2       | Group 14                                
+Total no. of students: 0 
+
+Please input Tutorial group: 13
+Please input Lab group: 14
+Student ID 1, Kenny Pang registered in Course ID 4, Protect Against the Dark Arts successfully.
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 8
+Please input student ID: 1
+Please input Course ID: 4
+Grade Manager.
+Student: 1, Kenny Pang
+Course: 4, Protect Against the Dark Arts
+	GPA: 0.00
+	Overall Marks: 0.00
+	Component Marks:
+		Final Exam: 0.00 => 0.00
+
+1. Final Exam
+0. Go back to previous menu.
+Choice: 1
+Please input marks: 80
+Grade Manager.
+Student: 1, Kenny Pang
+Course: 4, Protect Against the Dark Arts
+	GPA: 4.50
+	Overall Marks: 80.00
+	Component Marks:
+		Final Exam: 80.00 => 80.00
+
+1. Final Exam
+0. Go back to previous menu.
+Choice: 0
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 11
+Please input Course ID: 1
+		Lecture ID, Name: 1, Group 1
+		Lecture Vacancy: 0 / 12
+		Tutorial ID, Name: 3, Group 3
+		Tutorial Vacancy: 0 / 6
+			Students list of Group: 3, Group 3
+			NO    | STUDENT ID | NAME                                                        
+			---------------------------------------------------------------------------------
+		Tutorial ID, Name: 4, Group 4
+		Tutorial Vacancy: 0 / 6
+			Students list of Group: 4, Group 4
+			NO    | STUDENT ID | NAME                                                        
+			---------------------------------------------------------------------------------
+		Lab ID, Name: 5, Group 5
+		Lab Vacancy: 0 / 6
+			Students list of Group: 5, Group 5
+			NO    | STUDENT ID | NAME                                                        
+			---------------------------------------------------------------------------------
+		Lab ID, Name: 6, Group 6
+		Lab Vacancy: 0 / 6
+			Students list of Group: 6, Group 6
+			NO    | STUDENT ID | NAME                                                        
+			---------------------------------------------------------------------------------
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 12
+Please input Student ID: 1
+	Student: 1, Kenny Pang
+	CGPA: 0.00
+	Courses taken: 
+	Semester: AY2012
+		Course: 4, Protect Against the Dark Arts
+			GPA: 4.50
+			Overall Marks: 80.00
+			Component Marks:
+				Final Exam: 80.00 => 80.00
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 13
+Please input Course ID: 4
+	Course Statistics:
+	Students: 
+		1, Kenny Pang: 
+			GPA: 4.50
+			Overall Marks: 80.00
+			Component Marks:
+				Final Exam: 80.00 => 80.00
+		Overall Mean: 80.00 / 1 = 80.00
+		Final Exam Mean: 80.00 / 1 = 80.00
+
+Semester Registration Manager.
+	1. Print courses open for registration.
+	2. Add a course to current semester.
+	3. Add all courses to current semester.
+	4. Remove a course from current semester.
+	5. Remove all courses from current semester.
+	6. Register a student to a course.
+	7. Edit student's group in a course.
+	8. Manage grades for a student of a course.
+	9. Unregister a student from a course.
+	10. Unregister all students from a course.
+	11. Print student list of a course.
+	12. Print student transcript.
+	13. Print course statistics.
+	14. End current semester.
+	0. Go back to previous menu.
+Choice: 14
+Are you sure to end Semester 1, AY2012? (Y/N): Y
+Semester 1, AY2012 ended.
+Welcome to School of Computer Engineering
+Please select an option: 
+	1. Manage Students
+	2. Manage Professors
+	3. Manage Courses
+	4. Manage Semesters
+	0. Go back to previous menu
+Choice: 

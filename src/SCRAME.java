@@ -52,7 +52,6 @@ public class SCRAME {
 		int choice = 0;
 		int error_count = 0;
 		boolean done = false;
-		String stringInput = null;
 		School school = null;
 		ArrayList<School> schoolList = null;
 
@@ -105,15 +104,19 @@ public class SCRAME {
 						scan.close();
 						done = true;
 						break;
+					/*
 					case -1:
+						// Uncomment to test scalability of program
+						// This case adds a new school.
 						System.out.println("Please input school name: ");
-						stringInput = scan.nextLine();
+						String stringInput = scan.nextLine();
 						try {
 							data.addSchool(school = new School(stringInput));
 						} catch (DuplicateKeyException e) {
 							System.out.println(e.getMessage());
 						}
 						break;
+					*/
 					default:
 						try {
 							school = schoolList.get(choice-1);

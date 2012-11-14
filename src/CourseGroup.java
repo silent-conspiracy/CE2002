@@ -317,8 +317,8 @@ public class CourseGroup implements Serializable {
 	public String printStudentsInLecture(String tabs, Comparator<SortByName> comparator) {
 		String msg = new String();
 		msg += String.format("%sLecture ID, Name: %d, %s\n", tabs, getLecture().getID(), getLecture().getName());
-		msg += String.format("%sLecture Vacancy: %d / %d\n", tabs, getLecture().getStudents().size(), getLecture().getCapacity());
-		getLecture().printStudents(tabs+"\t", comparator);
+		msg += String.format("%sLecture Occupancy: %d / %d\n", tabs, getLecture().getStudents().size(), getLecture().getCapacity());
+		msg += getLecture().printStudents(tabs+"\t", comparator);
 		return msg;
 	}
 	public String printStudentsInTutorials(String tabs, Comparator<SortByName> comparator) {
@@ -331,7 +331,7 @@ public class CourseGroup implements Serializable {
 	public String printStudentsInTutorial(String tabs, Group tutorial, Comparator<SortByName> comparator) {
 		String msg = new String();
 		msg += String.format("%sTutorial ID, Name: %d, %s\n", tabs, tutorial.getID(), tutorial.getName());
-		msg += String.format("%sTutorial Vacancy: %d / %d\n", tabs, tutorial.getStudents().size(), tutorial.getCapacity());
+		msg += String.format("%sTutorial Occupancy: %d / %d\n", tabs, tutorial.getStudents().size(), tutorial.getCapacity());
 		msg += tutorial.printStudents(tabs+"\t", comparator);
 		return msg;
 	}
@@ -345,7 +345,7 @@ public class CourseGroup implements Serializable {
 	public String printStudentsInLab(String tabs, Group lab, Comparator<SortByName> comparator) {
 		String msg = new String();
 		msg += String.format("%sLab ID, Name: %d, %s\n", tabs, lab.getID(), lab.getName());
-		msg += String.format("%sLab Vacancy: %d / %d\n", tabs, lab.getStudents().size(), lab.getCapacity());
+		msg += String.format("%sLab Occupancy: %d / %d\n", tabs, lab.getStudents().size(), lab.getCapacity());
 		msg += lab.printStudents(tabs+"\t", comparator);
 		return msg;
 	}

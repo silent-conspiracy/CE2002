@@ -72,28 +72,6 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName, Compa
 		if (students.containsKey(obj.getID())) students.remove(obj.getID());
 		else throw new KeyErrorException(String.format("%s is not enrolled in Group %d", obj.getName(), getID()));
 	}
-	
-	@Override
-	public void autoIncrement(int id) {
-		if (id < pk) return;
-		pk = ++id;
-	}
-	@Override
-	public void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
-		stream.defaultReadObject();
-		autoIncrement(this.id);
-	}
-	@Override
-	public int compareTo(Group obj) {
-		return (this.getID()-obj.getID());
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof Group)) return false;
-		Group temp = (Group) obj;
-		if (this.id == temp.getID()) return true;
-		return false;
-	}
 	public String print(String tabs) {
 		String msg = new String();
 		msg += String.format("%sGroup ID: %d\n", tabs, getID());
@@ -118,6 +96,28 @@ public class Group implements PrimaryKeyManager, Serializable, SortByName, Compa
 		}
 		return msg;
 	}
+	@Override
+	public void autoIncrement(int id) {
+		if (id < pk) return;
+		pk = ++id;
+	}
+	@Override
+	public void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		autoIncrement(this.id);
+	}
+	@Override
+	public int compareTo(Group obj) {
+		return (this.getID()-obj.getID());
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Group)) return false;
+		Group temp = (Group) obj;
+		if (this.id == temp.getID()) return true;
+		return false;
+	}
+	
 	public static void main(Group group, School school, Scanner scan) {
 		int choice = 0;
 		boolean done = false;
